@@ -41,7 +41,6 @@ RLP字符/字符串编码
 
 我们首先来讲一下针对字符和字符串的具体编码方式。首先回顾一下ASCII字符对照表。
 
-.. _4-8:
 .. figure:: /img/Picture38.png
    :align: center
    :width: 600 px

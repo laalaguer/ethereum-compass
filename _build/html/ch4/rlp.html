@@ -144,9 +144,9 @@
 <li class="toctree-l2"><a class="reference internal" href="mpt.html">Merkle Patricia树</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">RLP编码</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">RLP字符/字符串编码</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">RLP字符/字符串解码</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">RLP数组编码</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">RLP数组解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">RLP字符/字符串解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">RLP数组编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">RLP数组解码</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="interval.html">扩展阅读</a></li>
@@ -377,8 +377,8 @@
 <div class="section" id="id1">
 <h2>RLP字符/字符串编码<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>我们首先来讲一下针对字符和字符串的具体编码方式。首先回顾一下ASCII字符对照表。</p>
-<div class="figure align-center" id="id6">
-<span id="id2"></span><a class="reference internal image-reference" href="../_images/Picture38.png"><img alt="../_images/Picture38.png" src="../_images/Picture38.png" style="width: 600px;" /></a>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="../_images/Picture38.png"><img alt="../_images/Picture38.png" src="../_images/Picture38.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text">ASCII字符对照表</span></p>
 </div>
 <p>ASCII表涵盖了0～127个字符，按照16进制表达就是 <code class="docutils literal notranslate"><span class="pre">0x00</span></code> ～ <code class="docutils literal notranslate"><span class="pre">0x7f</span></code> 。
@@ -413,8 +413,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h2>RLP字符/字符串解码<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2>RLP字符/字符串解码<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>对于最基本的字符/字符串变量，RLP编码的解码过程将同样直观且顺利，
 当解码器遇上一个字符时，仅需判断其范围即可决定紧接着的字符应该采用何种方式进行解码。
 可以说是一个相当好用的流式解码。</p>
@@ -450,8 +450,8 @@
 <li>发现都是 0x61, 按照 ASCII直接翻译该字符即可。为 <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code></li>
 </ul>
 </div>
-<div class="section" id="id4">
-<h2>RLP数组编码<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>RLP数组编码<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>我们看到字符串的编码范围用到了 <code class="docutils literal notranslate"><span class="pre">0xbf</span></code> 就到了顶峰，再向上起始范围是 <code class="docutils literal notranslate"><span class="pre">0xc0</span></code> ，这个就是数组的编码起始范围。针对数组，RLP编码定义如下所示。</p>
 <ul>
 <li><p class="first">空数组编码为 <code class="docutils literal notranslate"><span class="pre">0xc0</span></code></p>
@@ -482,8 +482,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h2>RLP数组解码<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>RLP数组解码<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>略</p>
 <p>RLP算法已经明明白白地安排了从 0x00～0xff 每个字符的含义，并且巧妙地使用了 0x80, 0x81, 0xc0 作为分隔符将这些范围划分为数个空间，
 在解码时，根据开头就能判断接下去来的数据类型。我们将上面解码表格补充完整，加入对字符串的解码规则。</p>

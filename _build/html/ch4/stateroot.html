@@ -144,9 +144,9 @@
 <li class="toctree-l2"><a class="reference internal" href="mpt.html">Merkle Patricia树</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rlp.html">RLP编码</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="rlp.html#id1">RLP字符/字符串编码</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rlp.html#id3">RLP字符/字符串解码</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rlp.html#id4">RLP数组编码</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rlp.html#id5">RLP数组解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rlp.html#id2">RLP字符/字符串解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rlp.html#id3">RLP数组编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rlp.html#id4">RLP数组解码</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="interval.html">扩展阅读</a></li>
@@ -344,9 +344,9 @@
 <h1>资料篇：状态树 (以及存储树）<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>在 <a class="reference internal" href="../ch2/account.html#reference-account"><span class="std std-ref">账户探秘</span></a> 中，已经详细讲述了账户和世界状态的概念，我们一起来回想一下，账户的集合组成了世界状态，而账户在组成世界状态时正采用了 MPT 树的组织形式。</p>
 <p>每个账户都处在树的叶子节点上，树的组织则按照排列顺序进行串联哈希，最终层层哈希得出世界状态。当更改某单一账户时，则会引发它所在分支的上层哈希值的更改，直到影响到根节点的哈希值，根节点的哈希值称为状态树（stateRoot），这个值将存入区块头部。世界状态随着区块链的前进而不断变化，状态树的值也不断变更。</p>
-<p>图 <a class="reference internal" href="#id2">4-9</a> 中最右侧抽象地代表了一棵状态树，它保存了全球所有以太坊的账户的状态（MPT棵树的形式）。回忆 <a class="reference internal" href="../ch2/account.html#reference-account"><span class="std std-ref">账户探秘</span></a> 的知识，以太坊账户分为外部账户和合约账户两种。这棵树的每个叶子节点就代表了一个账户。</p>
-<div class="figure align-center" id="id3">
-<span id="id2"></span><a class="reference internal image-reference" href="../_images/Picture39.png"><img alt="../_images/Picture39.png" src="../_images/Picture39.png" style="width: 700px;" /></a>
+<p>下图中最右侧抽象地代表了一棵状态树，它保存了全球所有以太坊的账户的状态（MPT棵树的形式）。回忆 <a class="reference internal" href="../ch2/account.html#reference-account"><span class="std std-ref">账户探秘</span></a> 的知识，以太坊账户分为外部账户和合约账户两种。这棵树的每个叶子节点就代表了一个账户。</p>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/Picture39.png"><img alt="../_images/Picture39.png" src="../_images/Picture39.png" style="width: 700px;" /></a>
 <p class="caption"><span class="caption-text">存储树，账户状态，世界状态的构成关系</span></p>
 </div>
 <p>放大右侧树中，叶子节点的内容，看到上图的中间，可以看到一个账户的结构，其包含了四个域。</p>

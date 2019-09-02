@@ -110,7 +110,7 @@ Ganache 继承了原来的 Test-RPC的使命，作为测试环境里的模拟区
 
 .. code-block:: bash
 
-   $ ganache-cli
+   ganache-cli
 
    Ganache CLI v6.1.6 (ganache-core: 2.1.5)
    

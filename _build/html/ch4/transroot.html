@@ -144,9 +144,9 @@
 <li class="toctree-l2"><a class="reference internal" href="mpt.html">Merkle Patricia树</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rlp.html">RLP编码</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="rlp.html#id1">RLP字符/字符串编码</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rlp.html#id3">RLP字符/字符串解码</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rlp.html#id4">RLP数组编码</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rlp.html#id5">RLP数组解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rlp.html#id2">RLP字符/字符串解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rlp.html#id3">RLP数组编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rlp.html#id4">RLP数组解码</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="interval.html">扩展阅读</a></li>
@@ -346,9 +346,9 @@
 <p>这棵树包含了当前区块打包的所有交易。交易的排列顺序由矿工在打包时唯一确定。</p>
 <p>若有幸包同一个块中含了同一个账户发出的数笔交易，矿工按照发送账户的 nonce 值顺序安排该账户的交易。矿工在排序完成后，调用自身的以太坊虚拟机执行交易指令来变更世界状态中对应的账户的状态，收取相应的交易费。</p>
 <p>每笔交易最后都会被永久记录下来，并且组织成 MPT 树的叶子节点，经过层层哈希计算后，树根的256位哈希值被记录下来进入区块头，该值，在代码中被命名为transactionsRoot，即为 <strong>交易树</strong> 。</p>
-<p>图 <a class="reference internal" href="#id2">4-10</a> 中最右侧为一棵MPT结构的交易树示意图。它的一个叶子节点为一笔交易，若我们放大该节点，则能看到一笔交易的细节包含6个域，已在 <a class="reference internal" href="../ch3/what.html#reference-what-is-transaction"><span class="std std-ref">交易的样子</span></a> 详细阐明，此处不再赘述。</p>
-<div class="figure align-center" id="id3">
-<span id="id2"></span><a class="reference internal image-reference" href="../_images/Picture40.png"><img alt="../_images/Picture40.png" src="../_images/Picture40.png" style="width: 700px;" /></a>
+<p>下图中最右侧为一棵MPT结构的交易树示意图。它的一个叶子节点为一笔交易，若我们放大该节点，则能看到一笔交易的细节包含6个域，已在 <a class="reference internal" href="../ch3/what.html#reference-what-is-transaction"><span class="std std-ref">交易的样子</span></a> 详细阐明，此处不再赘述。</p>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/Picture40.png"><img alt="../_images/Picture40.png" src="../_images/Picture40.png" style="width: 700px;" /></a>
 <p class="caption"><span class="caption-text">单笔交易和交易树的构成</span></p>
 </div>
 </div>
