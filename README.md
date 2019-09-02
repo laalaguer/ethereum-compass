@@ -1,5 +1,11 @@
 # 修改本书的方式
 
+## 方式一：直接提 Issue
+
+访问：http://ethbook.abyteahead.com/ 查看全书
+
+发现错误或者建议，请在Github 页面上 Issue 页面直接提出 Issue
+
 ## 方式一： 直接提 Issue
 
 克隆本项目到本地
