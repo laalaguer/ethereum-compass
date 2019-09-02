@@ -1,0 +1,660 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>高级语法和概念 &mdash; 以太坊的指南针 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="小结" href="summary.html" />
+    <link rel="prev" title="语法进阶" href="levelup.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> 以太坊的指南针
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../howto.html">如何学习这本书</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch1/index.html">第 1 章 以太坊：一台全球计算机</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/born.html">简史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/progress.html">发展阶段</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/highlight.html">以太坊的特色</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch2/index.html">第 2 章 账户是什么</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/basic.html">小白基础知识问答</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id2">我的以太币记录在哪里？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id3">我的以太币余额如何变化？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id4">什么是区块？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id5">区块和状态的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id6">“巨大的账本”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id7">我如何参与以太坊？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id8">我如何与其他人同步账本？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/account.html">账户探秘</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id2">账户与账户状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id3">账户状态的内涵</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id4">已执行交易总数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id5">持币数量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id6">存储区的哈希值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id7">代码区的哈希值</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#app">没有钱包App, 如何生成账户？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id11">智能合约地址的生成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/keystore.html">资料篇：Keystore 与私钥保存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/app.html">资料篇：常用钱包 App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/eip55.html">资料篇：EIP-55 格式的账户地址</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch3/index.html">第 3 章 交易是驱动力</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/how.html">交易的发送</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id2">交易与消息什么区别？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id3">交易的特性是什么？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/what.html">交易的样子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/life.html">交易的生命周期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/pow.html">资料篇：共识与工作量证明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow">比特币的PoW机制（简单版）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#id2">比特币算力的中心化问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow-pos">以太坊的Pow/Pos机制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/dig.html">资料篇：矿工与挖矿奖励</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch4/index.html">第 4 章 数据结构</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/radix.html">Radix树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/merkle.html">Merkle树和 Merkle证明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/mpt.html">Merkle Patricia树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/rlp.html">RLP编码</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id1">RLP字符/字符串编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id3">RLP字符/字符串解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id4">RLP数组编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id5">RLP数组解码</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/stateroot.html">资料篇：状态树 (以及存储树）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/transroot.html">资料篇：交易树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/receiptroot.html">资料篇：收据树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/block.html">资料篇：区块</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch5/index.html">第 5 章 构建一条以太坊私链</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/install.html">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/geth.html">Geth客户端的结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/build.html">启动一条以太坊私链</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/coinbase.html">接收挖矿奖励</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/transfer.html">转账与收款</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch6/index.html">第 6 章 手把手教你部署智能合约</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/what.html">什么是智能合约？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/install.html">安装编译器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/compile.html">Solc编译智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/prepare.html">智能合约发布准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/deploy.html">部署智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/call.html">调用智能合约</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch7/index.html">第 7 章 以太坊虚拟机探秘</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/result.html">虚拟机的执行结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/resource.html">虚拟机的执行资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/call.html">合约调用合约?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/io.html">虚拟机的输入输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/gas.html">Gas 花费与退回</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/instructions.html">虚拟机指令集</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">第 8 章 Solidity语法练习</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic.html">基础概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id2">没有浮点数运算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id3">合约基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id4">变量类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id5">运算符号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#struct">结构体 Struct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#array">数组array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id6">函数申明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id7">类型转换与内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id8">合约与事件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="levelup.html">语法进阶</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="levelup.html#map">数据结构：map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="levelup.html#msg-sender">环境变量：msg.sender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="levelup.html#requireassert">require还是assert?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="levelup.html#id2">继承和引入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="levelup.html#id3">省钱妙招：内存变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="levelup.html#id4">接口与合约调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="levelup.html#id5">多返回值</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">高级语法和概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contract">Contract 构造函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ownable">Ownable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pausable">Pausable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#struct">省钱妙招：struct 结构体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">时间单位表达</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">带参数的函数修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#for">for 循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#payable">合约收款：payable修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transfer">支付费用：transfer方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="summary.html">小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch9/index.html">第 9 章 Truffle合约开发实战</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/install.html">编译、测试工具安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#truffle">Truffle的安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#ganache">Ganache的安装</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/sample.html">Truffle启动样例项目</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id1">下载样例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id2">编译项目</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#ganache">部署项目到 Ganache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id3">测试项目</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/erc20.html">上手实践：ERC20合约</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id1">新建项目目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#erc20-basic">ERC20 Basic合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id2">ERC20 合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#safemath">SafeMath基础数学库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#cat">猫币：CAT数字资产合约</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/test.html">上手实践：ERC20合约测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id1">准备工作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id2">测试辅助函数与库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id3">测试代码分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id4">测试运行与结果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch10/index.html">附录 有意思的冷知识</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/shortattack.html">短地址攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/block.html">比特币的区块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/utxo.html">以太坊与比特币账户的区别</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id2">隐私与安全性的比较</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id3">数据体积与并发能力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id4">发送交易时对双花的处理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/triangle.html">“不可能的三角”问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/ethash.html">ETHASH 挖矿算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#ethashpow">ETHASH和比特币PoW的异同</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id1">ETHASH的设计目标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id2">ETHASH的挖矿运行总流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id3">ETHASH算法源代码解读</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">以太坊的指南针</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">第 8 章 Solidity语法练习</a> &raquo;</li>
+        
+      <li>高级语法和概念</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ch8/advanced.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>高级语法和概念<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>到现在这步，读者对于智能合约的基本编程已经有了一个充分的了解。相信萦绕在读者心头一定有疑问：以太坊智能合约编程，究竟和普通的无输入输出程序有何区别？在合约里，我如何加入更多的控制结构来保护方法不被恶意调用？本节将逐条讲述各种小技巧以及安全措施，来帮助读者构建更安全的智能合约。</p>
+<div class="section" id="contract">
+<h2>Contract 构造函数<a class="headerlink" href="#contract" title="Permalink to this headline">¶</a></h2>
+<p>构造函数在以前旧版本的Solidity里面是一个自定义的同名函数，例如下面的合约。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Ownable</span> <span class="p">{</span>
+  <span class="kt">address</span> <span class="kr">public</span> <span class="n">owner</span><span class="p">;</span>
+  <span class="c1">// 初始化，设定 owner</span>
+  <span class="kd">function</span> <span class="n">Ownable</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+    <span class="n">owner</span> <span class="o">=</span> <span class="nb">msg.sender</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这里Ownable构造函数对应了Ownable合约，完成了初始化的操作。但是这个旧版的语法在新的编译器里面被替换，因为往往开发者在开发时候更换了合约的名字而忘记修改构造函数名，造成重大事故。所以现在统一用constructor关键字来替代。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Ownable</span> <span class="p">{</span>
+  <span class="kt">address</span> <span class="kr">public</span> <span class="n">owner</span><span class="p">;</span>
+  <span class="c1">// 初始化，设定 owner</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+    <span class="n">owner</span> <span class="o">=</span> <span class="nb">msg.sender</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ownable">
+<h2>Ownable控制<a class="headerlink" href="#ownable" title="Permalink to this headline">¶</a></h2>
+<p>控制合约的所有权，常常使用的一个控制结构就是Ownable，这只不过是一个约定俗成的表达写法。下面是openZeppelin公开项目中摘录的部分代码</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Ownable</span> <span class="p">{</span>
+  <span class="kt">address</span> <span class="kr">public</span> <span class="n">owner</span><span class="p">;</span>
+  <span class="kd">event</span> <span class="n">OwnershipTransferred</span><span class="p">(</span><span class="kt">address</span> <span class="kr">indexed</span> <span class="n">previousOwner</span><span class="p">,</span> <span class="kt">address</span> <span class="kr">indexed</span> <span class="n">newOwner</span><span class="p">);</span>
+
+  <span class="c1">// 初始化，设定 owner</span>
+  <span class="kd">function</span> <span class="n">Ownable</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+    <span class="n">owner</span> <span class="o">=</span> <span class="nb">msg.sender</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 设定仅允许 owner 访问</span>
+  <span class="kd">modifier</span> <span class="n">onlyOwner</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">require</span><span class="p">(</span><span class="nb">msg.sender</span> <span class="o">==</span> <span class="n">owner</span><span class="p">);</span>
+    <span class="kr">_</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 转移 owner 所有权</span>
+  <span class="kd">function</span> <span class="n">transferOwnership</span><span class="p">(</span><span class="kt">address</span> <span class="n">newOwner</span><span class="p">)</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="p">{</span>
+    <span class="nf">require</span><span class="p">(</span><span class="n">newOwner</span> <span class="o">!=</span> <span class="kt">address</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+    <span class="kr">emit</span> <span class="n">OwnershipTransferred</span><span class="p">(</span><span class="n">owner</span><span class="p">,</span> <span class="n">newOwner</span><span class="p">);</span>
+    <span class="n">owner</span> <span class="o">=</span> <span class="n">newOwner</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>读者可能对onlyOwner()函数看得云里雾里。这里怎么会有一个 <code class="docutils literal notranslate"><span class="pre">_;</span></code> 奇怪的段落呢？其实这里 _; 函数代表了模板预留空位，当任意新的函数使用onlyOwner来修饰自己的时候，它就可以将自己的函数逻辑代码替代到 _; 位置来执行。例如下所示。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">MyContract</span> <span class="kr">is</span> <span class="n">Ownable</span> <span class="p">{</span>
+  <span class="kd">event</span> <span class="n">Laugh</span><span class="p">(</span><span class="kt">string</span> <span class="n">laughter</span><span class="p">);</span>
+
+  <span class="c1">// 用 OnlyOwner来修饰函数</span>
+  <span class="kd">function</span> <span class="n">likeABoss</span><span class="p">()</span> <span class="kr">external</span> <span class="n">onlyOwner</span> <span class="p">{</span>
+     <span class="kr">emit</span> <span class="n">Laugh</span><span class="p">(</span><span class="s">&quot;Muahahahaha&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这里函数修饰符除了public/private, internal/external以外，还用onlyOwner来修饰，所以当任何区块链用户试图调用likeABoss()函数的时候，如果不是合约的合约所有者（owner），则无法触发这个函数执行。这样就可以保留合约的所有者对于合约中部分函数的排他操控性。</p>
+</div>
+<div class="section" id="pausable">
+<h2>Pausable控制<a class="headerlink" href="#pausable" title="Permalink to this headline">¶</a></h2>
+<p>有了Ownable来明确合约所有权，那么合约是否可以由合约所有者（owner）控制，随时的暂停呢？因为有些合约是只能转账合约，它一旦发生灾难则暴露在公众下不可控制，如果合约所有者能够进行“临时暂停”该多好啊！Pausable可暂停合约就是这样设计的。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Pausable</span> <span class="kr">is</span> <span class="n">Ownable</span> <span class="p">{</span>
+  <span class="kd">event</span> <span class="n">Pause</span><span class="p">();</span>
+  <span class="kd">event</span> <span class="n">Unpause</span><span class="p">();</span>
+
+  <span class="kt">bool</span> <span class="kr">public</span> <span class="n">paused</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+  <span class="kd">modifier</span> <span class="n">whenNotPaused</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">require</span><span class="p">(</span><span class="o">!</span><span class="n">paused</span><span class="p">);</span>
+    <span class="kr">_</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">modifier</span> <span class="n">whenPaused</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">require</span><span class="p">(</span><span class="n">paused</span><span class="p">);</span>
+    <span class="kr">_</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="n">pause</span><span class="p">()</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="n">whenNotPaused</span> <span class="p">{</span>
+    <span class="n">paused</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="kr">emit</span> <span class="n">Pause</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="n">unpause</span><span class="p">()</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="n">whenPaused</span> <span class="p">{</span>
+    <span class="n">paused</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="kr">emit</span> <span class="n">Unpause</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这里的代码一目了然：合约继承自ownable, 所以就有了合约所有权的确立；代码可以执行pause()和unpause()两种来进行暂停/继续。两种函数whenNotPaused()和 whenPaused()可以进行函数修饰，分两种情况，让合约函数可以被调用或者不能调用。</p>
+<div class="admonition- admonition">
+<p class="first admonition-title">小练习</p>
+<p>请对下列合约的代码进行填补，让他在合约暂停时无法执行转账函数transfer。</p>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Token</span> <span class="kr">is</span> <span class="n">______</span> <span class="p">{</span>
+  <span class="kd">event</span> <span class="n">Transfer</span><span class="p">(</span><span class="kt">address</span> <span class="kr">from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">to</span><span class="p">);</span>
+
+  <span class="kd">function</span> <span class="nf">transfer</span><span class="p">(</span><span class="kt">address</span> <span class="n">_to</span><span class="p">)</span> <span class="kr">public</span> <span class="n">_______</span> <span class="p">{</span>
+    <span class="kr">emit</span> <span class="n">Tranfer</span><span class="p">(</span><span class="nb">msg.sender</span><span class="p">,</span> <span class="n">_to</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="struct">
+<h2>省钱妙招：struct 结构体<a class="headerlink" href="#struct" title="Permalink to this headline">¶</a></h2>
+<p>因为运行一次以太坊智能合约都会花费用户真金白银，所以针对以太坊合约的优化也是编程的关注重点。一份好的智能合约不但在步骤上能节约资源消耗，在存储空间上也是寸土必争。我们可以通过 struct结构体来构建更加空间紧凑的存储，进而节约花费。</p>
+<p>回顾一下，我们已知有四种数据结构 uint(uint256)、uint32、uint16和uint8。一般而言单独使用的话，并没有任何空间优化的必要，因为Solidity编译器目前还是用256位来统一存储单值。优化反而对程序可扩展性进行了限制。但是在结构体中优化是很有必要的，例如下面的两个结构体Normal和Mini。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">struct</span> <span class="n">Normal</span> <span class="p">{</span>
+  <span class="kt">uint</span> <span class="n">a</span><span class="p">;</span>
+  <span class="kt">uint</span> <span class="n">b</span><span class="p">;</span>
+  <span class="kt">uint</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="n">Mini</span> <span class="p">{</span>
+  <span class="kt">uint32</span> <span class="n">a</span><span class="p">;</span>
+  <span class="kt">uint32</span> <span class="n">b</span><span class="p">;</span>
+  <span class="kt">uint</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>上面的Normal结构能够占领3x256位的空间，然而下面的Mini可以把a、b两者放入同一个256位空间内，c单独放入256位空间。实现了2x256就能存储的优化。在常年累月的运行中，可以完美节约1/3的存储花费！</p>
+<div class="admonition- admonition">
+<p class="first admonition-title">小练习</p>
+<p>请将下列每个数据结构，改为 uint32，并简述可以节约多少空间。</p>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">struct</span> <span class="n">Normal</span> <span class="p">{</span>
+  <span class="kt">uint</span> <span class="n">a</span><span class="p">;</span>
+  <span class="kt">uint</span> <span class="n">b</span><span class="p">;</span>
+  <span class="kt">uint</span> <span class="n">c</span><span class="p">;</span>
+  <span class="kt">uint</span> <span class="n">d</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>时间单位表达<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>在智能合约中经常使用到时间信息。转账时间、合约的倒计时、方法调用的冷却时间都会用到时间。除了用区块链的高度来“估算”时间以外（因为出块时间相对稳定），Solidity提供了一个Unix时间戳来记录时间，类似于1515527488这样的数字。在编程的时候并不需要我们手动拼写这个数字，仅需要通过文字描述即可达到目的。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">fiveMinutesHavePassed</span><span class="p">()</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="nb">now</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">lastUpdated</span> <span class="o">+</span> <span class="mi">5</span> <span class="kc">minutes</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这里now和5 minutes都属于时间表示，我们甚至可以直接将时间单位赋值给uint类型的变量。以下的语句是完全合法的。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kt">uint</span> <span class="n">lastUpdated</span> <span class="o">=</span> <span class="nb">now</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition- admonition">
+<p class="first admonition-title">小练习</p>
+<p>请根据提示填充如下的时间单位赋值：</p>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kt">uint</span> <span class="n">one_day</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">____</span><span class="p">;</span>
+<span class="kt">uint</span> <span class="n">five_minutes</span> <span class="o">=</span> <span class="n">____</span> <span class="n">mintues</span><span class="p">;</span>
+<span class="kt">uint</span> <span class="n">now_time</span> <span class="o">=</span> <span class="n">____</span><span class="p">;</span>
+<span class="kt">uint</span> <span class="n">two_hours</span> <span class="o">=</span> <span class="n">__</span> <span class="n">_______</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>带参数的函数修饰符<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>我们经常看到函数的修饰符可以带一定的参数。这对修饰符号的扩展有很大好处。例如我们可以规定开车的基准年龄不得低于16岁。此时我们可以事先写好一些年龄现值函数，到了最终代码总装配的时候灵活填入16岁这个数值就可以。例如如下的函数。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="c1">// ID 和年龄的映射</span>
+<span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="kr">public</span> <span class="n">age</span><span class="p">;</span>
+
+<span class="c1">// 一个函数修饰</span>
+<span class="kd">modifier</span> <span class="n">olderThan</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_age</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">_userId</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">require</span><span class="p">(</span><span class="n">age</span><span class="p">[</span><span class="n">_userId</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">_age</span><span class="p">);</span>
+  <span class="kr">_</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 限制年龄大于16岁才能开车</span>
+<span class="kd">function</span> <span class="n">driveCar</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_userId</span><span class="p">)</span> <span class="kr">public</span> <span class="n">olderThan</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">_userId</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这里看到olderThan函数和 driveCar函数其实有一点耦合了。因为olderThan函数需要读取age映射。但是 olderThan函数可以抽象一下，进一步不依赖于任何状态变量，仅仅依赖函数参数输入。这怎么做？可以交给读者进行小练习思考一下。</p>
+</div>
+<div class="section" id="for">
+<h2>for 循环<a class="headerlink" href="#for" title="Permalink to this headline">¶</a></h2>
+<p>循环在智能合约中使用范围不是很明显。因为循环消耗大量的计算步骤，智能合约编纂者都尽量减少循环次数，甚至从根本上避免循环的产生。例如下面就是一个循环的例子。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">getOdds</span><span class="p">()</span> <span class="kr">pure</span> <span class="kr">external</span> <span class="k">returns</span><span class="p">(</span><span class="kt">uint</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="kt">uint</span><span class="p">[]</span> <span class="kr">memory</span> <span class="n">odds</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">uint</span><span class="p">[](</span><span class="mi">5</span><span class="p">);</span>
+
+  <span class="kt">uint</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">uint</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">odds</span><span class="p">[</span><span class="n">counter</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+      <span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">odds</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>上述合约代码的思路清晰明了：它首先是一个外部可调用函数，用pure修饰，代表完全没有任何读取区块链的行为。它通过循环for来执行从1到10的遍历，最终输出所有的1-10之间的奇数。</p>
+</div>
+<div class="section" id="payable">
+<h2>合约收款：payable修饰符<a class="headerlink" href="#payable" title="Permalink to this headline">¶</a></h2>
+<p>在虚拟机章节里面提到，以太坊只能合约调用就是消息的传递，消息传递包含两部分：调用智能合约方法（传递数据）以及以太币的支付。那么，合约能否接受调用者的以太币支付呢？答案当然是可以的，请看下列网上商城的代码。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">OnlineStore</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">buySomething</span><span class="p">()</span> <span class="kr">external</span> <span class="kr">payable</span> <span class="p">{</span>
+    <span class="c1">// 查看付款金额</span>
+    <span class="nf">require</span><span class="p">(</span><span class="nb">msg.value</span> <span class="o">==</span> <span class="mf">0.001</span> <span class="kc">ether</span><span class="p">);</span>
+    <span class="c1">// 将对应金额的物品转移给调用方</span>
+    <span class="n">transferSomething</span><span class="p">(</span><span class="nb">msg.sender</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>上面多了一个关键字payable和两个环境变量：msg.value和msg.sender。payable表示调用者可以在调用该方法时附上想发送的以太币数量；msg.value则表示实际使用中调用者支付的以太币，这里要和gas费用相区别，gas费用是付给矿工来执行合约的，而 msg.value则是直接付给智能合约的费用。在智能合约收到以太币后，可以直接调用其他函数进行等价交换。这种函数经常在ICO的代币发行中使用，让广大用户可以直接通过合约交换以太坊为代币，无需人工干预，公平、公正、公开。</p>
+<div class="admonition- admonition">
+<p class="first admonition-title">小练习</p>
+<p>请填充下列合约，让用户可以用0.1以太币的价格购买1个 dog 代币。</p>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">OnlineStore</span> <span class="p">{</span>
+  <span class="kd">mapping</span> <span class="p">(</span><span class="n">____</span> <span class="o">=&gt;</span> <span class="n">unit</span><span class="p">)</span> <span class="kr">public</span> <span class="n">dogs</span><span class="p">;</span>
+
+  <span class="kd">function</span> <span class="n">buyDog</span><span class="p">()</span> <span class="kr">external</span> <span class="kr">payable</span> <span class="p">{</span>
+    <span class="c1">// 查看付款金额</span>
+    <span class="nf">require</span><span class="p">(</span><span class="nb">msg.value</span> <span class="o">==</span> <span class="n">____</span> <span class="kc">ether</span><span class="p">);</span>
+    <span class="c1">// 将对应金额的dog转移给调用方</span>
+    <span class="n">_____</span><span class="p">[</span><span class="nb">msg.sender</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="transfer">
+<h2>支付费用：transfer方法<a class="headerlink" href="#transfer" title="Permalink to this headline">¶</a></h2>
+<p>智能合约的作者往往能获得报酬。怎么获得呢？就是通过用户不断向智能合约打入以太币，并积累在智能合约的balance余额中。当智能合约所有者想提取的时候，调用一个函数就可以执行，例如下面所示的合约。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">GetPaid</span> <span class="kr">is</span> <span class="n">Ownable</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">withdraw</span><span class="p">()</span> <span class="kr">external</span> <span class="n">onlyOwner</span> <span class="p">{</span>
+    <span class="n">owner</span><span class="p">.</span><span class="nf">transfer</span><span class="p">(</span><span class="nb">this</span><span class="p">.</span><span class="nb">balance</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这份代码里非常简单。它用this.balance来指代当前合约的总以太币余额。调用了owner.transfer函数来执行以太币的发送，这里owner是一个地址。</p>
+<div class="admonition- admonition">
+<p class="first admonition-title">小练习</p>
+<p>下面的代码片段会将用户购买物品时候的多余以太币退回去，请填充一个函数名。</p>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">buy</span><span class="p">()</span> <span class="kr">external</span>  <span class="p">{</span>
+  <span class="kt">uint</span> <span class="n">itemFee</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="kc">ether</span><span class="p">;</span>
+  <span class="nb">msg.sender</span><span class="p">.</span><span class="n">__________</span><span class="p">(</span><span class="nb">msg.value</span> <span class="o">-</span> <span class="n">itemFee</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="summary.html" class="btn btn-neutral float-right" title="小结" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="levelup.html" class="btn btn-neutral float-left" title="语法进阶" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, laalaguer
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-142187300-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

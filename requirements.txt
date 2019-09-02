@@ -1,0 +1,4 @@
+sphinx==1.8.3
+sphinx_rtd_theme
+sphinx-autobuild
+pygments-lexer-solidity

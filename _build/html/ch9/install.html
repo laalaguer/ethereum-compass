@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>编译、测试工具安装 &mdash; 以太坊的指南针 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Truffle启动样例项目" href="sample.html" />
+    <link rel="prev" title="第 9 章 Truffle合约开发实战" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> 以太坊的指南针
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../howto.html">如何学习这本书</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch1/index.html">第 1 章 以太坊：一台全球计算机</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/born.html">简史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/progress.html">发展阶段</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/highlight.html">以太坊的特色</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch2/index.html">第 2 章 账户是什么</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/basic.html">小白基础知识问答</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id2">我的以太币记录在哪里？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id3">我的以太币余额如何变化？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id4">什么是区块？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id5">区块和状态的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id6">“巨大的账本”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id7">我如何参与以太坊？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id8">我如何与其他人同步账本？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/account.html">账户探秘</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id2">账户与账户状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id3">账户状态的内涵</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id4">已执行交易总数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id5">持币数量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id6">存储区的哈希值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id7">代码区的哈希值</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#app">没有钱包App, 如何生成账户？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id11">智能合约地址的生成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/keystore.html">资料篇：Keystore 与私钥保存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/app.html">资料篇：常用钱包 App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/eip55.html">资料篇：EIP-55 格式的账户地址</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch3/index.html">第 3 章 交易是驱动力</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/how.html">交易的发送</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id2">交易与消息什么区别？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id3">交易的特性是什么？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/what.html">交易的样子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/life.html">交易的生命周期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/pow.html">资料篇：共识与工作量证明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow">比特币的PoW机制（简单版）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#id2">比特币算力的中心化问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow-pos">以太坊的Pow/Pos机制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/dig.html">资料篇：矿工与挖矿奖励</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch4/index.html">第 4 章 数据结构</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/radix.html">Radix树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/merkle.html">Merkle树和 Merkle证明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/mpt.html">Merkle Patricia树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/rlp.html">RLP编码</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id1">RLP字符/字符串编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id3">RLP字符/字符串解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id4">RLP数组编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id5">RLP数组解码</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/stateroot.html">资料篇：状态树 (以及存储树）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/transroot.html">资料篇：交易树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/receiptroot.html">资料篇：收据树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/block.html">资料篇：区块</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch5/index.html">第 5 章 构建一条以太坊私链</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/install.html">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/geth.html">Geth客户端的结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/build.html">启动一条以太坊私链</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/coinbase.html">接收挖矿奖励</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/transfer.html">转账与收款</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch6/index.html">第 6 章 手把手教你部署智能合约</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/what.html">什么是智能合约？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/install.html">安装编译器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/compile.html">Solc编译智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/prepare.html">智能合约发布准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/deploy.html">部署智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/call.html">调用智能合约</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch7/index.html">第 7 章 以太坊虚拟机探秘</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/result.html">虚拟机的执行结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/resource.html">虚拟机的执行资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/call.html">合约调用合约?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/io.html">虚拟机的输入输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/gas.html">Gas 花费与退回</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/instructions.html">虚拟机指令集</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch8/index.html">第 8 章 Solidity语法练习</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/basic.html">基础概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id2">没有浮点数运算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id3">合约基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id4">变量类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id5">运算符号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#struct">结构体 Struct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#array">数组array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id6">函数申明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id7">类型转换与内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id8">合约与事件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/levelup.html">语法进阶</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#map">数据结构：map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#msg-sender">环境变量：msg.sender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#requireassert">require还是assert?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id2">继承和引入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id3">省钱妙招：内存变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id4">接口与合约调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id5">多返回值</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/advanced.html">高级语法和概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#contract">Contract 构造函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#ownable">Ownable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#pausable">Pausable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#struct">省钱妙招：struct 结构体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id2">时间单位表达</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id3">带参数的函数修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#for">for 循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#payable">合约收款：payable修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#transfer">支付费用：transfer方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/summary.html">小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">第 9 章 Truffle合约开发实战</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">编译、测试工具安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#truffle">Truffle的安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ganache">Ganache的安装</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Truffle启动样例项目</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#id1">下载样例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#id2">编译项目</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#ganache">部署项目到 Ganache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#id3">测试项目</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="erc20.html">上手实践：ERC20合约</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="erc20.html#id1">新建项目目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="erc20.html#erc20-basic">ERC20 Basic合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="erc20.html#id2">ERC20 合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="erc20.html#safemath">SafeMath基础数学库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="erc20.html#cat">猫币：CAT数字资产合约</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">上手实践：ERC20合约测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test.html#id1">准备工作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test.html#id2">测试辅助函数与库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test.html#id3">测试代码分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test.html#id4">测试运行与结果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch10/index.html">附录 有意思的冷知识</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/shortattack.html">短地址攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/block.html">比特币的区块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/utxo.html">以太坊与比特币账户的区别</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id2">隐私与安全性的比较</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id3">数据体积与并发能力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id4">发送交易时对双花的处理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/triangle.html">“不可能的三角”问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/ethash.html">ETHASH 挖矿算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#ethashpow">ETHASH和比特币PoW的异同</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id1">ETHASH的设计目标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id2">ETHASH的挖矿运行总流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id3">ETHASH算法源代码解读</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">以太坊的指南针</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">第 9 章 Truffle合约开发实战</a> &raquo;</li>
+        
+      <li>编译、测试工具安装</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ch9/install.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>编译、测试工具安装<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>我们来学习一下Truffle这个进阶工具。Truffle <a class="footnote-reference" href="#id4" id="id2">[1]</a> 在以太坊的开发环境里扮演了举足轻重的角色，作为一个基于JavaScript的Solidity开发框架，Truffle最大特色就是集成了开发与测试一条龙的服务。它同时是一个开发环境、测试框架，也是一个资产管道。它功能强大到让开发者可以不用离开Truffle 命令行即可执行一系列的编译与测试工作。而且它还可以配置对接的以太坊网络，让开发者灵活地选择在各个测试网络之前来回切换。Truffle 拥有的特性有。</p>
+<blockquote>
+<div><ul class="simple">
+<li>内置合约编译、链接、部署管理功能。</li>
+<li>对合约可以进行自动化测试。</li>
+<li>同时支持公有链、私有链以及测试链，轻松调整测试环境。</li>
+<li>完全基于JavaScript编写的项目和API，易于上手。</li>
+<li>基于NPM包管理器管理项目，便于添加其他Javascript依赖。</li>
+<li>命令行集成度高，方便放置在服务器上做持续集成。</li>
+</ul>
+</div></blockquote>
+<p>除此之外，Truffle还内置了一个默认的测试底层网络实现 Ganache。Ganache 原名 Test-RPC，是以太坊开源项目中采用JavaScript编写的模拟区块链运行的节点。它本身并不联网产生区块，而是一个测试环境中的高度仿真模拟器。它的Web3命令支持丰富，紧跟社区的最新提案和开发进度，因为没有实际挖矿（仅仅模拟挖矿行为），所以它的运行速度是惊人的，非常利于测试环境下的高速使用，不需要等实际区块链的出块时间间隔。下面是 Ganache 的运行界面。</p>
+<div class="figure align-center" id="id5">
+<span id="id3"></span><a class="reference internal image-reference" href="../_images/Picture53.png"><img alt="../_images/Picture53.png" src="../_images/Picture53.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">Ganache 的UI运行界面，账户界面概览</span></p>
+</div>
+<div class="section" id="truffle">
+<h2>Truffle的安装<a class="headerlink" href="#truffle" title="Permalink to this headline">¶</a></h2>
+<p>通过 npm 管理器我们可以非常轻松地获取Truffle。 Truffle与 Ganache一起安装在全局。安装的前提是，计算机需要 Node.js 高于8.3.0以上的版本。</p>
+<p>我们通过如下命令行确认Node.js 的版本：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node --version
+v10.9.0
+</pre></div>
+</div>
+<p>通过如下命令执行最新稳定版 Truffle 的安装：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install –g truffle
+truffle
+Truffle v4.1.13 - a development framework <span class="k">for</span> Ethereum
+
+Usage: truffle &lt;command&gt; <span class="o">[</span>options<span class="o">]</span>
+
+Commands:
+init      Initialize new and empty Ethereum project
+compile   Compile contract <span class="nb">source</span> files
+migrate   Run migrations to deploy contracts
+deploy    <span class="o">(</span><span class="nb">alias</span> <span class="k">for</span> migrate<span class="o">)</span>
+build     Execute build pipeline <span class="o">(</span><span class="k">if</span> configuration present<span class="o">)</span>
+<span class="nb">test</span>      Run JavaScript and Solidity tests
+debug     Interactively debug any transaction on the blockchain <span class="o">(</span>experimental<span class="o">)</span>
+opcode    Print the compiled opcodes <span class="k">for</span> a given contract
+console   Run a console with contract abstractions and commands available
+develop   Open a console with a <span class="nb">local</span> development blockchain
+create    Helper to create new contracts, migrations and tests
+install   Install a package from the Ethereum Package Registry
+publish   Publish a package to the Ethereum Package Registry
+networks  Show addresses <span class="k">for</span> deployed contracts on each network
+watch     Watch filesystem <span class="k">for</span> changes and rebuild the project automatically
+serve     Serve the build directory on localhost and watch <span class="k">for</span> changes
+<span class="nb">exec</span>      Execute a JS module within this Truffle environment
+unbox     Download a Truffle Box, a pre-built Truffle project
+version   Show version number and <span class="nb">exit</span>
+</pre></div>
+</div>
+<p>我们确认安装的Truffle版本是v4.1.13。值得注意的是，Truffle 在npm安装过程中已经被安装到了全局，而非一个项目中，所以我们可以在控制台非常轻松地直接键入truffle命令来启动Truffle。Truffle相关的使用命令如下表所示，我们最常用的是compile、test两个命令。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>子命令</td>
+<td>解释</td>
+</tr>
+<tr class="row-even"><td>init</td>
+<td>初始化一个项目，可从模板初始化</td>
+</tr>
+<tr class="row-odd"><td>compile</td>
+<td>编译一个智能合约项目</td>
+</tr>
+<tr class="row-even"><td>migrate</td>
+<td>执行部署脚本</td>
+</tr>
+<tr class="row-odd"><td>deploy</td>
+<td>执行部署脚本，和 migrate 同义词</td>
+</tr>
+<tr class="row-even"><td>test</td>
+<td>执行指定的测试</td>
+</tr>
+<tr class="row-odd"><td>networks</td>
+<td>展示各个以太坊网络部署的合约地址</td>
+</tr>
+<tr class="row-even"><td>watch</td>
+<td>追踪源代码修改，随时重构项目</td>
+</tr>
+<tr class="row-odd"><td>serve</td>
+<td>启动本地服务器，展示项目情况</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ganache">
+<h2>Ganache的安装<a class="headerlink" href="#ganache" title="Permalink to this headline">¶</a></h2>
+<p>Ganache 继承了原来的 Test-RPC的使命，作为测试环境里的模拟区块链而存在（我们终于可以不使用Geth来建立真实的节点网络了）。我们需要8.3.0以上的Node.js环境支持。我们通过如下命令安装 Ganache。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ node --version
+v10.9.0
+$ npm install -g ganache-cli
+</pre></div>
+</div>
+<p>其实 Ganache 也就是旧的 Test-RPC 项目换了一个名字而已，你同样可以安装 testrpc 来安装同一个软件。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm install –g testrpc
+</pre></div>
+</div>
+<p>启动Ganache与启动testrpc一致，都只需要输入包名即可。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ganache-cli
+
+Ganache CLI v6.1.6 (ganache-core: 2.1.5)
+
+Available Accounts
+==================
+(0) 0xf096552fd17b6d43ab4fc8cde9013c7e2e59e92a (~100 ETH)
+(1) 0x28908951d8621570f21a36dbca8568c7c0403b9a (~100 ETH)
+(2) 0x3dbe5e8338ba08c0e95841d1cd88d280521da167 (~100 ETH)
+(3) 0x4902e5f070a2ad3dd13faaf73fdf5f00af77db06 (~100 ETH)
+(4) 0x27b3df0443a0a653fd28972024a45d4bbf45cd88 (~100 ETH)
+(5) 0xf44c4f3d26ee666ce0c8e25b0cad51cda3038d54 (~100 ETH)
+(6) 0xda0eeefc53c602c40280b6199efe6a2596fc6a83 (~100 ETH)
+(7) 0xc2a2d0116ffc4b088e73a6e1ae7f9c2a9775023a (~100 ETH)
+(8) 0x10c7bea0cbc1b864db044696b1269819696f9c0c (~100 ETH)
+(9) 0xa3c62dcfe700c213a9a2cfb911f40e8b2c8fe983 (~100 ETH)
+
+Private Keys
+==================
+(0) 0x33270e0fef2525619fdf10b3568abc21a2fed4c2f2c5a597c1be78d898599949
+(1) 0xcdd6263fabbfeef6924ef4fbb2510dee9757f56f5bbae0f54e2ff433a21d6039
+(2) 0x76e99dcf6f7fd9ef2e8ac62f0c9c90a1a94ec9d9aaf5ee995678a007147c7763
+(3) 0x4796fd5c3202fda98ceb0f2d981d732ace2aedcaace50ff865158884698fe5b4
+(4) 0xa43347fbcadfb28af70c8bb2c008da0d279934f88f8930b06dddaabdb7efd4da
+(5) 0x83a1fd902af38b0e2ffac7bcb16bcd21434ef64a24cfd91dd594f350fcb0fbc0
+(6) 0x3102424399c97bbfd7f6d23387f6bd8b8822e168ecc39d5d2faaabe830e1025e
+(7) 0x2e25026d88e2095e7a712a881159ebba55e736b4b822d427af9d06eaefd1d254
+(8) 0xd0be42aefa447ed693daaca4f9b449f55ceb86744efa36f369eab449038e48f7
+(9) 0x06574e68519dd2773a0987aa9f25d2ef8bc8a0c91d88447fad087dba4d247f76
+
+HD Wallet
+==================
+Mnemonic:      wolf capable soon aisle crunch chair subway prosper fall make grab range
+Base HD Path:  m/44&#39;/60&#39;/0&#39;/0/{account_index}
+
+Gas Price
+==================
+20000000000
+
+Gas Limit
+==================
+6721975
+
+Listening on 127.0.0.1:8545
+</pre></div>
+</div>
+<p>在以上启动过程中，我们发现Ganache已经自动帮我们创建了10个测试用的地址，它们各自对应的私钥也已经打印在控制台上；Ganache还额外为我们模拟了一个硬件钱包以及硬件钱包的助记词；Ganache已经代我们确定了网络的gasPrice和单一区块的gas上限；Ganache启动并监听在我们的端口8545上；Ganache 的版本号是v6.1.6。</p>
+<p>至此，Ganache可以完全替代我们早先的Geth客户端作为测试的通讯节点。在我们对代码信心十足后，我们可以将测试网络换成Geth节点的私链进行近似公链的测试，再之后可以部署到以太坊公链的测试网上进行全真测试。</p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>笔者注：项目源代码地址 <a class="reference external" href="https://truffleframework.com/">https://truffleframework.com/</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sample.html" class="btn btn-neutral float-right" title="Truffle启动样例项目" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="第 9 章 Truffle合约开发实战" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, laalaguer
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-142187300-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

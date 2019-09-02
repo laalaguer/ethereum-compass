@@ -1,0 +1,662 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>账户探秘 &mdash; 以太坊的指南针 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="扩展阅读" href="interval.html" />
+    <link rel="prev" title="小白基础知识问答" href="basic.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> 以太坊的指南针
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../howto.html">如何学习这本书</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch1/index.html">第 1 章 以太坊：一台全球计算机</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/born.html">简史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/progress.html">发展阶段</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/highlight.html">以太坊的特色</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">第 2 章 账户是什么</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic.html">小白基础知识问答</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id2">我的以太币记录在哪里？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id3">我的以太币余额如何变化？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id4">什么是区块？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id5">区块和状态的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id6">“巨大的账本”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id7">我如何参与以太坊？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id8">我如何与其他人同步账本？</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">账户探秘</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">账户与账户状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">账户状态的内涵</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">已执行交易总数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">持币数量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">存储区的哈希值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">代码区的哈希值</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#app">没有钱包App, 如何生成账户？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">智能合约地址的生成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keystore.html">资料篇：Keystore 与私钥保存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html">资料篇：常用钱包 App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eip55.html">资料篇：EIP-55 格式的账户地址</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch3/index.html">第 3 章 交易是驱动力</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/how.html">交易的发送</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id2">交易与消息什么区别？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id3">交易的特性是什么？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/what.html">交易的样子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/life.html">交易的生命周期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/pow.html">资料篇：共识与工作量证明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow">比特币的PoW机制（简单版）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#id2">比特币算力的中心化问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow-pos">以太坊的Pow/Pos机制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/dig.html">资料篇：矿工与挖矿奖励</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch4/index.html">第 4 章 数据结构</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/radix.html">Radix树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/merkle.html">Merkle树和 Merkle证明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/mpt.html">Merkle Patricia树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/rlp.html">RLP编码</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id1">RLP字符/字符串编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id3">RLP字符/字符串解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id4">RLP数组编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id5">RLP数组解码</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/stateroot.html">资料篇：状态树 (以及存储树）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/transroot.html">资料篇：交易树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/receiptroot.html">资料篇：收据树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/block.html">资料篇：区块</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch5/index.html">第 5 章 构建一条以太坊私链</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/install.html">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/geth.html">Geth客户端的结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/build.html">启动一条以太坊私链</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/coinbase.html">接收挖矿奖励</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/transfer.html">转账与收款</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch6/index.html">第 6 章 手把手教你部署智能合约</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/what.html">什么是智能合约？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/install.html">安装编译器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/compile.html">Solc编译智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/prepare.html">智能合约发布准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/deploy.html">部署智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/call.html">调用智能合约</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch7/index.html">第 7 章 以太坊虚拟机探秘</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/result.html">虚拟机的执行结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/resource.html">虚拟机的执行资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/call.html">合约调用合约?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/io.html">虚拟机的输入输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/gas.html">Gas 花费与退回</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/instructions.html">虚拟机指令集</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch8/index.html">第 8 章 Solidity语法练习</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/basic.html">基础概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id2">没有浮点数运算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id3">合约基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id4">变量类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id5">运算符号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#struct">结构体 Struct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#array">数组array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id6">函数申明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id7">类型转换与内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id8">合约与事件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/levelup.html">语法进阶</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#map">数据结构：map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#msg-sender">环境变量：msg.sender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#requireassert">require还是assert?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id2">继承和引入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id3">省钱妙招：内存变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id4">接口与合约调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id5">多返回值</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/advanced.html">高级语法和概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#contract">Contract 构造函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#ownable">Ownable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#pausable">Pausable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#struct">省钱妙招：struct 结构体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id2">时间单位表达</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id3">带参数的函数修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#for">for 循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#payable">合约收款：payable修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#transfer">支付费用：transfer方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/summary.html">小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch9/index.html">第 9 章 Truffle合约开发实战</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/install.html">编译、测试工具安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#truffle">Truffle的安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#ganache">Ganache的安装</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/sample.html">Truffle启动样例项目</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id1">下载样例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id2">编译项目</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#ganache">部署项目到 Ganache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id3">测试项目</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/erc20.html">上手实践：ERC20合约</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id1">新建项目目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#erc20-basic">ERC20 Basic合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id2">ERC20 合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#safemath">SafeMath基础数学库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#cat">猫币：CAT数字资产合约</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/test.html">上手实践：ERC20合约测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id1">准备工作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id2">测试辅助函数与库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id3">测试代码分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id4">测试运行与结果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch10/index.html">附录 有意思的冷知识</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/shortattack.html">短地址攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/block.html">比特币的区块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/utxo.html">以太坊与比特币账户的区别</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id2">隐私与安全性的比较</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id3">数据体积与并发能力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id4">发送交易时对双花的处理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/triangle.html">“不可能的三角”问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/ethash.html">ETHASH 挖矿算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#ethashpow">ETHASH和比特币PoW的异同</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id1">ETHASH的设计目标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id2">ETHASH的挖矿运行总流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id3">ETHASH算法源代码解读</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">以太坊的指南针</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">第 2 章 账户是什么</a> &raquo;</li>
+        
+      <li>账户探秘</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ch2/account.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="reference-account">
+<span id="id1"></span><h1>账户探秘<a class="headerlink" href="#reference-account" title="Permalink to this headline">¶</a></h1>
+<p>探索以太坊世界的第一步，是创建一个账户，就如同在银行开户一样。
+账户是安全地进行以太坊交易的基础。
+与在银行开户不同的是，以太坊的账户可以离线生成而不需要得到任何工作人员的许可，
+并且这些账户是 <strong>完全匿名</strong> 的。
+适用于生成账户的开源工具有很多，如网页工具、桌面软件、手机APP等。
+它们遵循同一套账户生成标准。
+一个用户也可以同时生成、保存、持有多个账户。
+下面我们讲述账户的原理与账户生成的过程，以及账户状态与全球状态的关系。</p>
+<div class="section" id="id2">
+<h2>账户与账户状态<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>以太坊的账户共分成两类</p>
+<p><span class="guilabel">外部账户</span> (Externally Owned Account, <strong>EOA</strong> ) 与 <span class="guilabel">智能合约</span> (Contract Account, <strong>CA</strong> )。</p>
+<p>外部账户由 <strong>一把私钥</strong> 与该私钥对应的公开地址来表示。在一般情况下，私钥掌握在用户的手中。</p>
+<p>智能合约账户 <strong>没有私钥</strong> ，仅有公开的地址，它的行为由合约自身包含的代码逻辑来控制。</p>
+<p>账户的状态(Acccount State)描述了一个账户当前的情况。
+以太坊公链时时刻刻跟踪并维护着每一个账户的状态。
+一个账户在初次接收或者发出交易后，都会形成初始状态。
+随着时间的推移，每次针对该账户的交易将不断修改其状态。</p>
+<p>总结而言，每一个账户在数据结构上具有两个元素：一个公开地址，一个与该地址关联的状态，如下图所示。</p>
+<div class="figure align-center" id="id17">
+<a class="reference internal image-reference" href="../_images/Picture8.png"><img alt="../_images/Picture8.png" src="../_images/Picture8.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">一个账户</span></p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>账户状态的内涵<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>那么，具体的账户状态包含一些什么呢？
+账户状态包含四大元素：</p>
+<blockquote>
+<div><ul class="simple">
+<li>已执行交易总数 <span class="guilabel">nonce</span>，用来标示该账户发出的交易数量；</li>
+<li>持币数量 <span class="guilabel">balance</span>，记录用户的以太币余额；</li>
+<li>存储区的哈希值 <span class="guilabel">storage hash</span> ，指向智能合约账户的存储数据区；</li>
+<li>代码区的哈希值 <span class="guilabel">code hash</span>，指向智能合约账户存储的智能合约代码。</li>
+</ul>
+</div></blockquote>
+<p>下图显示了外部账户与智能合约的账户状态。</p>
+<div class="figure align-center" id="id18">
+<a class="reference internal image-reference" href="../_images/Picture9.png"><img alt="../_images/Picture9.png" src="../_images/Picture9.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">外部账户与智能合约账户的结构对比</span></p>
+</div>
+<p>接下来，对以上各个名词进行详细解释。</p>
+<div class="section" id="id4">
+<h3>已执行交易总数<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>该值会随着用户不断发送交易而递增，保障用户发出的交易是按照顺序被收纳入最终的区块链。
+因为在同一个账户中，已执行交易总数不可以在区块链中再次出现。
+当用户创建智能合约时，要指定合约地址，该地址是由用户账户的已执行交易总数和用户账户地址联合计算而得出的。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">假设我拥有一个账户，该数值为 <code class="docutils literal notranslate"><span class="pre">13</span></code> 如果我给人转账，则该数字增加到 <code class="docutils literal notranslate"><span class="pre">14</span></code></p>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>持币数量<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>持币数量包含了该账户当下可花费的以太币的数量。外部账户和智能合约都可以持有以太币。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">指定了可以接收以太币的智能合约也可以像自然人一样，持有以太币！</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>存储区的哈希值<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>该值为 <strong>智能合约独有</strong> ，外部账户不包含该值。
+存储区即为智能合约在运行中，产生的数据的存储地。
+在合约的生命周期里，该区域的内容被合约代码不断写入、读取。
+存储区存放于以太坊网络节点的硬盘上。
+存储区的内容通过散列函数得出校验哈希值，该值即为存储区的哈希值。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">存储区相当于智能合约的“小硬盘”。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>代码区的哈希值<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>该值为 <strong>智能合约独有</strong>，外部账户不包含该值。
+代码区即为智能合约代码本身。
+在合约的生命周期中，该区域的内容是不可更改的 <strong>只读状态</strong>。
+代码区存放于以太坊网络节点的硬盘中，当运行时被读入虚拟机执行。代码区的内容通过散列函数得出校验哈希值，该值即为代码区的哈希值。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">代码区相当于智能合约的“程序”部分。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">哈希算法就是通过一定的数学算法 y=Ϝ(x) 的单向函数，将不定长的输入值，
+经过函数变换后变成定长的哈希值。
+这个数学算法是不可逆向运算操作的（意即不可通过输出推断输入，却可通过输入轻松运算出输出），
+并具有良好的抗碰撞特性。
+唯一的输入对应了唯一输出，哪怕是改动一个输入字符，都可以让输出哈希值产生翻天覆地的变化。<a class="footnote-reference" href="#id13" id="id8">[1]</a>
+在数据校验领域中，哈希算法被用来对文档进行签名，以防止文档中途被篡改或者丢失字符。
+在区块链中常用的安全哈希算法是 SHA3-256算法，即输出定长为256位的第三代哈希算法。<a class="footnote-reference" href="#id14" id="id9">[2]</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="app">
+<h2>没有钱包App, 如何生成账户？<a class="headerlink" href="#app" title="Permalink to this headline">¶</a></h2>
+<p>普通用户最频繁使用的账户主要是外部账户(Externally Owned Account, EOA)。
+这个账户可以用来发送/接受以太币，也可以发起部署智能合约的行为。
+以太坊的外部账户仅由私钥(private key)与它所相对应的公开地址(address)组成。</p>
+<p><strong>Okay, 第一步，我如何生成私钥？</strong></p>
+<p><span class="guilabel">私钥</span> 是一个32 bytes (256 bits) 长度的随机数。用户需要一个可靠的随机源来产生该随机数，该随机数取值在0~2 <sup>256</sup> 之间。
+私钥的举例如下所示(16进制表示)。生成私钥的逻辑如代码清单2-1所示。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>私钥</td>
+<td>bdb2c8d55b47e7c37dabdead589eec3d463b2de656ed6ba9b75143e72180ae09</td>
+</tr>
+</tbody>
+</table>
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-text">代码清单2-1</span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">randomBytes</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;randombytes&#39;</span><span class="p">)</span>
+<span class="cm">/**</span>
+<span class="cm">* Create a random private key buffer.</span>
+<span class="cm">* @returns {Buffer} private key: a 32 bytes buffer</span>
+<span class="cm">*/</span>
+<span class="kr">const</span> <span class="nx">createRandomPrivateKey</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
+  <span class="kr">const</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="nx">randomBytes</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nx">privateKey</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>在代码清单2-1中主要逻辑是生成一个32字节长度的随机数。我们选用了 Javascript 的 <code class="docutils literal notranslate"><span class="pre">randombytes</span></code> 库函数辅助我们生成该随机数。</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">当选择生成私钥的随机数方法时，需要选择满足密码学强度的随机数生成方法，计算机软件本身是无法生成真正随机数的，在长周期的情况下必然会出现相同的随机数。操作系统通过维护一个熵池收集来自设备的噪音: 鼠标移动、键盘按键等等。熵值越大，代表系统无序性越大，利用熵生成的随机数也越不可捉摸。当使用其他语言编程时，请选用相应可靠的随机数发生器</p>
+</div>
+<p><strong>第二步，公开地址是如何从私钥派生的呢？</strong></p>
+<p>这分为几个步骤：首先，我们特殊选定的椭圆曲线(ECDSA-secp256k1)算法 <a class="footnote-reference" href="#id15" id="id10">[3]</a>，
+代入 <span class="guilabel">私钥</span> 作为参数进行运算，得出的结果为 <span class="guilabel">公钥</span>。</p>
+<p>这个过程是不可逆的，并且是唯一与私钥对应的。
+其次，在生成公钥后，再将其进一步放入一个哈希算法生成哈希值，截取哈希值的最后40位16进制字符得到地址(160 bits或20 bytes)。
+对于上述我们举例的的私钥，由其派生的 <span class="guilabel">地址</span> 如下表所示。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>地址</td>
+<td>0xda36cd6F5aF1CA5A226c02B3BD74E3F1BA354B9F</td>
+</tr>
+<tr class="row-even"><td>私钥</td>
+<td>bdb2c8d55b47e7c37dabdead589eec3d463b2de656ed6ba9b75143e72180ae09</td>
+</tr>
+</tbody>
+</table>
+<p>有了地址，你朋友就可以给你打以太币了！生成该地址的代码如代码清单2-2所示。</p>
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-text">代码清单2-2</span><a class="headerlink" href="#id20" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">secp256k1</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;secp256k1&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">keccak</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;keccak&#39;</span><span class="p">)</span>
+<span class="cm">/**</span>
+<span class="cm"> * Turn private key into address</span>
+<span class="cm"> * @param privateKey {Buffer} 32 bytes of private key</span>
+<span class="cm"> * @returns {Buffer} 20 bytes of address</span>
+<span class="cm"> */</span>
+<span class="kr">const</span> <span class="nx">privateKeyToAddress</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">privateKey</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 32 bytes of private key buffer to generate 65 bytes of public key.</span>
+    <span class="c1">// Get rid of 0x04 at the begin of public key. (65-1=64 bytes remains)</span>
+    <span class="kr">const</span> <span class="nx">publicKey</span> <span class="o">=</span> <span class="nx">secp256k1</span><span class="p">.</span><span class="nx">publicKeyCreate</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="kc">false</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1">// Take right-most 20 bytes and turn to hex representation.</span>
+    <span class="k">return</span> <span class="nx">keccak</span><span class="p">(</span><span class="s1">&#39;keccak256&#39;</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">publicKey</span><span class="p">).</span><span class="nx">digest</span><span class="p">().</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>上述代码的执行逻辑解释如下：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">32</span></code> 字节私钥生成的长度为 <code class="docutils literal notranslate"><span class="pre">65</span></code> 字节的公钥。</li>
+<li>删除为首的一个字节 <code class="docutils literal notranslate"><span class="pre">0x04</span></code> ，还剩 <code class="docutils literal notranslate"><span class="pre">64</span></code> 字节。</li>
+<li>将其放入 <code class="docutils literal notranslate"><span class="pre">keccak256</span></code> 哈希算法，生成一个 <code class="docutils literal notranslate"><span class="pre">256</span></code> 位的哈希值。</li>
+<li>截取哈希值的最后 <code class="docutils literal notranslate"><span class="pre">20</span></code> 字节， 即为所求的公开地址。</li>
+<li>(可选）辅以 <code class="docutils literal notranslate"><span class="pre">0x</span></code> 的开头装饰，表明这是一个16进制的书面记录形式。</li>
+</ul>
+</div></blockquote>
+<p><strong>我生成的账户安全吗？</strong></p>
+<p>和一般的网站申请账户不同， <strong>加密货币的账户仅需要可靠的软件在离线状态下生成</strong> ，
+而不需要去特殊网站进行注册。
+很多虚拟货币交易所的管理大额虚拟货币的账户都是通过上述方法在一台离线的计算机上生成的。
+那么，如何保证每次生成的私钥不是已经被他人生成过的？在现实中，两个私钥碰撞的概率有多大呢？</p>
+<p>我们已知：私钥地址空间有 2 <sup>256</sup>，而宇宙中的已知原子总数有 10 <sup>80</sup>, 两者比较谁大谁小？我们做一个除法。</p>
+<p><span class="math notranslate nohighlight">\(2^{256}  ÷ 10^{80} = 1.1579209e+69 = 10^{69}\)</span></p>
+<p>从上述算式可以看出，私钥空间比我们宇宙空间的原子总数的倍数还要多。
+可以说在全人类都参与使用加密货币的情况下，即使每次交易都使用新的地址， 碰巧遇上他人私钥的概率比生活中选中一个原子去砸中另外一个原子的概率还要小。</p>
+<p>你生成的账户，是安全的。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">生成账户的具体Javascript代码可以参考笔者的Github项目：<a class="reference external" href="http://github.com/laalaguer/VeChain-Address/">http://github.com/laalaguer/VeChain-Address/</a></p>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>智能合约地址的生成<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>看到这里，你会问，好的，我已经清楚如何生成我的钱包了。但是智能合约也有账户，它是如何生成的呢？</p>
+<p>与外部账户不同，智能合约账户的地址创建并非由外部促成，而是在创建合约时候由代码自动生成的。智能合约账户有公开的地址，却没有对应的私钥，这意味着：</p>
+<blockquote>
+<div><ul class="simple">
+<li>合约转出以太币，并非通过私钥签名方式。</li>
+<li>只有合约自身的逻辑代码能够管理它的以太币，除极少数例外（例如合约创建者销毁合约，合约收到的以太币将默认打给该创建者）。</li>
+</ul>
+</div></blockquote>
+<p>我们将在动手实践环节中，用 <code class="docutils literal notranslate"><span class="pre">web3</span></code> 向读者展示合约的部署生成过程，在这里仅演示当创建一个合约时，究竟发生了什么。代码如清单2-3所示。</p>
+<div class="literal-block-wrapper docutils container" id="id21">
+<div class="code-block-caption"><span class="caption-text">代码清单2-3</span><a class="headerlink" href="#id21" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">rlp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;rlp&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">keccak</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;keccak&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">nonce</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span> <span class="c1">// Nonce of sender.</span>
+<span class="kd">var</span> <span class="nx">sender</span> <span class="o">=</span> <span class="s1">&#39;0x6ac7ea33f8831ea9dcc53393aaa88b25a785dbf0&#39;</span><span class="p">;</span> <span class="c1">// Sender address.</span>
+
+<span class="kd">var</span> <span class="nx">input_arr</span> <span class="o">=</span> <span class="p">[</span><span class="nx">sender</span><span class="p">,</span> <span class="nx">nonce</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">rlp_encoded</span> <span class="o">=</span> <span class="nx">rlp</span><span class="p">.</span><span class="nx">encode</span><span class="p">(</span><span class="nx">input_arr</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">contract_address_long</span> <span class="o">=</span> <span class="nx">keccak</span><span class="p">(</span><span class="s1">&#39;keccak256&#39;</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">rlp_encoded</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">contract_address</span> <span class="o">=</span> <span class="nx">contract_address_long</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">24</span><span class="p">);</span> <span class="c1">//Trim.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;contract_address: &quot;</span> <span class="o">+</span> <span class="nx">contract_address</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>上述生成地址的过程依赖于两个关键参数：</p>
+<blockquote>
+<div><ul class="simple">
+<li>合约创建人（发送方）的账户地址(<code class="docutils literal notranslate"><span class="pre">20字节</span></code>)。</li>
+<li>发送方账户内的已发生交易总数 nonce 值。</li>
+</ul>
+</div></blockquote>
+<p>为了得出合约的部署地址，将上述两个参数放入 <span class="guilabel">RLP</span> 函数进行编码，经由 keccak256 哈希算法算出哈希值，最终取出结果中的20 bytes，将其设定为合约地址。</p>
+<p><span class="guilabel">RLP</span> (Recursive Length Prefix)函数 <a class="footnote-reference" href="#id16" id="id12">[4]</a> ，全名递归长度前缀编码函数，是以太坊序列化所采用的序列化和反序列化的主要方式。在进行网络传输、数据库存储之前，二进制数组数据都会经过这个函数进行编码，该函数的详细定义请参见以太坊的官方维基 以及本书4.2章节。</p>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[1]</a></td><td>Hash Function (2019),Wikipedia, Available at: <a class="reference external" href="https://en.wikipedia.org/wiki/Hash_function">https://en.wikipedia.org/wiki/Hash_function</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[2]</a></td><td>Guido Bertoni, et al, ‘SHA3’ (2015),Wikipedia, Available at: <a class="reference external" href="https://en.wikipedia.org/wiki/SHA-3">https://en.wikipedia.org/wiki/SHA-3</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[3]</a></td><td>Darrel Hankerson, et al (2004) ‘Guide to Elliptic Curve Cryptography’, Springer.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id12">[4]</a></td><td>Ethereum Community Authors (2019), ‘Recursive Length Prefix RLP’, The Ethereum Wiki, Available at: <a class="reference external" href="https://github.com/ethereum/wiki/wiki/RLP">https://github.com/ethereum/wiki/wiki/RLP</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="interval.html" class="btn btn-neutral float-right" title="扩展阅读" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="basic.html" class="btn btn-neutral float-left" title="小白基础知识问答" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, laalaguer
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-142187300-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

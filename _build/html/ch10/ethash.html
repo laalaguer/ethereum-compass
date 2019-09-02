@@ -1,0 +1,670 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ETHASH 挖矿算法 &mdash; 以太坊的指南针 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="“不可能的三角”问题" href="triangle.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> 以太坊的指南针
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../howto.html">如何学习这本书</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch1/index.html">第 1 章 以太坊：一台全球计算机</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/born.html">简史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/progress.html">发展阶段</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/highlight.html">以太坊的特色</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch2/index.html">第 2 章 账户是什么</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/basic.html">小白基础知识问答</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id2">我的以太币记录在哪里？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id3">我的以太币余额如何变化？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id4">什么是区块？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id5">区块和状态的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id6">“巨大的账本”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id7">我如何参与以太坊？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id8">我如何与其他人同步账本？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/account.html">账户探秘</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id2">账户与账户状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id3">账户状态的内涵</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id4">已执行交易总数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id5">持币数量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id6">存储区的哈希值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id7">代码区的哈希值</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#app">没有钱包App, 如何生成账户？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id11">智能合约地址的生成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/keystore.html">资料篇：Keystore 与私钥保存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/app.html">资料篇：常用钱包 App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/eip55.html">资料篇：EIP-55 格式的账户地址</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch3/index.html">第 3 章 交易是驱动力</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/how.html">交易的发送</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id2">交易与消息什么区别？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id3">交易的特性是什么？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/what.html">交易的样子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/life.html">交易的生命周期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/pow.html">资料篇：共识与工作量证明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow">比特币的PoW机制（简单版）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#id2">比特币算力的中心化问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow-pos">以太坊的Pow/Pos机制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/dig.html">资料篇：矿工与挖矿奖励</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch4/index.html">第 4 章 数据结构</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/radix.html">Radix树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/merkle.html">Merkle树和 Merkle证明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/mpt.html">Merkle Patricia树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/rlp.html">RLP编码</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id1">RLP字符/字符串编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id3">RLP字符/字符串解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id4">RLP数组编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id5">RLP数组解码</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/stateroot.html">资料篇：状态树 (以及存储树）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/transroot.html">资料篇：交易树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/receiptroot.html">资料篇：收据树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/block.html">资料篇：区块</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch5/index.html">第 5 章 构建一条以太坊私链</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/install.html">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/geth.html">Geth客户端的结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/build.html">启动一条以太坊私链</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/coinbase.html">接收挖矿奖励</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/transfer.html">转账与收款</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch6/index.html">第 6 章 手把手教你部署智能合约</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/what.html">什么是智能合约？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/install.html">安装编译器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/compile.html">Solc编译智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/prepare.html">智能合约发布准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/deploy.html">部署智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/call.html">调用智能合约</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch7/index.html">第 7 章 以太坊虚拟机探秘</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/result.html">虚拟机的执行结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/resource.html">虚拟机的执行资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/call.html">合约调用合约?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/io.html">虚拟机的输入输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/gas.html">Gas 花费与退回</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/instructions.html">虚拟机指令集</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch8/index.html">第 8 章 Solidity语法练习</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/basic.html">基础概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id2">没有浮点数运算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id3">合约基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id4">变量类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id5">运算符号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#struct">结构体 Struct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#array">数组array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id6">函数申明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id7">类型转换与内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id8">合约与事件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/levelup.html">语法进阶</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#map">数据结构：map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#msg-sender">环境变量：msg.sender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#requireassert">require还是assert?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id2">继承和引入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id3">省钱妙招：内存变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id4">接口与合约调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id5">多返回值</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/advanced.html">高级语法和概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#contract">Contract 构造函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#ownable">Ownable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#pausable">Pausable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#struct">省钱妙招：struct 结构体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id2">时间单位表达</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id3">带参数的函数修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#for">for 循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#payable">合约收款：payable修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#transfer">支付费用：transfer方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/summary.html">小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch9/index.html">第 9 章 Truffle合约开发实战</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/install.html">编译、测试工具安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#truffle">Truffle的安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#ganache">Ganache的安装</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/sample.html">Truffle启动样例项目</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id1">下载样例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id2">编译项目</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#ganache">部署项目到 Ganache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id3">测试项目</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/erc20.html">上手实践：ERC20合约</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id1">新建项目目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#erc20-basic">ERC20 Basic合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id2">ERC20 合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#safemath">SafeMath基础数学库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#cat">猫币：CAT数字资产合约</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/test.html">上手实践：ERC20合约测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id1">准备工作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id2">测试辅助函数与库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id3">测试代码分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id4">测试运行与结果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">附录 有意思的冷知识</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="shortattack.html">短地址攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="block.html">比特币的区块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utxo.html">以太坊与比特币账户的区别</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="utxo.html#id2">隐私与安全性的比较</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utxo.html#id3">数据体积与并发能力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utxo.html#id4">发送交易时对双花的处理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="triangle.html">“不可能的三角”问题</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ETHASH 挖矿算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ethashpow">ETHASH和比特币PoW的异同</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">ETHASH的设计目标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">ETHASH的挖矿运行总流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">ETHASH算法源代码解读</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">以太坊的指南针</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">附录 有意思的冷知识</a> &raquo;</li>
+        
+      <li>ETHASH 挖矿算法</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ch10/ethash.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ethash">
+<h1>ETHASH 挖矿算法<a class="headerlink" href="#ethash" title="Permalink to this headline">¶</a></h1>
+<p>把最好的东西留到最后品尝，本书将以太坊的PoW(Proof of work)挖矿算法核心ETHASH算法作为最好的礼物留到最后讲解。掌握了ETHASH算法我们就有能力进行新的、独立的公链开发。这个知识也是最难消化的，需要读者有许多相应的数学知识背景。请让我们一步一步来对照着源代码讲解这部分知识。</p>
+<div class="section" id="ethashpow">
+<h2>ETHASH和比特币PoW的异同<a class="headerlink" href="#ethashpow" title="Permalink to this headline">¶</a></h2>
+<p>ETHASH这个算法是消耗资源的PoW模式，同比特币共识算法一样，它需要消耗大量的计算资源得出最终的“结论”。但是这个结论的得出和执行交易的顺序无关。也就是说一般情况下并非需要调整“交易的排列组合”来影响最终的哈希计算值结果符合“阈值”的标准。这点和比特币是完全不一样的。在交易序列唯一确定后，以太坊共识算法通过调整8字节（64bit）的nonce值来让计算最终结果符合“阈值”的要求。</p>
+<p>ETHASH的算法更加依赖于CPU+内存的双料资源组合，比特币的SHA256算法仅仅依赖于CPU的资源，两者在挖矿公平性上也是不同的，这点在后文会有讲解。</p>
+</div>
+<div class="section" id="id1">
+<h2>ETHASH的设计目标<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>在比特币诞生之后经历了很长一段时间，开源社区发现仅依赖于CPU的计算的算法造成挖矿成功率向算力高的一方倾斜，并诞生出了诸如矿机这种专门的设备用于挖矿。矿机并不是一台完整的计算机，而是利用如ASIC集成电路、GPU、FPGA等专用电路进行并发操作。获得更高的多挖矿效率。这个趋势渐渐将普通人的电脑淘汰出挖矿的队伍，让话语权集中于数个矿场主手中。有违背于区块链公链“人人参与，去中心化”的精神，对区块链的分布式安全也是严重的威胁。在后世的算法设计中，就将装备了“慢CPU”的设备也能参与进挖矿定为一个重要的设计目标。PoW挖矿算法更多地让整台计算机资源都充分被利用，例如GPU、内存等设备，将单纯提高CPU的优势抹平。</p>
+<p>ETHASH并非一日铸成，前身经历了两次演进/组合，前身称之为Dagger-Hashimoto算法。Dagger与Hashimoto是两个不同的算法，它们共同组合起来形成了一套“Memory Hard Function”也就是对内存要求较高的计算/验证算法。它的核心点就是要找到一个8字节（64bit）的nonce值。而这个随机数的产生，没有比枚举更好的策略，这样对于每个挖矿者而言，找到随机数的概率是公平的。而这个随机数的找到的概率，取决于预先设置的挖矿难度。难度越高，找到随机数的概率越小，则同样的挖矿者需要更长时间来搜寻。这让以太坊有通过设置挖矿难度动态调整出块时间的可能。我们现在习惯的15秒出一个以太坊的块，就是动态难度调整和世界千万挖矿者算力博弈的最终动态平衡。</p>
+</div>
+<div class="section" id="id2">
+<h2>ETHASH的挖矿运行总流程<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>ETHASH改良了Dagger-Hashimoto，正确的说已经脱胎换骨，和原来的算法已经面目全非。它的总算法分为DAG的生成和DAG的使用（挖矿）两个部分。它有效地解决了单纯内存依赖的算法诸如Scrypt算法加密难与解密同样难的困境，也突破Dagger算法不抵抗内存共享硬件加速的困境，从全区块链数据的生成改为固定的1GB的数据的生成，支持了客户端预生成数据，保障挖矿难度的平滑过度。</p>
+<p>总的工作量/工作量证明总体流程如下。</p>
+<blockquote>
+<div><ul class="simple">
+<li>计算一个种子（Seed），该种子的计算依赖于当本块及本块之前的所有块。</li>
+<li>从种子中计算得出一个缓存（Cache），该缓存仅仅由种子得出，是一个16MB大小的数据集。轻客户端应存储下该缓存用于日后验证。</li>
+<li>从缓存中生成一个1GB大小的数据集（DataSet），这个数据集通常称为DAG。完整客户端或者挖矿客户端需要保存该1GB大小的数据，该数据随时间线性增长。</li>
+<li>挖矿过程即为哈希过程。哈希的输入是取得1GB数据集的数个子部分，并将它们放在一起执行哈希。验证过程是可以在轻客户端通过Cache缓存生成被挖矿制定的数据碎片并执行哈希验证。故而轻客户端并不需要时刻保存1GB的DAG。</li>
+<li>每当30000个以太坊区块被发掘后，1GB的数据集将被更新一次，所以矿工的主要精力放在读取这个数据集上，而非产生数据集。为了平滑过度30000个时间点上的DAG产生带来的延迟，可以预先生成DAG数据。</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>ETHASH算法源代码解读<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>我们之前探讨的算法都是纸上谈兵。接下去我们将分段用Go语言源码 方式来查看一下究竟ETHASH的挖矿和验证过程是如何进行的。探讨挖矿过程就如同探索爱丽丝仙境中的兔子洞，必须层层向下探索，它的最终解答的问题是：如何才能用ETHASH算法找到一个合法的nonce，进而形成一个块？</p>
+<p>整个打包块的过程源于sealer（封装）函数，它需要负责封装一个合法的块，这个块的获得将是一个mine（挖矿）过程，我们来查看一下它们的函数签名。</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">/consensus/ethash/sealer.go</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">ethash</span> <span class="o">*</span><span class="nx">Ethash</span><span class="p">)</span> <span class="nx">Seal</span><span class="p">(</span><span class="nx">chain</span> <span class="nx">consensus</span><span class="p">.</span><span class="nx">ChainReader</span><span class="p">,</span> <span class="nx">block</span> <span class="o">*</span><span class="nx">types</span><span class="p">.</span><span class="nx">Block</span><span class="p">,</span> <span class="nx">results</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="o">*</span><span class="nx">types</span><span class="p">.</span><span class="nx">Block</span><span class="p">,</span> <span class="nx">stop</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span> <span class="kt">error</span> <span class="p">{</span>
+</pre></div>
+</div>
+</div>
+<p>Seal函数总目标是找到一个nonce，让其符合块难度设定，这样块就能成为合法的块而被其他节点所接受。接受多个参数输入，并返回一个Ethash的指针。输入参数中包含了ChainReader，可料想到对于区块链前置的数据是有扫描的；Block可见最终也会修改块的部分数据，例如头部数据。我们来查看一下Ethash数据结构是怎样的：</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">/consensus/ethash/ethash.go</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Ethash</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">config</span> <span class="nx">Config</span>
+
+    <span class="nx">caches</span>   <span class="o">*</span><span class="nx">lru</span> <span class="c1">// LRU类型的Cache缓存避免大量反复查询</span>
+    <span class="nx">datasets</span> <span class="o">*</span><span class="nx">lru</span> <span class="c1">// LRU类型的 DataSet数据集，防止反复生成</span>
+
+    <span class="c1">// 挖矿相关</span>
+    <span class="nx">rand</span>     <span class="o">*</span><span class="nx">rand</span><span class="p">.</span><span class="nx">Rand</span>    <span class="c1">// 产生nonce的随机数</span>
+    <span class="nx">threads</span>  <span class="kt">int</span>           <span class="c1">// 挖矿需要的线程数量</span>
+    <span class="nx">update</span>   <span class="kd">chan</span> <span class="kd">struct</span><span class="p">{}</span>
+    <span class="nx">hashrate</span> <span class="nx">metrics</span><span class="p">.</span><span class="nx">Meter</span> <span class="c1">// 跟踪当下hash rate挖矿效率的参数</span>
+
+    <span class="c1">// 远程打包者所关注的参数</span>
+    <span class="nx">workCh</span>       <span class="kd">chan</span> <span class="o">*</span><span class="nx">sealTask</span>   <span class="c1">// 通知渠道，通知远程打包者打包数据</span>
+<span class="nx">fetchWorkCh</span>  <span class="kd">chan</span> <span class="o">*</span><span class="nx">sealWork</span>   <span class="c1">// 获取渠道， 远程打包者获取元数据</span>
+<span class="nx">submitWorkCh</span> <span class="kd">chan</span> <span class="o">*</span><span class="nx">mineResult</span> <span class="c1">// 提交渠道，远程打包者提交打包结果</span>
+    <span class="nx">fetchRateCh</span>  <span class="kd">chan</span> <span class="kd">chan</span> <span class="kt">uint64</span> <span class="c1">// 获取渠道，获取远程打包者提交挖矿效率参数值</span>
+    <span class="nx">submitRateCh</span> <span class="kd">chan</span> <span class="o">*</span><span class="nx">hashrate</span>   <span class="c1">// 提交渠道，远程大包着提交挖矿效率参数值</span>
+
+    <span class="c1">// 用于测试的钩子</span>
+    <span class="nx">shared</span>    <span class="o">*</span><span class="nx">Ethash</span>
+    <span class="nx">fakeFail</span>  <span class="kt">uint64</span>
+    <span class="nx">fakeDelay</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span>
+    <span class="nx">lock</span>      <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+    <span class="nx">closeOnce</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Once</span>
+    <span class="nx">exitCh</span>    <span class="kd">chan</span> <span class="kd">chan</span> <span class="kt">error</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>我们看到了熟悉的三个元素，caches、datasets、rand，这三个参数在之前的算法粗略讲解里面已经提到，是ETHASH的所使用到参数的基石，我们看下这个具体的封装区块的过程。</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">/consensus/ethash/sealer.go</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Seal函数主要功能是触发miner函数进行挖矿操作</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">ethash</span> <span class="o">*</span><span class="nx">Ethash</span><span class="p">)</span> <span class="nx">Seal</span><span class="p">(</span><span class="nx">chain</span> <span class="nx">consensus</span><span class="p">.</span><span class="nx">ChainReader</span><span class="p">,</span> <span class="nx">block</span> <span class="o">*</span><span class="nx">types</span><span class="p">.</span><span class="nx">Block</span><span class="p">,</span> <span class="nx">results</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="o">*</span><span class="nx">types</span><span class="p">.</span><span class="nx">Block</span><span class="p">,</span> <span class="nx">stop</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="c1">// 为了简洁，我们删去了测试代码</span>
+<span class="c1">// 为了简洁，我们删去了共享挖矿的代码</span>
+
+    <span class="c1">// 取消挖矿信号量</span>
+    <span class="nx">abort</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+
+    <span class="nx">ethash</span><span class="p">.</span><span class="nx">lock</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="nx">threads</span> <span class="o">:=</span> <span class="nx">ethash</span><span class="p">.</span><span class="nx">threads</span>
+    <span class="k">if</span> <span class="nx">ethash</span><span class="p">.</span><span class="nx">rand</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span> <span class="c1">// 产生一个可靠的随机数</span>
+        <span class="nx">seed</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">crand</span><span class="p">.</span><span class="nx">Int</span><span class="p">(</span><span class="nx">crand</span><span class="p">.</span><span class="nx">Reader</span><span class="p">,</span> <span class="nx">big</span><span class="p">.</span><span class="nx">NewInt</span><span class="p">(</span><span class="nx">math</span><span class="p">.</span><span class="nx">MaxInt64</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="nx">ethash</span><span class="p">.</span><span class="nx">lock</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+            <span class="k">return</span> <span class="nx">err</span>
+        <span class="p">}</span>
+        <span class="nx">ethash</span><span class="p">.</span><span class="nx">rand</span> <span class="p">=</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="nx">rand</span><span class="p">.</span><span class="nx">NewSource</span><span class="p">(</span><span class="nx">seed</span><span class="p">.</span><span class="nx">Int64</span><span class="p">()))</span>
+    <span class="p">}</span>
+    <span class="nx">ethash</span><span class="p">.</span><span class="nx">lock</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nx">threads</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="nx">threads</span> <span class="p">=</span> <span class="nx">runtime</span><span class="p">.</span><span class="nx">NumCPU</span><span class="p">()</span><span class="c1">// 决定多少并发挖矿线程</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="nx">threads</span> <span class="p">&lt;</span> <span class="mi">0</span> <span class="p">{</span>
+        <span class="nx">threads</span> <span class="p">=</span> <span class="mi">0</span> <span class="c1">// 取消本地挖矿功能</span>
+    <span class="p">}</span>
+    <span class="c1">// 将挖矿过程推送给远程挖矿者</span>
+    <span class="k">if</span> <span class="nx">ethash</span><span class="p">.</span><span class="nx">workCh</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">ethash</span><span class="p">.</span><span class="nx">workCh</span> <span class="o">&lt;-</span> <span class="o">&amp;</span><span class="nx">sealTask</span><span class="p">{</span><span class="nx">block</span><span class="p">:</span> <span class="nx">block</span><span class="p">,</span> <span class="nx">results</span><span class="p">:</span> <span class="nx">results</span><span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="p">(</span>
+        <span class="nx">pend</span>   <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+        <span class="nx">locals</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="o">*</span><span class="nx">types</span><span class="p">.</span><span class="nx">Block</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">threads</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">pend</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">id</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">nonce</span> <span class="kt">uint64</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 最重要的函数，etash.mine为挖矿函数</span>
+            <span class="k">defer</span> <span class="nx">pend</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+            <span class="nx">ethash</span><span class="p">.</span><span class="nx">mine</span><span class="p">(</span><span class="nx">block</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">nonce</span><span class="p">,</span> <span class="nx">abort</span><span class="p">,</span> <span class="nx">locals</span><span class="p">)</span>
+        <span class="p">}(</span><span class="nx">i</span><span class="p">,</span> <span class="nb">uint64</span><span class="p">(</span><span class="nx">ethash</span><span class="p">.</span><span class="nx">rand</span><span class="p">.</span><span class="nx">Int63</span><span class="p">()))</span>
+    <span class="p">}</span>
+    <span class="c1">// 开启多线程，直到挖矿成功或者取消挖矿</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">result</span> <span class="o">*</span><span class="nx">types</span><span class="p">.</span><span class="nx">Block</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">stop</span><span class="p">:</span>
+            <span class="c1">// 外部取消信号捕捉，直接关闭挖矿线程</span>
+            <span class="nb">close</span><span class="p">(</span><span class="nx">abort</span><span class="p">)</span>
+        <span class="k">case</span> <span class="nx">result</span> <span class="p">=</span> <span class="o">&lt;-</span><span class="nx">locals</span><span class="p">:</span>
+            <span class="c1">// 某一线程找到了合法块，通知其他挖矿线程关闭</span>
+            <span class="k">select</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="nx">results</span> <span class="o">&lt;-</span> <span class="nx">result</span><span class="p">:</span>
+            <span class="k">default</span><span class="p">:</span>
+                <span class="nx">log</span><span class="p">.</span><span class="nx">Warn</span><span class="p">(</span><span class="s">&quot;Sealing result is not read by miner&quot;</span><span class="p">,</span> <span class="s">&quot;mode&quot;</span><span class="p">,</span> <span class="s">&quot;local&quot;</span><span class="p">,</span> <span class="s">&quot;sealhash&quot;</span><span class="p">,</span> <span class="nx">ethash</span><span class="p">.</span><span class="nx">SealHash</span><span class="p">(</span><span class="nx">block</span><span class="p">.</span><span class="nx">Header</span><span class="p">()))</span>
+            <span class="p">}</span>
+            <span class="nb">close</span><span class="p">(</span><span class="nx">abort</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ethash</span><span class="p">.</span><span class="nx">update</span><span class="p">:</span>
+            <span class="c1">// 重启所有挖矿线程</span>
+            <span class="nb">close</span><span class="p">(</span><span class="nx">abort</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ethash</span><span class="p">.</span><span class="nx">Seal</span><span class="p">(</span><span class="nx">chain</span><span class="p">,</span> <span class="nx">block</span><span class="p">,</span> <span class="nx">results</span><span class="p">,</span> <span class="nx">stop</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nx">log</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="s">&quot;Failed to restart sealing after update&quot;</span><span class="p">,</span> <span class="s">&quot;err&quot;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// Wait for all miners to terminate and return the block</span>
+        <span class="nx">pend</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+    <span class="p">}()</span>
+    <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>我们看到上文中大部分代码都在处理多线程关系，还有挖矿的开启和停止，用到了Go语言的核心功能–多线程并发。挖矿的代码就一行，是一个调用，调用了ethash.mine(block, id, nonce) 这个子函数进行真的苦力活PoW算法，下面我们查看一下这个具体挖矿的实现代码。</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">/consensus/ethash/sealer.go</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// 通过PoW挖矿行为找到最终符合条件的nonce值</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">ethash</span> <span class="o">*</span><span class="nx">Ethash</span><span class="p">)</span> <span class="nx">mine</span><span class="p">(</span><span class="nx">block</span> <span class="o">*</span><span class="nx">types</span><span class="p">.</span><span class="nx">Block</span><span class="p">,</span> <span class="nx">id</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">seed</span> <span class="kt">uint64</span><span class="p">,</span> <span class="nx">abort</span> <span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="nx">found</span> <span class="kd">chan</span> <span class="o">*</span><span class="nx">types</span><span class="p">.</span><span class="nx">Block</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 从区块头部获取必要的信息</span>
+    <span class="kd">var</span> <span class="p">(</span>
+        <span class="nx">header</span>  <span class="p">=</span> <span class="nx">block</span><span class="p">.</span><span class="nx">Header</span><span class="p">()</span>
+        <span class="nx">hash</span>    <span class="p">=</span> <span class="nx">ethash</span><span class="p">.</span><span class="nx">SealHash</span><span class="p">(</span><span class="nx">header</span><span class="p">).</span><span class="nx">Bytes</span><span class="p">()</span>
+        <span class="nx">target</span>  <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">big</span><span class="p">.</span><span class="nx">Int</span><span class="p">).</span><span class="nx">Div</span><span class="p">(</span><span class="nx">two256</span><span class="p">,</span> <span class="nx">header</span><span class="p">.</span><span class="nx">Difficulty</span><span class="p">)</span>
+        <span class="nx">number</span>  <span class="p">=</span> <span class="nx">header</span><span class="p">.</span><span class="nx">Number</span><span class="p">.</span><span class="nx">Uint64</span><span class="p">()</span>
+        <span class="nx">dataset</span> <span class="p">=</span> <span class="nx">ethash</span><span class="p">.</span><span class="nx">dataset</span><span class="p">(</span><span class="nx">number</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="c1">// 开启反复试算nonce值，直到算出，或者取消。</span>
+    <span class="kd">var</span> <span class="p">(</span>
+        <span class="nx">attempts</span> <span class="p">=</span> <span class="nb">int64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="nx">nonce</span>    <span class="p">=</span> <span class="nx">seed</span>
+    <span class="p">)</span>
+    <span class="nx">logger</span> <span class="o">:=</span> <span class="nx">log</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;miner&quot;</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>
+    <span class="nx">logger</span><span class="p">.</span><span class="nx">Trace</span><span class="p">(</span><span class="s">&quot;Started ethash search for new nonces&quot;</span><span class="p">,</span> <span class="s">&quot;seed&quot;</span><span class="p">,</span> <span class="nx">seed</span><span class="p">)</span>
+<span class="nx">search</span><span class="p">:</span>
+    <span class="k">for</span> <span class="p">{</span>  <span class="c1">// 死循环开始</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">abort</span><span class="p">:</span>
+            <span class="c1">// 如果我们取消了，停止</span>
+            <span class="nx">logger</span><span class="p">.</span><span class="nx">Trace</span><span class="p">(</span><span class="s">&quot;Ethash nonce search aborted&quot;</span><span class="p">,</span> <span class="s">&quot;attempts&quot;</span><span class="p">,</span> <span class="nx">nonce</span><span class="o">-</span><span class="nx">seed</span><span class="p">)</span>
+            <span class="nx">ethash</span><span class="p">.</span><span class="nx">hashrate</span><span class="p">.</span><span class="nx">Mark</span><span class="p">(</span><span class="nx">attempts</span><span class="p">)</span>
+            <span class="k">break</span> <span class="nx">search</span>
+
+        <span class="k">default</span><span class="p">:</span>
+            <span class="c1">// 记录尝试次数</span>
+            <span class="nx">attempts</span><span class="o">++</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">attempts</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">15</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+                <span class="nx">ethash</span><span class="p">.</span><span class="nx">hashrate</span><span class="p">.</span><span class="nx">Mark</span><span class="p">(</span><span class="nx">attempts</span><span class="p">)</span>
+                <span class="nx">attempts</span> <span class="p">=</span> <span class="mi">0</span>
+            <span class="p">}</span>
+            <span class="c1">// 重要！ 试算PoW算式下的nonce值</span>
+<span class="nx">digest</span><span class="p">,</span> <span class="nx">result</span> <span class="o">:=</span> <span class="nx">hashimotoFull</span><span class="p">(</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">dataset</span><span class="p">,</span> <span class="nx">hash</span><span class="p">,</span> <span class="nx">nonce</span><span class="p">)</span>
+<span class="c1">// 重要！ 成功找到nonce值的判定标准！</span>
+            <span class="k">if</span> <span class="nb">new</span><span class="p">(</span><span class="nx">big</span><span class="p">.</span><span class="nx">Int</span><span class="p">).</span><span class="nx">SetBytes</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">Cmp</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
+                <span class="c1">// 更新header，试算结束！</span>
+                <span class="nx">header</span> <span class="p">=</span> <span class="nx">types</span><span class="p">.</span><span class="nx">CopyHeader</span><span class="p">(</span><span class="nx">header</span><span class="p">)</span>
+                <span class="nx">header</span><span class="p">.</span><span class="nx">Nonce</span> <span class="p">=</span> <span class="nx">types</span><span class="p">.</span><span class="nx">EncodeNonce</span><span class="p">(</span><span class="nx">nonce</span><span class="p">)</span>
+                <span class="nx">header</span><span class="p">.</span><span class="nx">MixDigest</span> <span class="p">=</span> <span class="nx">common</span><span class="p">.</span><span class="nx">BytesToHash</span><span class="p">(</span><span class="nx">digest</span><span class="p">)</span>
+
+                <span class="c1">// 成功找到块打包结束</span>
+                <span class="k">select</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="nx">found</span> <span class="o">&lt;-</span> <span class="nx">block</span><span class="p">.</span><span class="nx">WithSeal</span><span class="p">(</span><span class="nx">header</span><span class="p">):</span>
+                    <span class="nx">logger</span><span class="p">.</span><span class="nx">Trace</span><span class="p">(</span><span class="s">&quot;Ethash nonce found and reported&quot;</span><span class="p">,</span> <span class="s">&quot;attempts&quot;</span><span class="p">,</span> <span class="nx">nonce</span><span class="o">-</span><span class="nx">seed</span><span class="p">,</span> <span class="s">&quot;nonce&quot;</span><span class="p">,</span> <span class="nx">nonce</span><span class="p">)</span>
+                <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">abort</span><span class="p">:</span>
+                    <span class="nx">logger</span><span class="p">.</span><span class="nx">Trace</span><span class="p">(</span><span class="s">&quot;Ethash nonce found but discarded&quot;</span><span class="p">,</span> <span class="s">&quot;attempts&quot;</span><span class="p">,</span> <span class="nx">nonce</span><span class="o">-</span><span class="nx">seed</span><span class="p">,</span> <span class="s">&quot;nonce&quot;</span><span class="p">,</span> <span class="nx">nonce</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="k">break</span> <span class="nx">search</span>
+            <span class="p">}</span>
+            <span class="nx">nonce</span><span class="o">++</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">runtime</span><span class="p">.</span><span class="nx">KeepAlive</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>在上方的代码中，总逻辑是一个死循环，循环内部反复试算nonce值直到符合难度规定，那么判断的条件就是一个依据，如下面这行代码所示。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">new</span><span class="p">(</span><span class="nx">big</span><span class="p">.</span><span class="nx">Int</span><span class="p">).</span><span class="nx">SetBytes</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">Cmp</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
+</pre></div>
+</div>
+<p>这句话至关重要，如果试算出来的结果result小于target，则试算成功。那么又是如何试算的呢？我们仔细看可以看到这么一个试算函数。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">digest</span><span class="p">,</span> <span class="nx">result</span> <span class="o">:=</span> <span class="nx">hashimotoFull</span><span class="p">(</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">dataset</span><span class="p">,</span> <span class="nx">hash</span><span class="p">,</span> <span class="nx">nonce</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">/consensus/ethash/algorithm.go</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nx">hashimotoFull</span><span class="p">(</span><span class="nx">dataset</span> <span class="p">[]</span><span class="kt">uint32</span><span class="p">,</span> <span class="nx">hash</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">nonce</span> <span class="kt">uint64</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">lookup</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">index</span> <span class="kt">uint32</span><span class="p">)</span> <span class="p">[]</span><span class="kt">uint32</span> <span class="p">{</span>
+        <span class="nx">offset</span> <span class="o">:=</span> <span class="nx">index</span> <span class="o">*</span> <span class="nx">hashWords</span>
+        <span class="k">return</span> <span class="nx">dataset</span><span class="p">[</span><span class="nx">offset</span> <span class="p">:</span> <span class="nx">offset</span><span class="o">+</span><span class="nx">hashWords</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="c1">// 将具体的hashimoto算法触发，获得最终的结果</span>
+    <span class="k">return</span> <span class="nx">hashimoto</span><span class="p">(</span><span class="nx">hash</span><span class="p">,</span> <span class="nx">nonce</span><span class="p">,</span> <span class="nb">uint64</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">dataset</span><span class="p">))</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="nx">lookup</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>上文可以看到hashimotoFull函数将计算的过程完全代理给了hashimoto函数，本身并没有过多的数据计算和操作，我们再深入到最深的兔子洞—hashitmoto()函数来看一下。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// 针对某个header和nonce，hashimoto函数采撷DataSet中部分数据来进行哈希</span>
+<span class="kd">func</span> <span class="nx">hashimoto</span><span class="p">(</span><span class="nx">hash</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">nonce</span> <span class="kt">uint64</span><span class="p">,</span> <span class="nx">size</span> <span class="kt">uint64</span><span class="p">,</span> <span class="nx">lookup</span> <span class="kd">func</span><span class="p">(</span><span class="nx">index</span> <span class="kt">uint32</span><span class="p">)</span> <span class="p">[]</span><span class="kt">uint32</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 计算理论上用的到的“行”</span>
+    <span class="nx">rows</span> <span class="o">:=</span> <span class="nb">uint32</span><span class="p">(</span><span class="nx">size</span> <span class="o">/</span> <span class="nx">mixBytes</span><span class="p">)</span>
+
+    <span class="c1">// 组合header+nonce 形成 64 byte 的seed</span>
+    <span class="nx">seed</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+    <span class="nb">copy</span><span class="p">(</span><span class="nx">seed</span><span class="p">,</span> <span class="nx">hash</span><span class="p">)</span>
+    <span class="nx">binary</span><span class="p">.</span><span class="nx">LittleEndian</span><span class="p">.</span><span class="nx">PutUint64</span><span class="p">(</span><span class="nx">seed</span><span class="p">[</span><span class="mi">32</span><span class="p">:],</span> <span class="nx">nonce</span><span class="p">)</span>
+
+    <span class="nx">seed</span> <span class="p">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">Keccak512</span><span class="p">(</span><span class="nx">seed</span><span class="p">)</span>
+    <span class="nx">seedHead</span> <span class="o">:=</span> <span class="nx">binary</span><span class="p">.</span><span class="nx">LittleEndian</span><span class="p">.</span><span class="nx">Uint32</span><span class="p">(</span><span class="nx">seed</span><span class="p">)</span>
+
+    <span class="c1">// 用seed开始“混合”操作</span>
+    <span class="nx">mix</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">uint32</span><span class="p">,</span> <span class="nx">mixBytes</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">mix</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">mix</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">binary</span><span class="p">.</span><span class="nx">LittleEndian</span><span class="p">.</span><span class="nx">Uint32</span><span class="p">(</span><span class="nx">seed</span><span class="p">[</span><span class="nx">i</span><span class="o">%</span><span class="mi">16</span><span class="o">*</span><span class="mi">4</span><span class="p">:])</span>
+    <span class="p">}</span>
+    <span class="c1">// 混合入数据集DataSet中的数据</span>
+    <span class="nx">temp</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">uint32</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">mix</span><span class="p">))</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">loopAccesses</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">parent</span> <span class="o">:=</span> <span class="nx">fnv</span><span class="p">(</span><span class="nb">uint32</span><span class="p">(</span><span class="nx">i</span><span class="p">)^</span><span class="nx">seedHead</span><span class="p">,</span> <span class="nx">mix</span><span class="p">[</span><span class="nx">i</span><span class="o">%</span><span class="nb">len</span><span class="p">(</span><span class="nx">mix</span><span class="p">)])</span> <span class="o">%</span> <span class="nx">rows</span>
+        <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="nb">uint32</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nx">mixBytes</span><span class="o">/</span><span class="nx">hashBytes</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+            <span class="nb">copy</span><span class="p">(</span><span class="nx">temp</span><span class="p">[</span><span class="nx">j</span><span class="o">*</span><span class="nx">hashWords</span><span class="p">:],</span> <span class="nx">lookup</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nx">parent</span><span class="o">+</span><span class="nx">j</span><span class="p">))</span>
+        <span class="p">}</span>
+        <span class="nx">fnvHash</span><span class="p">(</span><span class="nx">mix</span><span class="p">,</span> <span class="nx">temp</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="c1">// 压缩混合</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">mix</span><span class="p">);</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">4</span> <span class="p">{</span>
+        <span class="nx">mix</span><span class="p">[</span><span class="nx">i</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span> <span class="p">=</span> <span class="nx">fnv</span><span class="p">(</span><span class="nx">fnv</span><span class="p">(</span><span class="nx">fnv</span><span class="p">(</span><span class="nx">mix</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">mix</span><span class="p">[</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]),</span> <span class="nx">mix</span><span class="p">[</span><span class="nx">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]),</span> <span class="nx">mix</span><span class="p">[</span><span class="nx">i</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span>
+    <span class="p">}</span>
+    <span class="nx">mix</span> <span class="p">=</span> <span class="nx">mix</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">mix</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span>
+
+    <span class="nx">digest</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">common</span><span class="p">.</span><span class="nx">HashLength</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">val</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">mix</span> <span class="p">{</span>
+        <span class="nx">binary</span><span class="p">.</span><span class="nx">LittleEndian</span><span class="p">.</span><span class="nx">PutUint32</span><span class="p">(</span><span class="nx">digest</span><span class="p">[</span><span class="nx">i</span><span class="o">*</span><span class="mi">4</span><span class="p">:],</span> <span class="nx">val</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// 返回混合的哈希值，输出</span>
+    <span class="k">return</span> <span class="nx">digest</span><span class="p">,</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">Keccak256</span><span class="p">(</span><span class="nb">append</span><span class="p">(</span><span class="nx">seed</span><span class="p">,</span> <span class="nx">digest</span><span class="o">...</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>至此我们已经清晰地分析了整个试算nonce值的过程，整个过程犹如爱丽丝漫游仙境，需要层层向下探索兔子洞，按照“Seal  -&gt; mine  -&gt; hashimotoFull  -&gt; hashimoto”的顺序一层层往下解读源代码，找到试算nonce的过程，一旦找到合法的nonce立即停止多线程的mine挖矿过程，返回最终结果给Seal函数，形成合法的区块头。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="triangle.html" class="btn btn-neutral float-left" title="“不可能的三角”问题" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, laalaguer
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-142187300-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

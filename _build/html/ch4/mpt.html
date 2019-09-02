@@ -1,0 +1,526 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Merkle Patricia树 &mdash; 以太坊的指南针 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RLP编码" href="rlp.html" />
+    <link rel="prev" title="Merkle树和 Merkle证明" href="merkle.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> 以太坊的指南针
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../howto.html">如何学习这本书</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch1/index.html">第 1 章 以太坊：一台全球计算机</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/born.html">简史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/progress.html">发展阶段</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/highlight.html">以太坊的特色</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch2/index.html">第 2 章 账户是什么</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/basic.html">小白基础知识问答</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id2">我的以太币记录在哪里？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id3">我的以太币余额如何变化？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id4">什么是区块？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id5">区块和状态的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id6">“巨大的账本”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id7">我如何参与以太坊？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id8">我如何与其他人同步账本？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/account.html">账户探秘</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id2">账户与账户状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id3">账户状态的内涵</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id4">已执行交易总数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id5">持币数量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id6">存储区的哈希值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id7">代码区的哈希值</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#app">没有钱包App, 如何生成账户？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id11">智能合约地址的生成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/keystore.html">资料篇：Keystore 与私钥保存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/app.html">资料篇：常用钱包 App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/eip55.html">资料篇：EIP-55 格式的账户地址</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch3/index.html">第 3 章 交易是驱动力</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/how.html">交易的发送</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id2">交易与消息什么区别？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id3">交易的特性是什么？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/what.html">交易的样子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/life.html">交易的生命周期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/pow.html">资料篇：共识与工作量证明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow">比特币的PoW机制（简单版）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#id2">比特币算力的中心化问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow-pos">以太坊的Pow/Pos机制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/dig.html">资料篇：矿工与挖矿奖励</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">第 4 章 数据结构</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="radix.html">Radix树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merkle.html">Merkle树和 Merkle证明</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Merkle Patricia树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rlp.html">RLP编码</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rlp.html#id1">RLP字符/字符串编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rlp.html#id3">RLP字符/字符串解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rlp.html#id4">RLP数组编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rlp.html#id5">RLP数组解码</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stateroot.html">资料篇：状态树 (以及存储树）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transroot.html">资料篇：交易树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="receiptroot.html">资料篇：收据树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="block.html">资料篇：区块</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch5/index.html">第 5 章 构建一条以太坊私链</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/install.html">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/geth.html">Geth客户端的结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/build.html">启动一条以太坊私链</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/coinbase.html">接收挖矿奖励</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/transfer.html">转账与收款</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch6/index.html">第 6 章 手把手教你部署智能合约</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/what.html">什么是智能合约？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/install.html">安装编译器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/compile.html">Solc编译智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/prepare.html">智能合约发布准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/deploy.html">部署智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/call.html">调用智能合约</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch7/index.html">第 7 章 以太坊虚拟机探秘</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/result.html">虚拟机的执行结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/resource.html">虚拟机的执行资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/call.html">合约调用合约?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/io.html">虚拟机的输入输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/gas.html">Gas 花费与退回</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/instructions.html">虚拟机指令集</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch8/index.html">第 8 章 Solidity语法练习</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/basic.html">基础概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id2">没有浮点数运算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id3">合约基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id4">变量类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id5">运算符号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#struct">结构体 Struct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#array">数组array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id6">函数申明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id7">类型转换与内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id8">合约与事件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/levelup.html">语法进阶</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#map">数据结构：map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#msg-sender">环境变量：msg.sender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#requireassert">require还是assert?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id2">继承和引入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id3">省钱妙招：内存变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id4">接口与合约调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id5">多返回值</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/advanced.html">高级语法和概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#contract">Contract 构造函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#ownable">Ownable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#pausable">Pausable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#struct">省钱妙招：struct 结构体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id2">时间单位表达</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id3">带参数的函数修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#for">for 循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#payable">合约收款：payable修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#transfer">支付费用：transfer方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/summary.html">小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch9/index.html">第 9 章 Truffle合约开发实战</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/install.html">编译、测试工具安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#truffle">Truffle的安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#ganache">Ganache的安装</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/sample.html">Truffle启动样例项目</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id1">下载样例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id2">编译项目</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#ganache">部署项目到 Ganache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id3">测试项目</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/erc20.html">上手实践：ERC20合约</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id1">新建项目目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#erc20-basic">ERC20 Basic合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id2">ERC20 合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#safemath">SafeMath基础数学库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#cat">猫币：CAT数字资产合约</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/test.html">上手实践：ERC20合约测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id1">准备工作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id2">测试辅助函数与库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id3">测试代码分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id4">测试运行与结果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch10/index.html">附录 有意思的冷知识</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/shortattack.html">短地址攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/block.html">比特币的区块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/utxo.html">以太坊与比特币账户的区别</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id2">隐私与安全性的比较</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id3">数据体积与并发能力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id4">发送交易时对双花的处理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/triangle.html">“不可能的三角”问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/ethash.html">ETHASH 挖矿算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#ethashpow">ETHASH和比特币PoW的异同</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id1">ETHASH的设计目标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id2">ETHASH的挖矿运行总流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id3">ETHASH算法源代码解读</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">以太坊的指南针</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">第 4 章 数据结构</a> &raquo;</li>
+        
+      <li>Merkle Patricia树</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ch4/mpt.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="merkle-patricia">
+<span id="reference-mpt"></span><h1>Merkle Patricia树<a class="headerlink" href="#merkle-patricia" title="Permalink to this headline">¶</a></h1>
+<p>区块链中的数据往往需要满足大量的节点查询、插入、删除、真伪鉴定及存在性检查。</p>
+<p>以太坊团队开创性地融合了Radix树和Merkle树的结构，并进一步优化该结构的存储性能，形成了实用的 <strong>Merkle Patricia树</strong> 。</p>
+<p>Merkle Patiricia树 (以下简称MPT树) 是一个可以存储键值对 (key-value pair) 的高效数据结构，键、值分别可以是任意的序列化过的字符串。它具有Merkle树的密码学安全校验功能，提供树中的数据完整性与存在性的 Merkle 证明。它具有强大的互动能力，在log(N)级别的时间内完成插入、删除、查询等操作。我们来循序渐进地查看如何构建一棵 MPT树。</p>
+<div class="topic">
+<p class="topic-title first">首先我们定义一个节点。</p>
+<p>节点在逻辑上，由 <span class="guilabel">索引</span> 、<span class="guilabel">路径</span> 和 <span class="guilabel">数据</span> 这三部分组成。</p>
+<p>在实际中，我们保留 <cite>索引</cite>, 并将 <span class="guilabel">路径</span> 和 <span class="guilabel">数据</span> 编码成一个单元，称为 <cite>存储</cite>。</p>
+<p>节点可以利用数据库软件例如MySQL、SQLite或轻量级数据库LevelDB来存储，它需要保证查询一个索引时候快速高效。</p>
+<p>以太坊节点的 <span class="guilabel">路径</span> 是16格的Hex值，表示为0~f 的16个元素，节点的第17个元素是节点存储。具体结构如下图 <a class="reference internal" href="#id1">4-7</a> 所示, 数据库存储 <cite>key</cite> 和 <cite>value</cite> 为一组键值对。其中 <cite>value</cite> 包含了 <span class="guilabel">路径</span> 和 <span class="guilabel">数据</span> 。</p>
+</div>
+<div class="figure align-center" id="id10">
+<span id="id1"></span><a class="reference internal image-reference" href="../_images/Picture33.png"><img alt="../_images/Picture33.png" src="../_images/Picture33.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">以太坊的节点格式： 哈希值为索引，节点对应值为路径和节点存储</span></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>请不要将索引(key)与路径(Path)混为一谈。</p>
+<p>数据库“眼中”每一组数据 = 索引+存储， 而存储 = 路径+数据。</p>
+<p>路径存在的意义是在组织数据的时候与其他数据关联的查找方式。</p>
+<p class="last">在以太坊中，数据库查找，我们简称为 <strong>dl操作(Database lookup)</strong> 。树路径查找，简称为 <strong>tl操作(Trie lookup)</strong> 。</p>
+</div>
+<div class="topic">
+<p class="topic-title first">初步构建一棵低效率的MPT树</p>
+<p>假设我们拥有如下的键值对数据集。我们想办法用MPT树将其组织起来。</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">一组假想的数据</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s1">&#39;cab8&#39;</span><span class="o">:</span> <span class="s1">&#39;dog&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;cabe&#39;</span><span class="o">:</span> <span class="s1">&#39;cat&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;39&#39;</span><span class="o">:</span> <span class="s1">&#39;chicken&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;395&#39;</span><span class="o">:</span> <span class="s1">&#39;duck&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;56f0&#39;</span><span class="o">:</span> <span class="s1">&#39;horse&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>我们仔细观察数据，首先想到的是Radix树的概念。<code class="docutils literal notranslate"><span class="pre">cab8</span></code> 和 <code class="docutils literal notranslate"><span class="pre">cabe</span></code> 共享了 <code class="docutils literal notranslate"><span class="pre">cab</span></code> 这个公共路径，<code class="docutils literal notranslate"><span class="pre">39</span></code> 和 <code class="docutils literal notranslate"><span class="pre">395</span></code> 共享了 <code class="docutils literal notranslate"><span class="pre">39</span></code> 这个路径。 <code class="docutils literal notranslate"><span class="pre">56f0</span></code> 因为和其他人没有重叠，所以自己单独一个路径。我们可以将这些路径按照字符拆开来，放入节点的 <span class="guilabel">路径</span> 中。</p>
+<p>其次是诸如 <code class="docutils literal notranslate"><span class="pre">&quot;dog&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cat&quot;</span></code> 之类的数据，它们千变万化，而且往往是一大块。不适合拆分，适合集中存放。我们将其放入节点的 <span class="guilabel">数据</span> 部分。</p>
+<p>最后是校验和。因为我们希望这组数据作为一个整体，无论添加、删除、变更，都能立即体现出来。所以势必引入一个Merkle树的概念，对每层数据进行哈希，这是额外的功夫，这些哈希结果，放入 <span class="guilabel">索引</span> 部分。</p>
+<p>具体拆分后是怎样存储的MPT树呢？见图 <a class="reference internal" href="#id2">4-8</a>。</p>
+<div class="figure align-center" id="id12">
+<span id="id2"></span><a class="reference internal image-reference" href="../_images/Picture34.png"><img alt="../_images/Picture34.png" src="../_images/Picture34.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">一棵低效率的 MPT 树，树中有很多空白值</span></p>
+</div>
+<p>我们试着查找 <span class="guilabel">路径</span> <code class="docutils literal notranslate"><span class="pre">56f0</span></code> 对应的数据:</p>
+<blockquote>
+<div><ul class="simple">
+<li>拆分 <code class="docutils literal notranslate"><span class="pre">56f0</span></code> 为 <code class="docutils literal notranslate"><span class="pre">5、6、f、0</span></code> 四格。</li>
+<li>我们首先确认这条数据位于一个数据集，这个数据集的 <span class="guilabel">索引</span> 是 <em>rootHash</em> 。</li>
+<li>我们先做一次数据库查询找到该节点 (dl操作)。找到后，我们从这一行开始。</li>
+<li>第一段路径为 <code class="docutils literal notranslate"><span class="pre">5</span></code> ，我们取出 <span class="guilabel">路径</span> 顺序找到第5格，查询得知对该格对应的 <span class="guilabel">索引</span> <em>HashE</em> (tl操作)。</li>
+<li>根据 <em>HashE</em> 再次进行数据库查询 (dl操作)，得到E节点，E节点不包含 <span class="guilabel">数据</span>，所以它肯定是个叶子节点。</li>
+<li>第二段路径为 <code class="docutils literal notranslate"><span class="pre">6</span></code> ，我们路径查询 (tl操作) 得知对应 <span class="guilabel">索引</span> <em>HashF</em>。</li>
+<li>以此类推，依序找到 <em>HashG</em> 、 <em>HashH</em> 。</li>
+<li>取出 <em>HashH</em> 对应节点的 <span class="guilabel">数据</span> ，即为 <code class="docutils literal notranslate"><span class="pre">“horse”</span></code> ，查找完毕。</li>
+</ul>
+</div></blockquote>
+<p>在该过程中我们交替使用了 <strong>数据库查找</strong> 和 <strong>路径查找</strong> 。
+路径查找是Radix树的特色。把节点进行哈希进行索引，就是Merkle树的特色。两者完美结合。</p>
+<p>但是这棵树还不够优化，存储空间有大量的空白值， <em>HashE、HashF、HashG</em> 的节点仅仅指向一个后继节点，在空间上效率不高，产生了 <strong>退化</strong> 。</p>
+<div class="topic">
+<p class="topic-title first">空间效率改进的MPT树</p>
+<p>我们下面来改进一下这棵树，将部分节点改造合并、缩短路径，如图 <a class="reference internal" href="#id3">4-9</a> 所示。</p>
+</div>
+<div class="figure align-center" id="id13">
+<span id="id3"></span><a class="reference internal image-reference" href="../_images/Picture35.png"><img alt="../_images/Picture35.png" src="../_images/Picture35.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">存储空间改造后的 MPT 树</span></p>
+</div>
+<p>上述改造中我们引入了部分新的规则，节点不再是统一的格式，而是分化成了四种格式。</p>
+<blockquote>
+<div><ul class="simple">
+<li>空节点(<strong>null</strong>)：没有包含任何元素，用空字符串表示。</li>
+<li>分支(<strong>branch</strong>)：包含 <code class="docutils literal notranslate"><span class="pre">17</span></code> 个元素，前 <code class="docutils literal notranslate"><span class="pre">16</span></code> 个为 <span class="guilabel">路径</span> ，末一个元素为 <span class="guilabel">数据</span> 。</li>
+<li>叶子(<strong>leaf</strong>)：仅包含 <code class="docutils literal notranslate"><span class="pre">2</span></code> 个元素，一个 <span class="guilabel">路径</span> 与一个 <span class="guilabel">数据</span> 。</li>
+<li>扩展节点(<strong>extension</strong>)：仅包含 <code class="docutils literal notranslate"><span class="pre">2</span></code> 个元素，一个 <span class="guilabel">路径</span> 和 <span class="guilabel">索引</span> 。</li>
+</ul>
+</div></blockquote>
+<p>hashB 是一个 <strong>扩展节点</strong> ，它包含了部分路径 <code class="docutils literal notranslate"><span class="pre">{ab}</span></code> 与哈希存储 hashJ，这个扩展节点不是树的终点，因为它不包含可以返回的值，它明确指引查找者往下再去 hashJ 对应的节点查找值数据；</p>
+<p>hashE 就是典型的 <strong>叶子节点</strong>，它包含了部分路径 <code class="docutils literal notranslate"><span class="pre">{6f0}</span></code> 与最终值 <code class="docutils literal notranslate"><span class="pre">“horse”</span></code> ，它再也没有后继节点可供再查找下去；</p>
+<p>hashC 是一个 <strong>分支</strong> ，它与叶子节点相似，包含了一个最终值 <code class="docutils literal notranslate"><span class="pre">&quot;chicken&quot;</span></code> ，但是也拥有一个对于 hashD 的索引，它不是树的终点，还可以往下继续查找下去。</p>
+<p>根节点，分支节点，扩展节点，叶子节点的简化关系如图 <a class="reference internal" href="#id4">4-10</a> 所示。</p>
+<div class="figure align-center" id="id14">
+<span id="id4"></span><a class="reference internal image-reference" href="../_images/Picture36.png"><img alt="../_images/Picture36.png" src="../_images/Picture36.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">MPT树：根节点、分支节点、叶子节点、扩展节点和最终数据存储</span></p>
+</div>
+<div class="topic">
+<p class="topic-title first">在MPT树中查找元素</p>
+<p>当我们在MPT树中查找路径 <code class="docutils literal notranslate"><span class="pre">56f0</span></code> 对应的 <code class="docutils literal notranslate"><span class="pre">&quot;horse&quot;</span></code> 值时，路径就大大缩短，按照如下步骤就可找到。</p>
+<blockquote>
+<div><ul class="simple">
+<li>将查找总路径 <code class="docutils literal notranslate"><span class="pre">56f0</span></code> 分段为 <code class="docutils literal notranslate"><span class="pre">5、6、f、0</span></code> 。</li>
+<li>从根节点 <span class="guilabel">索引</span> <em>rootHash</em> 开始，我们先做一次数据库查询找到根节点(dl操作)。</li>
+<li>第一个路径为 <code class="docutils literal notranslate"><span class="pre">5</span></code> ，我们 <span class="guilabel">路径</span> 查询得知对应 <span class="guilabel">索引</span> <em>HashE</em> (tl操作)。</li>
+<li>根据 <em>HashE</em> 再次进行数据库查询，得到 E 节点。</li>
+<li>E 节点已经包含了剩下的部分路径 <code class="docutils literal notranslate"><span class="pre">{6f0}</span></code> ，命中，取出数据 <code class="docutils literal notranslate"><span class="pre">“horse”</span></code>。</li>
+</ul>
+</div></blockquote>
+<p>在以太坊 MPT 树中，除以上规则外，还有一些额外的规则需要遵守。</p>
+<blockquote>
+<div><ul class="simple">
+<li>每个部分路径都需要执行Hex Prefix编码(Hex Prefix encoding) <a class="footnote-reference" href="#id8" id="id5">[1]</a> 。</li>
+<li>每个节点的元素都需要执行RLP编码(RLP encoding) <a class="footnote-reference" href="#id9" id="id6">[2]</a> 。</li>
+<li>每个节点也需要执行RLP编码 (见图 <a class="reference internal" href="#id7">4-11</a> ）。</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="figure align-center" id="id15">
+<span id="id7"></span><a class="reference internal image-reference" href="../_images/Picture37.png"><img alt="../_images/Picture37.png" src="../_images/Picture37.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">以太坊的 MPT 树中的节点 需要进行 RLP 编码</span></p>
+</div>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[1]</a></td><td>Ethereum Community Authors (2019), ‘Hex Prefix Encoding’, The Ethereum Wiki, Available at: <a class="reference external" href="https://github.com/exthereum/hex_prefix">https://github.com/exthereum/hex_prefix</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[2]</a></td><td>Ethereum Community Authors (2018), ‘Recursive Length Prefix Encoding’, The Ethereum Wiki, Available at: <a class="reference external" href="https://github.com/ethereum/wiki/wiki/RLP">https://github.com/ethereum/wiki/wiki/RLP</a></td></tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rlp.html" class="btn btn-neutral float-right" title="RLP编码" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="merkle.html" class="btn btn-neutral float-left" title="Merkle树和 Merkle证明" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, laalaguer
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-142187300-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

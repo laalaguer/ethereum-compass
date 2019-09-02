@@ -1,0 +1,731 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>上手实践：ERC20合约 &mdash; 以太坊的指南针 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="上手实践：ERC20合约测试" href="test.html" />
+    <link rel="prev" title="Truffle启动样例项目" href="sample.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> 以太坊的指南针
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../howto.html">如何学习这本书</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch1/index.html">第 1 章 以太坊：一台全球计算机</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/born.html">简史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/progress.html">发展阶段</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/highlight.html">以太坊的特色</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch2/index.html">第 2 章 账户是什么</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/basic.html">小白基础知识问答</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id2">我的以太币记录在哪里？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id3">我的以太币余额如何变化？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id4">什么是区块？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id5">区块和状态的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id6">“巨大的账本”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id7">我如何参与以太坊？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id8">我如何与其他人同步账本？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/account.html">账户探秘</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id2">账户与账户状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id3">账户状态的内涵</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id4">已执行交易总数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id5">持币数量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id6">存储区的哈希值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id7">代码区的哈希值</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#app">没有钱包App, 如何生成账户？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id11">智能合约地址的生成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/keystore.html">资料篇：Keystore 与私钥保存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/app.html">资料篇：常用钱包 App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/eip55.html">资料篇：EIP-55 格式的账户地址</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch3/index.html">第 3 章 交易是驱动力</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/how.html">交易的发送</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id2">交易与消息什么区别？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id3">交易的特性是什么？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/what.html">交易的样子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/life.html">交易的生命周期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/pow.html">资料篇：共识与工作量证明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow">比特币的PoW机制（简单版）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#id2">比特币算力的中心化问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow-pos">以太坊的Pow/Pos机制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/dig.html">资料篇：矿工与挖矿奖励</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch4/index.html">第 4 章 数据结构</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/radix.html">Radix树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/merkle.html">Merkle树和 Merkle证明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/mpt.html">Merkle Patricia树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/rlp.html">RLP编码</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id1">RLP字符/字符串编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id3">RLP字符/字符串解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id4">RLP数组编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id5">RLP数组解码</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/stateroot.html">资料篇：状态树 (以及存储树）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/transroot.html">资料篇：交易树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/receiptroot.html">资料篇：收据树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/block.html">资料篇：区块</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch5/index.html">第 5 章 构建一条以太坊私链</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/install.html">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/geth.html">Geth客户端的结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/build.html">启动一条以太坊私链</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/coinbase.html">接收挖矿奖励</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/transfer.html">转账与收款</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch6/index.html">第 6 章 手把手教你部署智能合约</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/what.html">什么是智能合约？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/install.html">安装编译器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/compile.html">Solc编译智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/prepare.html">智能合约发布准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/deploy.html">部署智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/call.html">调用智能合约</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch7/index.html">第 7 章 以太坊虚拟机探秘</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/result.html">虚拟机的执行结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/resource.html">虚拟机的执行资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/call.html">合约调用合约?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/io.html">虚拟机的输入输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/gas.html">Gas 花费与退回</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/instructions.html">虚拟机指令集</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch8/index.html">第 8 章 Solidity语法练习</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/basic.html">基础概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id2">没有浮点数运算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id3">合约基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id4">变量类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id5">运算符号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#struct">结构体 Struct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#array">数组array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id6">函数申明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id7">类型转换与内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id8">合约与事件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/levelup.html">语法进阶</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#map">数据结构：map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#msg-sender">环境变量：msg.sender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#requireassert">require还是assert?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id2">继承和引入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id3">省钱妙招：内存变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id4">接口与合约调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id5">多返回值</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/advanced.html">高级语法和概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#contract">Contract 构造函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#ownable">Ownable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#pausable">Pausable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#struct">省钱妙招：struct 结构体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id2">时间单位表达</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id3">带参数的函数修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#for">for 循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#payable">合约收款：payable修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#transfer">支付费用：transfer方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/summary.html">小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">第 9 章 Truffle合约开发实战</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="install.html">编译、测试工具安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#truffle">Truffle的安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#ganache">Ganache的安装</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sample.html">Truffle启动样例项目</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#id1">下载样例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#id2">编译项目</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#ganache">部署项目到 Ganache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sample.html#id3">测试项目</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">上手实践：ERC20合约</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">新建项目目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#erc20-basic">ERC20 Basic合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">ERC20 合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#safemath">SafeMath基础数学库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cat">猫币：CAT数字资产合约</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">上手实践：ERC20合约测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test.html#id1">准备工作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test.html#id2">测试辅助函数与库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test.html#id3">测试代码分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test.html#id4">测试运行与结果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch10/index.html">附录 有意思的冷知识</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/shortattack.html">短地址攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/block.html">比特币的区块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/utxo.html">以太坊与比特币账户的区别</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id2">隐私与安全性的比较</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id3">数据体积与并发能力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id4">发送交易时对双花的处理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/triangle.html">“不可能的三角”问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/ethash.html">ETHASH 挖矿算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#ethashpow">ETHASH和比特币PoW的异同</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id1">ETHASH的设计目标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id2">ETHASH的挖矿运行总流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id3">ETHASH算法源代码解读</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">以太坊的指南针</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">第 9 章 Truffle合约开发实战</a> &raquo;</li>
+        
+      <li>上手实践：ERC20合约</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ch9/erc20.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="erc20">
+<h1>上手实践：ERC20合约<a class="headerlink" href="#erc20" title="Permalink to this headline">¶</a></h1>
+<p>让我们暂时把MetaCoin项目放一边。我们需要从头开始建立一个自己的合约项目。较为合适举例的就是ERC20数字资产合约。作为2017-2018年以太坊上最火热的Dapp应用之一，ERC20数字资产合约承载了数千项目的早期融币流通的功能，同时也因为简洁优雅的接口设计让其迅速成为事实上的标准并被交易所、钱包程序所认可。时至今日，世界各地的项目在早期启动的时候之所以考虑以太坊，也是考虑到在以太坊上建立ERC2标准数字资产的编程便利性</p>
+<p>我们在本节从头构建一份ERC20的合约代码，在项目过程中加入编译技巧与测试的技巧，向读者展示一份承载数万人数字资产的合约是如何从0起步走向生产环境的。</p>
+<div class="section" id="id1">
+<h2>新建项目目录<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>我们不再下载任何的Truffle Box, 建立一个新的空白项目即可。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir erc20-test
+$ <span class="nb">cd</span> erc20-test/
+$ truffle init
+</pre></div>
+</div>
+<p>至此，我们的 ERC20项目已经有了一个基本框架，我们查看一下目录结构。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>erc20-test/
+├── contracts
+│   └── Migrations.sol
+├── migrations
+│   └── 1_initial_migration.js
+├── <span class="nb">test</span>
+├── truffle-config.js
+└── truffle.js
+</pre></div>
+</div>
+<p>因为要使用本地的Ganache/Test-RPC的测试客户端，我们修改truffle.js加入测试网络的信息，测试网络将运行在本地，且监听在8545端口。以此为基础，接下去我们将开始 ERC20的相关合约开发。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">networks</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">development</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">host</span><span class="o">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+          <span class="nx">port</span><span class="o">:</span> <span class="mi">8545</span><span class="p">,</span>
+          <span class="nx">network_id</span><span class="o">:</span> <span class="s2">&quot;*&quot;</span> <span class="c1">// Match any network id</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="erc20-basic">
+<h2>ERC20 Basic合约接口<a class="headerlink" href="#erc20-basic" title="Permalink to this headline">¶</a></h2>
+<p>最早的 ERC20合约仅支持部分函数与公开属性，它受到社区改进提议EIP179所提出的标准启发，共支持3个函数和一个事件，它的代码如下。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * </span><span class="cs">@title</span><span class="cm"> ERC20Basic</span>
+<span class="cm"> * </span><span class="cs">@dev</span><span class="cm"> Simpler version of ERC20 interface.</span>
+<span class="cm"> * See https://github.com/ethereum/EIPs/issues/179</span>
+<span class="cm"> */</span>
+<span class="kd">contract</span> <span class="n">ERC20Basic</span> <span class="p">{</span>
+    <span class="c1">// Total supply of token.</span>
+    <span class="kd">function</span> <span class="n">totalSupply</span><span class="p">()</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+    <span class="c1">// Balance of a holder _who</span>
+    <span class="kd">function</span> <span class="n">balanceOf</span><span class="p">(</span><span class="kt">address</span> <span class="n">_who</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+    <span class="c1">// Transfer _value from msg.sender to receiver _to.</span>
+    <span class="kd">function</span> <span class="nf">transfer</span><span class="p">(</span><span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+    <span class="c1">// Fired when a transfer is made</span>
+    <span class="kd">event</span> <span class="n">Transfer</span><span class="p">(</span>
+        <span class="kt">address</span> <span class="kr">indexed</span> <span class="kr">from</span><span class="p">,</span>
+        <span class="kt">address</span> <span class="kr">indexed</span> <span class="n">to</span><span class="p">,</span>
+        <span class="kt">uint256</span> <span class="n">value</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>其中各个代码和函数接口解释如下。</dt>
+<dd><ul class="first last simple">
+<li>totalSupply()函数：公开查询合约发行Token总量，由于需要查询区块链数据，故采用public和view来修饰该方法。返回值是最大宽度的256bit的正整数。</li>
+<li>balanceOf()函数：公开查询合约中某地址所持有的Token总量，接收一个地址参数，查询权限公开，任何人都可以查询任何其他人的Token总量。返回值也是最大宽度的256bit的正整数。</li>
+<li>transfer()函数：直接转账Token的函数。由转账发起方负责呼叫此函数。函数接受两个参数，地址参数 _to 和转账数量 _value，不用与以太坊的交易体的value 混淆，这里的 _value 特指Token的数量，由256bit的正整数指定。这里发送方是暗含在以太坊虚拟机执行的上下文中的，为msg.sender意即函数调用方。函数返回值是个布尔值，如遇余额不足等情况转让Token失败，函数返回False。</li>
+</ul>
+</dd>
+</dl>
+<p>这个合约接口的定义中还包含了Transfer事件，记录的事件为发送方、接收方和转让 Token 的数额。值得注意的是在安全性要求下transfer()函数必定要检查发送方的余额是否足够转账，否则会引发任意转账漏洞，造成Token被盗。</p>
+</div>
+<div class="section" id="id2">
+<h2>ERC20 合约接口<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>ERC20合约在ERC20 Basic合约上进行了部分扩容，增加了函数定义.转让Token的过程可以由“主动转账”变为“授权索取”，在便利性上而言,主动转账更为直接，但要求知道转让对象是谁；而被动索取更适用于家长-孩子关系中管理的零花钱模式，让家长能够定授权孩子动用一部分的资金，至于资金流向何方，是孩子的决定权。ERC20代码如下。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="s">&quot;./ERC20Basic.sol&quot;</span><span class="p">;</span>
+<span class="cm">/**</span>
+<span class="cm"> * </span><span class="cs">@title</span><span class="cm"> ERC20 interface</span>
+<span class="cm"> * </span><span class="cs">@dev</span><span class="cm"> Enhanced interface with allowance functions.</span>
+<span class="cm"> * See https://github.com/ethereum/EIPs/issues/20</span>
+<span class="cm"> */</span>
+<span class="kd">contract</span> <span class="n">ERC20</span> <span class="kr">is</span> <span class="n">ERC20Basic</span> <span class="p">{</span>
+    <span class="c1">// Check the allowed value that the _owner allows the _spender to take from his balance.</span>
+    <span class="kd">function</span> <span class="n">allowance</span><span class="p">(</span><span class="kt">address</span> <span class="n">_owner</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_spender</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+
+    <span class="c1">// Transfer _value from the balance of holder _from to the receiver _to.</span>
+    <span class="kd">function</span> <span class="n">transferFrom</span><span class="p">(</span><span class="kt">address</span> <span class="n">_from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+
+    <span class="c1">// Approve _spender to take some _value from the balance of msg.sender.</span>
+    <span class="kd">function</span> <span class="n">approve</span><span class="p">(</span><span class="kt">address</span> <span class="n">_spender</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+
+    <span class="c1">// Fired when an approval is made.</span>
+    <span class="kd">event</span> <span class="n">Approval</span><span class="p">(</span>
+        <span class="kt">address</span> <span class="kr">indexed</span> <span class="n">owner</span><span class="p">,</span>
+        <span class="kt">address</span> <span class="kr">indexed</span> <span class="n">spender</span><span class="p">,</span>
+        <span class="kt">uint256</span> <span class="n">value</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>我们可以清晰地看到代码中有一层继承，就是 <em>“contract ERC20 is ERC20Basic”</em> 这句话。合约接口依然只是定义，并没有具体的实现方式，它的接口定义如下。</dt>
+<dd><ul class="first last simple">
+<li>allowance()函数：查阅授权情况。这是个公开函数，任何人都可以查询任何其他人的授权情况，函数接受两个参数，参数第一个是授权人 _owner，第二个是被授权人 _spender。因为查询了区块链相关的存储区，所以用public和view来修饰该函数，函数返回值是授权token的数量，采用最宽位256bit正整数来表示。</li>
+<li>approve()函数：允许授权行为，持有者允许被授权人转走一定数量的Token资产。这是个公开可调用函数，但修改了区块链状态，故仅采用public进行修饰。函数接收两个参数，第一个是 _spender被授权人，第二个是 _value即授权的 Token数量。这个函数有一定的问题，在被授权人花掉token的时候若授权方调整了数额，则有一定概率会发生授权过多的现象。该函数执行前提是检查msg.sender是否有足够的额度可供授权。</li>
+<li>transferFrom()函数：被授权人划走一定量的Token去往他指定的地点。这个函数公开可调用，但会修改区块链状态。在划走之前一定要检查权限，是否该人被授权动用了这些额度的Token。函数共接收三个参数 _from、_to、 _value。分别代表了转移支付方，转移受付方，以及转移Token的额度。</li>
+</ul>
+</dd>
+</dl>
+<p>该合约还定义了Approval 事件，该事件与Transfer事件一样，一旦发生相应的行为就会被触发，Approval事件记录了授权事件的授权方、被授权方和授权的数额。</p>
+</div>
+<div class="section" id="safemath">
+<h2>SafeMath基础数学库<a class="headerlink" href="#safemath" title="Permalink to this headline">¶</a></h2>
+<p>以太坊上因为没有整型边界检查，所以号称最安全的合约语言其实有很大几率会整形溢出，也就是在最大值上再+1，就上溢出，变成最小值；最小值-1也向下溢出，变为最大值。这样会无端造成账户财产增多或者减少，造成合约的参与者的损失。</p>
+<p>在我们的ERC20合约里面必定会用上加减两样算术。以太坊上的整型溢出问题我们必须格外小心处理。我们可以小心翼翼处理每一个加减法的地方，也可以直接用 openZepplin 的合约库SafeMath来帮我们处理加减法。我们截取一段如下。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * </span><span class="cs">@title</span><span class="cm"> SafeMath</span>
+<span class="cm"> * </span><span class="cs">@dev</span><span class="cm"> Math operations with safety checks that throw on error</span>
+<span class="cm"> */</span>
+<span class="kd">library</span> <span class="n">SafeMath</span> <span class="p">{</span>
+    <span class="cm">/**</span>
+<span class="cm">    * </span><span class="cs">@dev</span><span class="cm"> Multiplies two numbers, throws on overflow.</span>
+<span class="cm">    */</span>
+    <span class="kd">function</span> <span class="n">mul</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_b</span><span class="p">)</span> <span class="kr">internal</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Gas optimization: this is cheaper than asserting &#39;a&#39; not being zero, but the</span>
+      <span class="c1">// benefit is lost if &#39;b&#39; is also tested.</span>
+      <span class="c1">// See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">_a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">c</span> <span class="o">=</span> <span class="n">_a</span> <span class="o">*</span> <span class="n">_b</span><span class="p">;</span>
+        <span class="nf">assert</span><span class="p">(</span><span class="n">c</span> <span class="o">/</span> <span class="n">_a</span> <span class="o">==</span> <span class="n">_b</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    * </span><span class="cs">@dev</span><span class="cm"> Integer division of two numbers, truncating the quotient.</span>
+<span class="cm">    */</span>
+    <span class="kd">function</span> <span class="n">div</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_b</span><span class="p">)</span> <span class="kr">internal</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// assert(_b &gt; 0); // Solidity automatically throws when dividing by 0</span>
+        <span class="c1">// uint256 c = _a / _b;</span>
+        <span class="c1">// assert(_a == _b * c + _a % _b); // There is no case in which this doesn&#39;t hold</span>
+        <span class="k">return</span> <span class="n">_a</span> <span class="o">/</span> <span class="n">_b</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    * </span><span class="cs">@dev</span><span class="cm"> Subtracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).</span>
+<span class="cm">    */</span>
+    <span class="kd">function</span> <span class="n">sub</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_b</span><span class="p">)</span> <span class="kr">internal</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">assert</span><span class="p">(</span><span class="n">_b</span> <span class="o">&lt;=</span> <span class="n">_a</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">_a</span> <span class="o">-</span> <span class="n">_b</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    * </span><span class="cs">@dev</span><span class="cm"> Adds two numbers, throws on overflow.</span>
+<span class="cm">    */</span>
+    <span class="kd">function</span> <span class="n">add</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_b</span><span class="p">)</span> <span class="kr">internal</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">_a</span> <span class="o">+</span> <span class="n">_b</span><span class="p">;</span>
+        <span class="nf">assert</span><span class="p">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="n">_a</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>以上的合约库SafeMath的基本逻辑就是。</dt>
+<dd><ul class="first last simple">
+<li>乘法mul()：检查两个乘数，是否由一方为0，如果都不为零，则乘法结果处以其中一个乘数，应该等于另一个乘数。如果不是，则发生了上溢出现象。</li>
+<li>除法div()：较为简单，如果除数为零虚拟机直接报错。</li>
+<li>减法sub()：确保减数永远小于被减数，否则表示减法发生了下溢出现象。</li>
+<li>加法add()：确保加和后的结果值大于两个相加因子，否则发生了上溢出现象。</li>
+</ul>
+</dd>
+</dl>
+<p>值得注意的是，SafeMath库合约的写作过程中每个function方法都自带internal pure修饰，表明这些方法都可以继承，且都不修改或读取任何区块链的数据，是工具方法。下面我们组合这些方法发行一个猫币数字资产，代号CAT。</p>
+</div>
+<div class="section" id="cat">
+<h2>猫币：CAT数字资产合约<a class="headerlink" href="#cat" title="Permalink to this headline">¶</a></h2>
+<p>“万事俱备，只欠东风。”我们的猫币数字资产合约马上就可以上市流通啦！</p>
+<p>经过上述的合约接口与函数库分析，我们可以看到一条合约继承的链条，我们要编写CAT猫币数字资产合约的话，必须继承自ERC20接口并实现其中的所有方法，为了安全，我们对所有输入的变量作SafeMath运算保障安全。合约继承关系如图 <a class="reference internal" href="#id3">9-2</a> 所示。</p>
+<div class="figure align-center" id="id4">
+<span id="id3"></span><a class="reference internal image-reference" href="../_images/Picture54.png"><img alt="../_images/Picture54.png" src="../_images/Picture54.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">数字资产合约 CAT的合约继承关系</span></p>
+</div>
+<p>此时项目目录合约部分添加完毕，结构如下所示。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>erc20-test/
+├── contracts
+│   ├── Cat.sol
+│   ├── ERC20.sol
+│   ├── ERC20Basic.sol
+│   ├── Migrations.sol
+│   └── SafeMath.sol
+├── migrations
+│   └── 1_initial_migration.js
+├── <span class="nb">test</span>
+├── truffle-config.js
+└── truffle.js
+</pre></div>
+</div>
+<p>Cat.sol合约代码我们分拆开来解析，分析如下。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="s">&quot;./ERC20.sol&quot;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="s">&quot;./SafeMath.sol&quot;</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * </span><span class="cs">@title</span><span class="cm"> CAT Token</span>
+<span class="cm"> * </span><span class="cs">@dev</span><span class="cm"> Compatible with ERC20/VIP180 Standard.</span>
+<span class="cm"> * Special thanks go to openzeppelin-solidity project.</span>
+<span class="cm"> */</span>
+<span class="kd">contract</span> <span class="n">CAT</span> <span class="kr">is</span> <span class="n">ERC20</span> <span class="p">{</span>
+    <span class="kn">using</span> <span class="n">SafeMath</span> <span class="k">for</span> <span class="kt">uint256</span><span class="p">;</span>
+
+    <span class="c1">// Name of token</span>
+    <span class="kt">string</span> <span class="kr">public</span> <span class="kr">constant</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;CAT Token&quot;</span><span class="p">;</span>
+    <span class="c1">// Symbol of token</span>
+    <span class="kt">string</span> <span class="kr">public</span> <span class="kr">constant</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s">&quot;CAT&quot;</span><span class="p">;</span>
+    <span class="c1">// Decimals of token</span>
+    <span class="kt">uint8</span> <span class="kr">public</span> <span class="kr">constant</span> <span class="n">decimals</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+    <span class="c1">// Total supply of the tokens</span>
+    <span class="kt">uint256</span> <span class="kr">internal</span> <span class="n">totalSupply_</span><span class="p">;</span>
+
+    <span class="c1">// balances: (_holder =&gt; _value)</span>
+    <span class="kd">mapping</span><span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint256</span><span class="p">)</span> <span class="kr">public</span> <span class="n">balances</span><span class="p">;</span>
+
+    <span class="c1">// allowed: (_owner, =&gt; (_spender, _value))</span>
+    <span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint256</span><span class="p">))</span> <span class="kr">internal</span> <span class="n">allowed</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>合约文件开头立即引用了SafeMath.sol和ERC20.sol两个库。之后定义了合约名称CAT,继承自ERC20标准。为简略引用SafeMath，每个 uint256的地方使用加减乘除函数，申明用SafeMath来操作两个或以上的操作数。</p>
+<p class="centered">
+<strong>using SafeMath for uint256;</strong></p><dl class="docutils">
+<dt>在这之后，代码片段又定义了合约的变量和常量。</dt>
+<dd><ul class="first last simple">
+<li>name: 数字资产名称，CAT Token；public修饰的变量自动生成getter方法。</li>
+<li>symbol: 数字资产代号，CAT；public修饰 的变量自动生成getter方法。</li>
+<li>decimals: 数字资产小数点位数，我们选择最大位数18位。</li>
+<li>totalSupply_ ：内部使用变量，不可外泄，发型Token总量。非公开变量，故采用 internal 修饰符修饰。</li>
+<li>balances: 持有Token的账户地址与Token余额的映射记录，可公开查询。</li>
+<li>allowed: 授权人、被授权人、授权数量的映射。需由函数进行操作，非公开变量，用internal 修饰符修饰。</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">constructor</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+  <span class="n">totalSupply_</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="mi">18</span><span class="p">);</span> <span class="c1">// 10 000 000 000 tokens of 18 decimals.</span>
+  <span class="n">balances</span><span class="p">[</span><span class="nb">msg.sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">totalSupply_</span><span class="p">;</span>
+  <span class="kr">emit</span> <span class="n">Transfer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">msg.sender</span><span class="p">,</span> <span class="n">totalSupply_</span><span class="p">);</span>  <span class="c1">// init mint of coins complete.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>以上代码表明我们共发行100亿枚 CAT币，每个币可以分为1018位小数。在创世的构造函数里，我们将所有的CAT币全数转给msg.sender也就是开创合约的人。接下去由他负责发送给任意想要获取CAT币的人。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="c1">// Get the total supply of the coins</span>
+<span class="kd">function</span> <span class="n">totalSupply</span><span class="p">()</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">totalSupply_</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Get the balance of _owner</span>
+<span class="kd">function</span> <span class="n">balanceOf</span><span class="p">(</span><span class="kt">address</span> <span class="n">_owner</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span> <span class="nb">balance</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">balances</span><span class="p">[</span><span class="n">_owner</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="cm">/** Make a Transfer.</span>
+<span class="cm">* </span><span class="cs">@dev</span><span class="cm"> This operation will deduct the msg.sender&#39;s balance.</span>
+<span class="cm">* </span><span class="cs">@param</span><span class="cm"> _to address The address the funds go to.</span>
+<span class="cm">* </span><span class="cs">@param</span><span class="cm"> _value uint256 The amount of funds.</span>
+<span class="cm">*/</span>
+<span class="kd">function</span> <span class="nf">transfer</span><span class="p">(</span><span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">require</span><span class="p">(</span><span class="n">_to</span> <span class="o">!=</span> <span class="kt">address</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&quot;Cannot send to all zero address.&quot;</span><span class="p">);</span>
+  <span class="nf">require</span><span class="p">(</span><span class="n">_value</span> <span class="o">&lt;=</span> <span class="n">balances</span><span class="p">[</span><span class="nb">msg.sender</span><span class="p">],</span> <span class="s">&quot;msg.sender balance is not enough.&quot;</span><span class="p">);</span>
+
+  <span class="c1">// SafeMath.sub will throw if there is not enough balance.</span>
+  <span class="n">balances</span><span class="p">[</span><span class="nb">msg.sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">balances</span><span class="p">[</span><span class="nb">msg.sender</span><span class="p">].</span><span class="n">sub</span><span class="p">(</span><span class="n">_value</span><span class="p">);</span>
+  <span class="n">balances</span><span class="p">[</span><span class="n">_to</span><span class="p">]</span> <span class="o">=</span> <span class="n">balances</span><span class="p">[</span><span class="n">_to</span><span class="p">].</span><span class="n">add</span><span class="p">(</span><span class="n">_value</span><span class="p">);</span>
+  <span class="kr">emit</span> <span class="n">Transfer</span><span class="p">(</span><span class="nb">msg.sender</span><span class="p">,</span> <span class="n">_to</span><span class="p">,</span> <span class="n">_value</span><span class="p">);</span>
+  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>与接口描述一致，totalSupply()函数负责反馈总Token数量，balanceOf()函数可以公开查看任意人的任意时刻的Token余额，只需要在 balances 映射里面找到相应的键值对查询即可。</p>
+<p>这里尤其注意的是transfer()函数的实现，它在开头引用了两次require()函数，先确保转移发起方拥有足够多的Token余额，又检查了发送接收方是否是全零地址（0x000…000的地址），一般全零地址用于部署合约，有时候开发人员搞错了也会填写这个值。在这里检测一下是非常有必要的。之后的函数体实现中又采用了SafeMath 的add()方法代替了“+”符号，sub()方法代替了“-”符号，对转账双方的余额进行了安全的数学加减。在转账完成顺利无误后，会触发事件Transfer，让以太坊虚拟机记录下来并留存成交易收据存根。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">   * </span><span class="cs">@dev</span><span class="cm"> Check the allowed funds that _spender can take from _owner.</span>
+<span class="cm">   * </span><span class="cs">@param</span><span class="cm"> _owner address The address which owns the funds.</span>
+<span class="cm">   * </span><span class="cs">@param</span><span class="cm"> _spender address The address which will spend the funds.</span>
+<span class="cm">   * </span><span class="cs">@return</span><span class="cm"> A uint256 specifying the amount of tokens still available for the spender.</span>
+<span class="cm">  */</span>
+  <span class="kd">function</span> <span class="n">allowance</span><span class="p">(</span><span class="kt">address</span> <span class="n">_owner</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_spender</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">allowed</span><span class="p">[</span><span class="n">_owner</span><span class="p">][</span><span class="n">_spender</span><span class="p">];</span>
+  <span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * </span><span class="cs">@dev</span><span class="cm"> Transfer tokens from one address to another</span>
+<span class="cm"> * </span><span class="cs">@param</span><span class="cm"> _from address The address which you want to send tokens from</span>
+<span class="cm"> * </span><span class="cs">@param</span><span class="cm"> _to address The address which you want to transfer to</span>
+<span class="cm"> * </span><span class="cs">@param</span><span class="cm"> _value uint256 the amount of tokens to be transferred</span>
+<span class="cm">*/</span>
+<span class="kd">function</span> <span class="n">transferFrom</span><span class="p">(</span><span class="kt">address</span> <span class="n">_from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">require</span><span class="p">(</span><span class="n">_value</span> <span class="o">&lt;=</span> <span class="n">balances</span><span class="p">[</span><span class="n">_from</span><span class="p">],</span> <span class="s">&quot;_from doesnt have enough balance.&quot;</span><span class="p">);</span>
+    <span class="nf">require</span><span class="p">(</span><span class="n">_value</span> <span class="o">&lt;=</span> <span class="n">allowed</span><span class="p">[</span><span class="n">_from</span><span class="p">][</span><span class="nb">msg.sender</span><span class="p">],</span> <span class="s">&quot;Allowance of msg.sender is not enough.&quot;</span><span class="p">);</span>
+    <span class="nf">require</span><span class="p">(</span><span class="n">_to</span> <span class="o">!=</span> <span class="kt">address</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&quot;Cannot send to all zero address.&quot;</span><span class="p">);</span>
+
+    <span class="n">balances</span><span class="p">[</span><span class="n">_from</span><span class="p">]</span> <span class="o">=</span> <span class="n">balances</span><span class="p">[</span><span class="n">_from</span><span class="p">].</span><span class="n">sub</span><span class="p">(</span><span class="n">_value</span><span class="p">);</span>
+    <span class="n">balances</span><span class="p">[</span><span class="n">_to</span><span class="p">]</span> <span class="o">=</span> <span class="n">balances</span><span class="p">[</span><span class="n">_to</span><span class="p">].</span><span class="n">add</span><span class="p">(</span><span class="n">_value</span><span class="p">);</span>
+    <span class="n">allowed</span><span class="p">[</span><span class="n">_from</span><span class="p">][</span><span class="nb">msg.sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">allowed</span><span class="p">[</span><span class="n">_from</span><span class="p">][</span><span class="nb">msg.sender</span><span class="p">].</span><span class="n">sub</span><span class="p">(</span><span class="n">_value</span><span class="p">);</span>
+    <span class="kr">emit</span> <span class="n">Transfer</span><span class="p">(</span><span class="n">_from</span><span class="p">,</span> <span class="n">_to</span><span class="p">,</span> <span class="n">_value</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * </span><span class="cs">@dev</span><span class="cm"> Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.</span>
+<span class="cm"> * </span><span class="cs">@param</span><span class="cm"> _spender The address which will spend the funds.</span>
+<span class="cm"> * </span><span class="cs">@param</span><span class="cm"> _value The amount of tokens to be spent.</span>
+<span class="cm">*/</span>
+<span class="kd">function</span> <span class="n">approve</span><span class="p">(</span><span class="kt">address</span> <span class="n">_spender</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">allowed</span><span class="p">[</span><span class="nb">msg.sender</span><span class="p">][</span><span class="n">_spender</span><span class="p">]</span> <span class="o">=</span> <span class="n">_value</span><span class="p">;</span>
+    <span class="kr">emit</span> <span class="n">Approval</span><span class="p">(</span><span class="nb">msg.sender</span><span class="p">,</span> <span class="n">_spender</span><span class="p">,</span> <span class="n">_value</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>合约授权代码和合约转账代码在原理上很相似，安全考量也近似。allowance()函数通过检查映射的方式找到授权人和被授权人的授权额度信息；transferFrom() 函数在编写时特意使用require()检查了三次，分别是授权人是否账户余额充足、转账额度是否超过了授权额度、接收地址是否为全零地址。在被授权人转账走以后，还会相应地减少授权额。转账函数校验了msg.sender 是否有足够的授权进行转账操作，但是授权approve()函数却不强制要求授权人需要余额大于授权数量。例如现在只持有10枚币，哪怕现在夸下海口授权100枚给与他人也没关系。因为授权值高于账户Token余额的话，代码会保证转账授权失败的。</p>
+<p>智能合约编写完毕！接着我们开始进行项目的Truffle测试。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="test.html" class="btn btn-neutral float-right" title="上手实践：ERC20合约测试" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sample.html" class="btn btn-neutral float-left" title="Truffle启动样例项目" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, laalaguer
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-142187300-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

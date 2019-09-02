@@ -1,0 +1,785 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>启动一条以太坊私链 &mdash; 以太坊的指南针 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="接收挖矿奖励" href="coinbase.html" />
+    <link rel="prev" title="Geth客户端的结构" href="geth.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> 以太坊的指南针
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../howto.html">如何学习这本书</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch1/index.html">第 1 章 以太坊：一台全球计算机</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/born.html">简史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/progress.html">发展阶段</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/highlight.html">以太坊的特色</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch2/index.html">第 2 章 账户是什么</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/basic.html">小白基础知识问答</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id2">我的以太币记录在哪里？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id3">我的以太币余额如何变化？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id4">什么是区块？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id5">区块和状态的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id6">“巨大的账本”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id7">我如何参与以太坊？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id8">我如何与其他人同步账本？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/account.html">账户探秘</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id2">账户与账户状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id3">账户状态的内涵</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id4">已执行交易总数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id5">持币数量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id6">存储区的哈希值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id7">代码区的哈希值</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#app">没有钱包App, 如何生成账户？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id11">智能合约地址的生成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/keystore.html">资料篇：Keystore 与私钥保存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/app.html">资料篇：常用钱包 App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/eip55.html">资料篇：EIP-55 格式的账户地址</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch3/index.html">第 3 章 交易是驱动力</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/how.html">交易的发送</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id2">交易与消息什么区别？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id3">交易的特性是什么？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/what.html">交易的样子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/life.html">交易的生命周期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/pow.html">资料篇：共识与工作量证明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow">比特币的PoW机制（简单版）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#id2">比特币算力的中心化问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow-pos">以太坊的Pow/Pos机制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/dig.html">资料篇：矿工与挖矿奖励</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch4/index.html">第 4 章 数据结构</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/radix.html">Radix树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/merkle.html">Merkle树和 Merkle证明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/mpt.html">Merkle Patricia树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/rlp.html">RLP编码</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id1">RLP字符/字符串编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id3">RLP字符/字符串解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id4">RLP数组编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id5">RLP数组解码</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/stateroot.html">资料篇：状态树 (以及存储树）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/transroot.html">资料篇：交易树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/receiptroot.html">资料篇：收据树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/block.html">资料篇：区块</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">第 5 章 构建一条以太坊私链</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="install.html">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geth.html">Geth客户端的结构</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">启动一条以太坊私链</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coinbase.html">接收挖矿奖励</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfer.html">转账与收款</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch6/index.html">第 6 章 手把手教你部署智能合约</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/what.html">什么是智能合约？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/install.html">安装编译器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/compile.html">Solc编译智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/prepare.html">智能合约发布准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/deploy.html">部署智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/call.html">调用智能合约</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch7/index.html">第 7 章 以太坊虚拟机探秘</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/result.html">虚拟机的执行结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/resource.html">虚拟机的执行资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/call.html">合约调用合约?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/io.html">虚拟机的输入输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/gas.html">Gas 花费与退回</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/instructions.html">虚拟机指令集</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch8/index.html">第 8 章 Solidity语法练习</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/basic.html">基础概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id2">没有浮点数运算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id3">合约基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id4">变量类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id5">运算符号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#struct">结构体 Struct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#array">数组array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id6">函数申明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id7">类型转换与内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id8">合约与事件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/levelup.html">语法进阶</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#map">数据结构：map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#msg-sender">环境变量：msg.sender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#requireassert">require还是assert?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id2">继承和引入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id3">省钱妙招：内存变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id4">接口与合约调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id5">多返回值</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/advanced.html">高级语法和概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#contract">Contract 构造函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#ownable">Ownable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#pausable">Pausable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#struct">省钱妙招：struct 结构体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id2">时间单位表达</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id3">带参数的函数修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#for">for 循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#payable">合约收款：payable修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#transfer">支付费用：transfer方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/summary.html">小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch9/index.html">第 9 章 Truffle合约开发实战</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/install.html">编译、测试工具安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#truffle">Truffle的安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#ganache">Ganache的安装</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/sample.html">Truffle启动样例项目</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id1">下载样例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id2">编译项目</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#ganache">部署项目到 Ganache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id3">测试项目</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/erc20.html">上手实践：ERC20合约</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id1">新建项目目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#erc20-basic">ERC20 Basic合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id2">ERC20 合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#safemath">SafeMath基础数学库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#cat">猫币：CAT数字资产合约</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/test.html">上手实践：ERC20合约测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id1">准备工作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id2">测试辅助函数与库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id3">测试代码分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id4">测试运行与结果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch10/index.html">附录 有意思的冷知识</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/shortattack.html">短地址攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/block.html">比特币的区块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/utxo.html">以太坊与比特币账户的区别</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id2">隐私与安全性的比较</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id3">数据体积与并发能力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id4">发送交易时对双花的处理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/triangle.html">“不可能的三角”问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/ethash.html">ETHASH 挖矿算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#ethashpow">ETHASH和比特币PoW的异同</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id1">ETHASH的设计目标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id2">ETHASH的挖矿运行总流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id3">ETHASH算法源代码解读</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">以太坊的指南针</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">第 5 章 构建一条以太坊私链</a> &raquo;</li>
+        
+      <li>启动一条以太坊私链</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ch5/build.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>启动一条以太坊私链<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>以太坊网络分为主网、测试网。这两个网络都是公开的链，为世界所有开发者和用户所用。</p>
+<p>我们今天的学习蓝本是以太坊的私有网络，或者称为私链。私链和公链是不互通的，通过网络进行隔离。以太坊源代码及软件都是开源的，任何人都可以拷贝一份源代码并且运行自己的以太坊私链。以下是接入不同的网络所花费的下载数据量的对比。</p>
+<blockquote>
+<div><ul class="simple">
+<li>主网(main net)–下载量 &gt;1TB 的区块链数据，共需3-5天时间。</li>
+<li>测试网(test net)–下载量 ~60GB的代号为Ropsten的测试网数据，约10小时。</li>
+<li>私链(Private net)–无需下载，创世后等待数分钟即可正常运转。</li>
+</ul>
+</div></blockquote>
+<p>我们将以构建私有网络，亲手创世一条以太坊私链的形式进行下面的教学。</p>
+<div class="topic">
+<p class="topic-title first">设立工作目录</p>
+<p>我们设立一个新的工作目录并新建一个创世启动配置文件。</p>
+</div>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>mkdir ether-test
+<span class="nb">cd</span> ether-test
+touch gensis.json
+mkdir db
+</pre></div>
+</td></tr></table></div>
+<p>至此，我们的创世目录生成完毕，目录结构如下。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ether-test/
+├── db
+└── gensis.json
+
+<span class="m">1</span> directory, <span class="m">1</span> file
+</pre></div>
+</div>
+<div class="topic">
+<p class="topic-title first">编辑创世配置</p>
+<p>如果读者回忆起 <a class="reference internal" href="../ch1/highlight.html#reference-total-supply"><span class="std std-ref">以太坊的特色</span></a> 的讲解，与比特币不同，以太坊的创世就已经分配了约70%的以太币，随后才进入挖矿过程，大家竞争挖矿分配剩余的币。我们私链也同样可以通过创世方法分配好一些以太币供测试使用，或者从零开始一点一点通过挖矿的方式挖掘以太币。</p>
+<p>创世配置就是供以太坊私有链第一次启动时所使用，创世区块是最特殊的区块，它没有前一个区块，因为它自己是第一个块。我们下面来配置创世区块 <code class="docutils literal notranslate"><span class="pre">gensis.json</span></code> 文件。</p>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// gensis.json</span>
+<span class="p">{</span>
+  <span class="s2">&quot;config&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;chainId&quot;</span><span class="o">:</span> <span class="mi">987</span><span class="p">,</span>
+      <span class="s2">&quot;homesteadBlock&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;eip155Block&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;eip158Block&quot;</span><span class="o">:</span> <span class="mi">0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;difficulty&quot;</span><span class="o">:</span> <span class="s2">&quot;0x400&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;gasLimit&quot;</span><span class="o">:</span> <span class="s2">&quot;0x8000000&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;alloc&quot;</span><span class="o">:</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>以上就是一份最小可行的创世区块配置，包含了区块链配置，挖矿难度设置，单一区块最大包含 Gas 的上限，以及一个空置的创世币分配区alloc(意味着没有预先分配以太币)。当然，也可以扩充一些启动的其他参数诸如时间戳以及前一区块哈希等，这些都是非必填的。完整版的 <code class="docutils literal notranslate"><span class="pre">gensis.json</span></code> 如下所示。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;config&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;chainId&quot;</span><span class="o">:</span> <span class="mi">987</span><span class="p">,</span>
+      <span class="s2">&quot;homesteadBlock&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;eip155Block&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;eip158Block&quot;</span><span class="o">:</span> <span class="mi">0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;difficulty&quot;</span><span class="o">:</span> <span class="s2">&quot;0x400&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;gasLimit&quot;</span><span class="o">:</span> <span class="s2">&quot;0xffffffff&quot;</span><span class="p">,</span>
+  <span class="c1">// 可选填的参数</span>
+  <span class="s2">&quot;coinbase&quot;</span><span class="o">:</span> <span class="s2">&quot;0x0000000000000000000000000000000000000000&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;extraData&quot;</span><span class="o">:</span> <span class="s2">&quot;0x00&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;nonce&quot;</span><span class="o">:</span> <span class="s2">&quot;0x0000000000000001&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;mixhash&quot;</span><span class="o">:</span> <span class="s2">&quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;parentHash&quot;</span><span class="o">:</span> <span class="s2">&quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;timestamp&quot;</span><span class="o">:</span> <span class="s2">&quot;0x00&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;alloc&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;430e986e0cca10a174baad96871ec9cb308c6d05&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;balance&quot;</span><span class="o">:</span> <span class="s2">&quot;111111&quot;</span><span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>各个字段解释如下：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>必填</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>chainId</td>
+<td>自定义私链的网络ID，不同的网络ID无法互联通讯，以太坊公链ID 为1，我们设置为987以防止与网络中其他私链冲突。</td>
+</tr>
+<tr class="row-odd"><td>homesteadBlock</td>
+<td>是否为HomeStead版本的区块，设置为0表明是。</td>
+</tr>
+<tr class="row-even"><td>eip155Block</td>
+<td>EIP155 <a class="footnote-reference" href="#id5" id="id2">[1]</a> 是一个以太坊分叉提议，为了和以前的以太坊经典ETC 链条分叉而存在，我们私链不需要它，设为0。</td>
+</tr>
+<tr class="row-odd"><td>eip158Block</td>
+<td>EIP158 <a class="footnote-reference" href="#id6" id="id3">[2]</a> 是一个以太坊分叉提议，为了解决之前以太坊空账户造成效率低下的协议漏洞而分叉，我们私链不需要它，设为0。</td>
+</tr>
+<tr class="row-even"><td>difficulty</td>
+<td>设置当前区块难度，若难度过大挖矿就很慢，我们设置较小值。</td>
+</tr>
+<tr class="row-odd"><td>gasLimit</td>
+<td>单一区块最大 gas 消耗上限，用来限制能够打包进入块的交易数量与信息总和，我们在学习中可以设置为最大。</td>
+</tr>
+<tr class="row-even"><td>选填</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>coinbase</td>
+<td>打包该块的矿工的奖励地址，因为是创世块，可设为0地址。</td>
+</tr>
+<tr class="row-even"><td>extraData</td>
+<td>打包该块时矿工记录的笔记。</td>
+</tr>
+<tr class="row-odd"><td>nonce</td>
+<td>打包该块时矿工挖矿所用到的Ethash输入参数nonce。</td>
+</tr>
+<tr class="row-even"><td>mixHash</td>
+<td>与nonce配合用于挖矿，创世区无前一个区块，可不填。</td>
+</tr>
+<tr class="row-odd"><td>parentHash</td>
+<td>前一个区块头的哈希值，创世区块无前一个区块，设为0。</td>
+</tr>
+<tr class="row-even"><td>timestamp</td>
+<td>打包该块的时间戳，符合Unix Timestamp标准，设为0。</td>
+</tr>
+<tr class="row-odd"><td>alloc</td>
+<td>创世时各账户分配以太币的数量，不想分配则忽略。</td>
+</tr>
+</tbody>
+</table>
+<p>后文将以简化版本的 <code class="docutils literal notranslate"><span class="pre">gensis.json</span></code> 作为创世私有链的基础。</p>
+<div class="topic">
+<p class="topic-title first">初始化创世配置</p>
+<p>我们已经准备好了创世的配置，接下来就是将该链条的配置初始化，形成区块链的起点，初始化之后我们就有了第一个区块，接下来就可以根据第一个区块来挖掘第二个区块了。</p>
+</div>
+<p>进入 <code class="docutils literal notranslate"><span class="pre">ether-test</span></code> 目录，执行初始化。</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> ether-test
+geth --datadir <span class="s2">&quot;./db&quot;</span> init gensis.json
+&gt;
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:04:53.320<span class="o">]</span> Maximum peer count
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:04:53.326<span class="o">]</span> Allocated cache and file handles
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:04:53.329<span class="o">]</span> Writing custom genesis block
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:04:53.329<span class="o">]</span> Persisted trie from memory database
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:04:53.329<span class="o">]</span> Successfully wrote genesis state
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:04:53.329<span class="o">]</span> Allocated cache and file handles
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:04:53.331<span class="o">]</span> Writing custom genesis block
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:04:53.331<span class="o">]</span> Persisted trie from memory database
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:04:53.331<span class="o">]</span> Successfully wrote genesis state
+</pre></div>
+</td></tr></table></div>
+<p>此时我们看到控制台上输出了 <em>“Successfully wrote genesis state”</em> 意味着我们的初始化已经成功，趁此机会我们了解一下究竟本地目录发生了怎样的变化：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ether-test/
+├── db
+│   ├── geth
+│   │   ├── chaindata
+│   │   │   ├── <span class="m">000001</span>.log
+│   │   │   ├── CURRENT
+│   │   │   ├── LOCK
+│   │   │   ├── LOG
+│   │   │   └── MANIFEST-000000
+│   │   └── lightchaindata
+│   │       ├── <span class="m">000001</span>.log
+│   │       ├── CURRENT
+│   │       ├── LOCK
+│   │       ├── LOG
+│   │       └── MANIFEST-000000
+│   └── keystore
+└── gensis.json
+
+<span class="m">5</span> directories, <span class="m">11</span> files
+</pre></div>
+</div>
+<p>在 db 目录数据库，程序自动新建了 geth 目录。
+该目录存放了区块链的所有运行时产生的区块链数据、日志、世界状态并随着区块链增长而占据更多存储硬盘空间。
+它内部的两个子目录存储了具体的区块链数据。
+db 目录下还有一个 keystore 目录。该目录下保存了各个账户的私钥的加密后的文件，
+与我们学习过的 <a class="reference internal" href="../ch2/keystore.html#reference-keystore"><span class="std std-ref">资料篇：Keystore 与私钥保存</span></a> 相对应。只有在签名的时候用户才会解锁 keystore 执行签名操作。</p>
+<div class="topic">
+<p class="topic-title first">启动Geth 节点</p>
+<p>一切准备就绪，弗兰肯斯坦的巨人马上就要苏醒，在我们现在的环境下，需要启动一个 Geth 节点来接入私链网络（实际上也是这个私链网络的唯一一个节点），负责在创世块后挖出第一个块。该节点也是我们与以太坊私链通信的节点服务器。下面我们来启动这样一个节点。</p>
+</div>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> ether-test
+geth --datadir ./db/ --rpc --rpcaddr<span class="o">=</span><span class="m">127</span>.0.0.1 --rpcport <span class="m">8545</span> --rpccorsdomain <span class="s2">&quot;*&quot;</span> <span class="se">\</span>
+   --rpcapi <span class="s2">&quot;eth,net,web3,personal,admin,shh,txpool,debug,miner&quot;</span> <span class="se">\</span>
+   --nodiscover --maxpeers <span class="m">30</span> --networkid <span class="m">198989</span> --port <span class="m">30303</span> <span class="se">\</span>
+   --mine --minerthreads <span class="m">1</span> <span class="se">\</span>
+   --etherbase <span class="s2">&quot;0x7df9a875a174b3bc565e6424a0050ebc1b2d1d82&quot;</span> <span class="se">\</span>
+   console
+</pre></div>
+</td></tr></table></div>
+<p>geth启动时命令行参数解释如下表:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>参数</td>
+<td>解释</td>
+</tr>
+<tr class="row-even"><td>–rpc</td>
+<td>开启JSON-RPC 服务，可供调用/调试访问。</td>
+</tr>
+<tr class="row-odd"><td>–rpcaddr</td>
+<td>本地监听JSON-RPC的地址。</td>
+</tr>
+<tr class="row-even"><td>–rpcport</td>
+<td>本地监听JSON-RPC的端口。</td>
+</tr>
+<tr class="row-odd"><td>–prccorsdomain</td>
+<td>本地监听JSON-RPC允许的域名访问。</td>
+</tr>
+<tr class="row-even"><td>–rpcapi</td>
+<td>允许提供的RPC服务模块，在示例中选择了数个模块加载。</td>
+</tr>
+<tr class="row-odd"><td>–nodiscover</td>
+<td>关闭自动发现节点，私有链开发时防止他人意外接入，可选择关闭该选项避免他人加入网络。</td>
+</tr>
+<tr class="row-even"><td>–maxpeers</td>
+<td>允许最大节点链接数目。</td>
+</tr>
+<tr class="row-odd"><td>–networkid</td>
+<td>指定以太坊网络ID。</td>
+</tr>
+<tr class="row-even"><td>–port</td>
+<td>监听以太坊节点之间P2P消息的TCP/UDP端口，默认30303。</td>
+</tr>
+<tr class="row-odd"><td>–mine</td>
+<td>节点启动挖矿功能，参与挖矿。</td>
+</tr>
+<tr class="row-even"><td>–minerthreads</td>
+<td>挖矿的多线程配置，例子中配置为1个线程。</td>
+</tr>
+<tr class="row-odd"><td>–etherbase</td>
+<td>若启动挖矿功能，挖矿奖励的接受地址，例子中我们随便填了一个。</td>
+</tr>
+<tr class="row-even"><td>console</td>
+<td>(可选) 启动后进入命令行模式，直接输入命令互动操作。</td>
+</tr>
+</tbody>
+</table>
+<p>输入回车，启动成功！此时控制台会输出一组日志信息并有如下的欢迎信息：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:33:26.872<span class="o">]</span> Maximum peer count                       <span class="nv">ETH</span><span class="o">=</span><span class="m">30</span> <span class="nv">LES</span><span class="o">=</span><span class="m">0</span> <span class="nv">total</span><span class="o">=</span><span class="m">30</span>
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:33:26.879<span class="o">]</span> Starting peer-to-peer node               <span class="nv">instance</span><span class="o">=</span>Geth/v1.8.14-stable/darwin-amd64/go1.10.3
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:33:26.879<span class="o">]</span> Allocated cache and file handles         <span class="nv">database</span><span class="o">=</span>/ether-test/db/geth/chaindata <span class="nv">cache</span><span class="o">=</span><span class="m">768</span> <span class="nv">handles</span><span class="o">=</span><span class="m">1024</span>
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:33:26.889<span class="o">]</span> Initialised chain configuration          <span class="nv">config</span><span class="o">=</span><span class="s2">&quot;{ChainID: 987 Homestead: 0 DAO: &lt;nil&gt; DAOSupport: false EIP150: &lt;nil&gt; EIP155: 0 EIP158: 0 Byzantium: &lt;nil&gt; Constantinople: &lt;nil&gt; Engine: unknown}&quot;</span>
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:33:26.889<span class="o">]</span> Disk storage enabled <span class="k">for</span> ethash caches   <span class="nv">dir</span><span class="o">=</span>/ether-test/db/geth/ethash <span class="nv">count</span><span class="o">=</span><span class="m">3</span>
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:33:26.889<span class="o">]</span> Disk storage enabled <span class="k">for</span> ethash DAGs     <span class="nv">dir</span><span class="o">=</span>/.ethash                   <span class="nv">count</span><span class="o">=</span><span class="m">2</span>
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:33:26.889<span class="o">]</span> Initialising Ethereum protocol           <span class="nv">versions</span><span class="o">=</span><span class="s2">&quot;[63 62]&quot;</span> <span class="nv">network</span><span class="o">=</span><span class="m">198989</span>
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:33:26.890<span class="o">]</span> Loaded most recent <span class="nb">local</span> header          <span class="nv">number</span><span class="o">=</span><span class="m">0</span> <span class="nv">hash</span><span class="o">=</span>4e048d…366eb4 <span class="nv">td</span><span class="o">=</span><span class="m">1024</span>
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:33:26.890<span class="o">]</span> Loaded most recent <span class="nb">local</span> full block      <span class="nv">number</span><span class="o">=</span><span class="m">0</span> <span class="nv">hash</span><span class="o">=</span>4e048d…366eb4 <span class="nv">td</span><span class="o">=</span><span class="m">1024</span>
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:33:26.890<span class="o">]</span> Loaded most recent <span class="nb">local</span> fast block      <span class="nv">number</span><span class="o">=</span><span class="m">0</span> <span class="nv">hash</span><span class="o">=</span>4e048d…366eb4 <span class="nv">td</span><span class="o">=</span><span class="m">1024</span>
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:33:26.890<span class="o">]</span> Regenerated <span class="nb">local</span> transaction journal    <span class="nv">transactions</span><span class="o">=</span><span class="m">0</span> <span class="nv">accounts</span><span class="o">=</span><span class="m">0</span>
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:33:26.890<span class="o">]</span> Starting P2P networking
+...
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt>Geth启动时会占用数个计算机端口，请确保它们可用。</dt>
+<dd><ul class="first last simple">
+<li>8545 TCP端口 – 供基于 HTTP的JSON-RPC API通信使用。</li>
+<li>8546 TCP端口 – 供基于 WebSocket的JSON-RPC API通信使用。</li>
+<li>30303 TCP/UDP端口 – 提供 P2P 协议同步数据块运行以太坊网络。</li>
+<li>30304 UDP端口– P2P通信中新节点发现机制所用。</li>
+</ul>
+</dd>
+</dl>
+</div>
+<p>在较慢的硬盘(非SSD)或者在虚拟机环境中，挖出一个区块的时间会非常长，约需要 5~10 分钟时间，在配置了 SSD 硬盘的新款 Macbook 上几乎是瞬间就能挖出一个区块。挖出区块时会有小锤子的标记，会显示如下的控制台输出：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:34:03.651<span class="o">]</span> Successfully sealed new block            <span class="nv">number</span><span class="o">=</span><span class="m">1</span> <span class="nv">hash</span><span class="o">=</span><span class="m">589650</span>…007f89 <span class="nv">elapsed</span><span class="o">=</span><span class="m">8</span>.569s
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:34:03.651<span class="o">]</span> 🔨 mined potential block                  <span class="nv">number</span><span class="o">=</span><span class="m">1</span> <span class="nv">hash</span><span class="o">=</span><span class="m">589650</span>…007f89
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:34:03.652<span class="o">]</span> Commit new mining work                   <span class="nv">number</span><span class="o">=</span><span class="m">2</span> <span class="nv">uncles</span><span class="o">=</span><span class="m">0</span> <span class="nv">txs</span><span class="o">=</span><span class="m">0</span> <span class="nv">gas</span><span class="o">=</span><span class="m">0</span> <span class="nv">fees</span><span class="o">=</span><span class="m">0</span> <span class="nv">elapsed</span><span class="o">=</span><span class="m">125</span>.154µs
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:34:03.838<span class="o">]</span> Successfully sealed new block            <span class="nv">number</span><span class="o">=</span><span class="m">2</span> <span class="nv">hash</span><span class="o">=</span>fb5f62…81e023 <span class="nv">elapsed</span><span class="o">=</span><span class="m">186</span>.718ms
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:34:03.839<span class="o">]</span> 🔨 mined potential block                  <span class="nv">number</span><span class="o">=</span><span class="m">2</span> <span class="nv">hash</span><span class="o">=</span>fb5f62…81e023
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:34:03.839<span class="o">]</span> Commit new mining work                   <span class="nv">number</span><span class="o">=</span><span class="m">3</span> <span class="nv">uncles</span><span class="o">=</span><span class="m">0</span> <span class="nv">txs</span><span class="o">=</span><span class="m">0</span> <span class="nv">gas</span><span class="o">=</span><span class="m">0</span> <span class="nv">fees</span><span class="o">=</span><span class="m">0</span> <span class="nv">elapsed</span><span class="o">=</span><span class="m">142</span>.96µs
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:34:04.092<span class="o">]</span> Successfully sealed new block            <span class="nv">number</span><span class="o">=</span><span class="m">3</span> <span class="nv">hash</span><span class="o">=</span>4fb51d…5c5e1c <span class="nv">elapsed</span><span class="o">=</span><span class="m">252</span>.862ms
+INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:34:04.092<span class="o">]</span> 🔨 mined potential block                  <span class="nv">number</span><span class="o">=</span><span class="m">3</span> <span class="nv">hash</span><span class="o">=</span>4fb51d…5c5e1c
+</pre></div>
+</div>
+<p>我们可以陆续看到诸如 <code class="docutils literal notranslate"><span class="pre">number=1，number=2</span></code> 的输出，这表明我们已经成功地挖掘出了第1，2，3…个区块，而区块的 <code class="docutils literal notranslate"><span class="pre">uncles=0</span></code> ，说明并没有 <strong>叔块</strong> 产生，复习我们之前所学的知识 <a class="reference internal" href="../ch3/dig.html#ref-dig"><span class="std std-ref">资料篇：矿工与挖矿奖励</span></a> ，在网络中有且仅有我们一个挖矿节点的时候，没有竞争对手产生同一个高度的块，所以显而易见的是不会产生孤立的块，也就不会产生叔块了。</p>
+<p>至此，控制台持续在输出挖矿相关信息。你的私链已经稳定运行。由于我们启动时 <code class="docutils literal notranslate"><span class="pre">etherbase</span></code> 参数随便设置了一个挖矿矿工奖励地址，所以挖出的区块奖励都发送到了那个地址，但我们并没有持有这个地址，这等于白白浪费了。现在，我们来与Geth通信并且让它暂停一下挖矿，等我们新建好了账户之后再继续挖。</p>
+<p>我们重新开一个控制台窗口，并连接上正在运行的 Geth，让其停下挖矿。</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="hll"><span class="nb">cd</span> ether-test
+</span><span class="hll">geth --datadir ./db attach ipc:./db/geth.ipc
+</span>&gt;
+Welcome to the Geth JavaScript console!
+
+instance: Geth/v1.8.14-stable/darwin-amd64/go1.10.3
+coinbase: 0x7df9a875a174b3bc565e6424a0050ebc1b2d1d82
+at block: <span class="m">90</span> <span class="o">(</span>Sun, <span class="m">16</span> Sep <span class="m">2018</span> <span class="m">15</span>:56:37 CST<span class="o">)</span>
+ datadir: /ether-test/db
+ modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+
+<span class="hll">&gt; miner.stop<span class="o">()</span>
+</span><span class="nb">true</span>
+</pre></div>
+</td></tr></table></div>
+<p>我们使用 <code class="docutils literal notranslate"><span class="pre">miner.stop()</span></code> 命令来停止挖矿行为，此时可以看到之前启动的 Geth 节点的控制台输出已经停下，没有新区块被挖掘。需要重启挖矿，执行 <code class="docutils literal notranslate"><span class="pre">miner.start()</span></code> 即可。</p>
+<p>至此我们回顾一下。我们已经启动了一条以太坊私链，在启动之时我们选填了一些参数。</p>
+<p class="centered">
+<strong>–rpcapi “eth,net,web3,personal,admin,shh,txpool,debug,miner”</strong></p><p>这些参数都是指定Geth客户端装载哪些功能模块的，这些模块有的是挖矿模块，有的是账户模块，根据使用者偏好可以选择性地启用，适当地增减当前节点具备的能力。具体的模块解释如下表 <a class="footnote-reference" href="#id7" id="id4">[3]</a> 。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>模块</td>
+<td>解释</td>
+</tr>
+<tr class="row-even"><td>personal</td>
+<td>账户相关操作–新建账户、锁定账户、发送签名交易等。</td>
+</tr>
+<tr class="row-odd"><td>admin</td>
+<td>节点管理相关–节点数据存储、网络状况、API 开放状况等。</td>
+</tr>
+<tr class="row-even"><td>txpool</td>
+<td>交易池相关–交易池等待情况，查看某交易详情等。</td>
+</tr>
+<tr class="row-odd"><td>debug</td>
+<td>开发调试相关–追踪区块状况，分析区块详情、CPU 状况检测等。</td>
+</tr>
+<tr class="row-even"><td>miner</td>
+<td>挖矿相关–更改奖励收款地址、开启/关闭挖矿功能、设置 gas 费用等。</td>
+</tr>
+<tr class="row-odd"><td>web3</td>
+<td>包含了以上模块的总入口，还包含单位换算函数。</td>
+</tr>
+<tr class="row-even"><td>eth</td>
+<td>提供了操作区块链的相关方法。</td>
+</tr>
+<tr class="row-odd"><td>shh</td>
+<td>提供了分布式网络 P2P Whisper通信协议的相关方法</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>Vitalik Buterin (2016), ‘Simple replay attack protection’, Available at: <a class="reference external" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md">https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>Vitalik Buterin (2016), ‘State clearing’, Available at: <a class="reference external" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-158.md">https://github.com/ethereum/EIPs/blob/master/EIPS/eip-158.md</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>笔者注：更多参考见 <a class="reference external" href="https://github.com/ethereum/go-ethereum/wiki/Management-APIs">https://github.com/ethereum/go-ethereum/wiki/Management-APIs</a></td></tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="coinbase.html" class="btn btn-neutral float-right" title="接收挖矿奖励" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="geth.html" class="btn btn-neutral float-left" title="Geth客户端的结构" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, laalaguer
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-142187300-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

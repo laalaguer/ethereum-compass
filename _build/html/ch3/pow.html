@@ -1,0 +1,502 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>资料篇：共识与工作量证明 &mdash; 以太坊的指南针 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="资料篇：矿工与挖矿奖励" href="dig.html" />
+    <link rel="prev" title="扩展阅读" href="interval.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> 以太坊的指南针
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../howto.html">如何学习这本书</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch1/index.html">第 1 章 以太坊：一台全球计算机</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/born.html">简史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/progress.html">发展阶段</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/highlight.html">以太坊的特色</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch2/index.html">第 2 章 账户是什么</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/basic.html">小白基础知识问答</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id2">我的以太币记录在哪里？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id3">我的以太币余额如何变化？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id4">什么是区块？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id5">区块和状态的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id6">“巨大的账本”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id7">我如何参与以太坊？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id8">我如何与其他人同步账本？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/account.html">账户探秘</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id2">账户与账户状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id3">账户状态的内涵</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id4">已执行交易总数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id5">持币数量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id6">存储区的哈希值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id7">代码区的哈希值</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#app">没有钱包App, 如何生成账户？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id11">智能合约地址的生成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/keystore.html">资料篇：Keystore 与私钥保存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/app.html">资料篇：常用钱包 App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/eip55.html">资料篇：EIP-55 格式的账户地址</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">第 3 章 交易是驱动力</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="how.html">交易的发送</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how.html#id2">交易与消息什么区别？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how.html#id3">交易的特性是什么？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="what.html">交易的样子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="life.html">交易的生命周期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interval.html">扩展阅读</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">资料篇：共识与工作量证明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pow">比特币的PoW机制（简单版）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">比特币算力的中心化问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pow-pos">以太坊的Pow/Pos机制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dig.html">资料篇：矿工与挖矿奖励</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch4/index.html">第 4 章 数据结构</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/radix.html">Radix树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/merkle.html">Merkle树和 Merkle证明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/mpt.html">Merkle Patricia树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/rlp.html">RLP编码</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id1">RLP字符/字符串编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id3">RLP字符/字符串解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id4">RLP数组编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id5">RLP数组解码</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/stateroot.html">资料篇：状态树 (以及存储树）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/transroot.html">资料篇：交易树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/receiptroot.html">资料篇：收据树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/block.html">资料篇：区块</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch5/index.html">第 5 章 构建一条以太坊私链</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/install.html">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/geth.html">Geth客户端的结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/build.html">启动一条以太坊私链</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/coinbase.html">接收挖矿奖励</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/transfer.html">转账与收款</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch6/index.html">第 6 章 手把手教你部署智能合约</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/what.html">什么是智能合约？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/install.html">安装编译器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/compile.html">Solc编译智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/prepare.html">智能合约发布准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/deploy.html">部署智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/call.html">调用智能合约</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch7/index.html">第 7 章 以太坊虚拟机探秘</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/result.html">虚拟机的执行结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/resource.html">虚拟机的执行资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/call.html">合约调用合约?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/io.html">虚拟机的输入输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/gas.html">Gas 花费与退回</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/instructions.html">虚拟机指令集</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch8/index.html">第 8 章 Solidity语法练习</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/basic.html">基础概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id2">没有浮点数运算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id3">合约基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id4">变量类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id5">运算符号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#struct">结构体 Struct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#array">数组array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id6">函数申明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id7">类型转换与内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/basic.html#id8">合约与事件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/levelup.html">语法进阶</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#map">数据结构：map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#msg-sender">环境变量：msg.sender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#requireassert">require还是assert?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id2">继承和引入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id3">省钱妙招：内存变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id4">接口与合约调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/levelup.html#id5">多返回值</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/advanced.html">高级语法和概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#contract">Contract 构造函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#ownable">Ownable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#pausable">Pausable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#struct">省钱妙招：struct 结构体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id2">时间单位表达</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#id3">带参数的函数修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#for">for 循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#payable">合约收款：payable修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch8/advanced.html#transfer">支付费用：transfer方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8/summary.html">小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch9/index.html">第 9 章 Truffle合约开发实战</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/install.html">编译、测试工具安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#truffle">Truffle的安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#ganache">Ganache的安装</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/sample.html">Truffle启动样例项目</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id1">下载样例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id2">编译项目</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#ganache">部署项目到 Ganache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id3">测试项目</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/erc20.html">上手实践：ERC20合约</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id1">新建项目目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#erc20-basic">ERC20 Basic合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id2">ERC20 合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#safemath">SafeMath基础数学库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#cat">猫币：CAT数字资产合约</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/test.html">上手实践：ERC20合约测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id1">准备工作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id2">测试辅助函数与库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id3">测试代码分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id4">测试运行与结果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch10/index.html">附录 有意思的冷知识</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/shortattack.html">短地址攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/block.html">比特币的区块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/utxo.html">以太坊与比特币账户的区别</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id2">隐私与安全性的比较</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id3">数据体积与并发能力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id4">发送交易时对双花的处理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/triangle.html">“不可能的三角”问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/ethash.html">ETHASH 挖矿算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#ethashpow">ETHASH和比特币PoW的异同</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id1">ETHASH的设计目标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id2">ETHASH的挖矿运行总流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id3">ETHASH算法源代码解读</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">以太坊的指南针</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">第 3 章 交易是驱动力</a> &raquo;</li>
+        
+      <li>资料篇：共识与工作量证明</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ch3/pow.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>资料篇：共识与工作量证明<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><strong>共识是区块链系统的核心灵魂。它决定弱信任环境下大家如何达成信任。</strong></p>
+<p>目前，以太坊共识是基于工作量证明的机制(Proof of Work, PoW)。</p>
+<p>一个好的共识机制能够鼓励正直的矿工记账出块，防止双花攻击的发生，也能够在分布式节点网络中协调所有的节点在短时间内同步区块，承认区块账本的有效性。</p>
+<p>分布式系统的问题就在于如何协调各个节点步调一致、共同进退。这称之为“拜占庭将军问题”。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">拜占庭将军问题，即为拜占庭将军率领一支军队围困一个城市，
+他们要选择进攻还是撤退。如果不能达成共识，部分将军带军进攻而部分选择按兵不动，则会造成极大损失。
+因此各位将军都通过派送信使到达其他将军营地的方式来沟通。每位将军得到信使来信后都会根据自己选择与来信信息判断是否执行进攻/撤退命令。
+但某些反叛的将军可能发送欺骗性的投票结果，造成整个大部队的损失。
+<strong>如何甄别真假消息以及统一将军间的共识，称为拜占庭将军问题。</strong></p>
+</div>
+<div class="section" id="pow">
+<h2>比特币的PoW机制（简单版）<a class="headerlink" href="#pow" title="Permalink to this headline">¶</a></h2>
+<p>“拜占庭将军问题”映射到比特币网络中，每台网络计算机都是“将军”，连接计算机的网络即为“信使”。在网络中的每个节点都有可能发出欺骗性的区块（假账本），这些区块能否进入区块链？是否被其他各个节点认同？为了排除错误取得网络共识，
+比特币网络规定了如下实用准则：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>单一区块所包含的交易集合在执行哈希后的 <code class="docutils literal notranslate"><span class="pre">256bits</span></code> (32字节) 的哈希值必须是一个特殊数值，它的开头必须满足一定数量的 <code class="docutils literal notranslate"><span class="pre">0000...</span></code> 作为起始。</li>
+<li>区块串联形成区块链，每个链条环节（称为高度）有且仅有一个区块。</li>
+<li>一旦找到符合条件的区块，立即广播给所有节点，区块进入该高度的候选区。</li>
+<li>若候选区内有区块，则新的区块可以从它基础上往后计算新区块。</li>
+<li>最长的链才是最终的区块链账本，其他较短的分支链条都不被承认。</li>
+</ol>
+</div></blockquote>
+<p>这几条规定相辅相成，解决了甄别真假消息和统一共识的难题。它通过 <strong>牺牲巨大电力和交易速度，保障了共识与安全性。</strong> 具体分析如下：</p>
+<p><strong>第 1 条规定</strong> 即为PoW：矿工需要反复排列组合，选取合适的交易加入区块进行 <strong>SHA-256</strong> 哈希试算计算哈希值，直到符合开头 0 数量多寡的规定。例如比特币区块链上高度为 <strong>#286819</strong> 的合法区块的哈希值为：（开头有16个 0）</p>
+<p class="centered">
+<strong>0000000000000000e067a478024addfecdc93628978aa52d91fabd4292982a50</strong></p><p>区块链选取的散列函数也称之为哈希函数，这个函数的特性是输入任意长的字符串，该函数都能将其映射为固定长度的散列值，例如比特币选取的 SHA3-256 函数即为第三代散列函数，输出定长为 <code class="docutils literal notranslate"><span class="pre">256</span></code> 位（256bits）。
+散列函数满足以下特性：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>碰撞不易：不同的输入值，产生不同的输出值，微小的输入改动也会引起输出的巨大变化。</li>
+<li>单向性：给定输入值，可快速计算输出值；给出输出值，却无法推断输入值。</li>
+<li>穷举性：若要输出值介于某范围，没有比穷举输入更好的尝试方法。</li>
+</ol>
+</div></blockquote>
+<p>在区块链的领域中，利用哈希函数对不同的输入产生的输出迥异，且无法通过规律预测的特性，无法投机取巧来猜测，只能通过耗费 CPU 算力与电力的方式反复排列输入参数来尝试。
+需要计算出特定的结果，必定付出了艰巨的工作，此称为 <strong>工作量证明</strong> (PoW，Proof of Work)。</p>
+</div>
+<div class="section" id="id2">
+<h2>比特币算力的中心化问题<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>比特币网络规定每个区块头的哈希值必须符合一定数量的 <code class="docutils literal notranslate"><span class="pre">000...</span></code>，这就给找到符合条件的区块制造了难度。
+但这个难度并非 <strong>一成不变</strong> ，输出结果的开头 0 数量的要求会随着全球全网算力而动态调整。
+每隔 <code class="docutils literal notranslate"><span class="pre">2016</span></code> 个块根据全网算力提升或下降自动动态调整难度，调整周期大约为 <code class="docutils literal notranslate"><span class="pre">2周</span></code>。
+动态调整的结果是控制这个计算难度维持在 <code class="docutils literal notranslate"><span class="pre">10分钟</span></code> 左右出一个块 。</p>
+<p>正因为有 PoW 机制的存在，区块链的 <strong>转账是缓慢的</strong> ，无法和支付宝等互联网支付工具实时性到账相媲美。</p>
+<p>两者在中心化模式和分布式模式、在效率与公开透明上是各有取舍的。</p>
+<p><strong>中心化的模式</strong> 的假设前提是“信任”。需要各个使用者相信中央节点的可靠与权威（例如相信支付宝系统的诚实可靠、权威），换来的优势就是近乎瞬间的转账效率。</p>
+<p><strong>分布式系统</strong> 的假设前提是“互不信任”。则需要在协调各节点达成共识后才能完成转账，这是需要付出昂贵的时间代价的，换来的优势就是转账账本的可靠性极高且没有中央节点作弊的嫌疑。</p>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="../_images/Picture22.png"><img alt="../_images/Picture22.png" src="../_images/Picture22.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">中心化支付系统，与去中心化支付系统的拓扑结构</span></p>
+</div>
+<p>比特币的共识机制被证明是单纯依赖高性能 CPU 就可提升算力的。
+各个参与的玩家都在千方百计提升自己在全网算力中所占的比例，
+有 <code class="docutils literal notranslate"><span class="pre">n%</span></code> 的算力占有率就有 <code class="docutils literal notranslate"><span class="pre">n%</span></code> 的概率挖到合法区块。
+为了提升算力来获得更大的概率，市场中有层出不穷的高性能比特币专用 <strong>ASIC</strong> 芯片矿机，
+它们的出现让算力集中于买得起矿机的高端玩家手中，而设备制造也被少数高端矿机生产厂商所垄断，
+ASIC 矿机的出现让普通的家庭计算机一夜之间被淘汰出局，耗尽数十年也挖不到一个比特币，
+违背了中本聪设计网络时的初衷：“人人参与，家庭计算机就可挖矿”。目前还没有很好的解决方案。</p>
+</div>
+<div class="section" id="pow-pos">
+<h2>以太坊的Pow/Pos机制<a class="headerlink" href="#pow-pos" title="Permalink to this headline">¶</a></h2>
+<p><strong>以太坊在前三个阶段采用 PoW 的共识机制</strong> ，核心是自以太坊1.0起推出的 <strong>Ethash</strong> 算法 <a class="footnote-reference" href="#id4" id="id3">[1]</a> (代码赏析本书第10章)。</p>
+<p>为了克服比特币的算力中心化问题，Ethash算法做了诸多调整。</p>
+<p>该算法依赖一个预先生成的大型数据集（1GB），在计算的过程中需要反复、分片地读取该数据集，这部分数据集体积远超过 <strong>ASIC/GPU/FPGA矿机</strong> 的内部寄存器体积，较慢的内存读写 I/O 操作时间抵消了 ASIC 矿机厂商的专用芯片集成化带来的计算时间优势，具体的算法规则如下。</p>
+<blockquote>
+<div><ul class="simple">
+<li>每一个区块通过区块头计算一个 <strong>种子</strong> ，该种子仅与本区块有关。</li>
+<li>基于种子生成一份16MB 的伪随机 <strong>缓存</strong>。</li>
+<li>基于缓存生成一份大型数据集，称为 <strong>DAG</strong> (有向无环图)，体积 1 GB。DAG的数据可由伪随机缓存快速地推导出来，而且 DAG 的数据分块，每块都和对应的缓存块有关。</li>
+<li>矿工挖矿的过程是不断地从 DAG 中取出数据作为输入值，再配合反复更改 nonce 试探，达到满足一定难度的输出值的运算。</li>
+<li>校验者仅需在得到输出值后，经由缓存推断出对应的DAG数据，代入计算验证输出值，轻客户端也能快速执行该任务。</li>
+<li>和比特币一样，Ethash 是一个”挖矿难，检测易”的算法。</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>该算法的理想是：虽然普通家庭计算机的 CPU 无法和和专用的 ASIC 矿机媲美，但是专用矿机在 1GB 内存数据的读取上也没有巨大的优势。</p>
+<p class="last">Ethash 算法实现了部分普通计算机参与挖矿、算力去中心化的理想。但是近来有通过GPU显卡来进行高内存高算力运算的显卡矿机，也有矿机厂商研制出的 ASIC 矿机在慢慢侵蚀 Ethash算法的屏障作用。所以以太坊的共识算法将在不久将来的第四阶段切换到 <strong>PoS</strong> 模式。</p>
+</div>
+<p>在 <strong>第四阶段的以太坊经济模型采用PoS机制</strong> ，PoS全称 Proof of Stake，任何持有以太币的参与者都可以发起特殊交易，将自己的币锁定在一个存储中，让自己获得打包交易的资格，然后通过一个当前验证着都能参与的共识算法，完成新区块的打包和广播。PoS 算法的特点如下。</p>
+<blockquote>
+<div><ul class="simple">
+<li>不需要耗费大量电力资源来“苦劳”，挖块奖励可以减少，理论上发行总量可以被控制。</li>
+<li>不需要购买昂贵设备，持有以太币即可参与挖矿。</li>
+<li>出块速度更快，不受制于PoW挖矿带来的时间延迟。</li>
+<li>减少挖矿工具中心化带来的风险。</li>
+</ul>
+</div></blockquote>
+<p>预计当第四阶段启动时，众多以太坊爱好者已经进入以太坊世界并持有了以太币，他们可以根据自己持币数量和轮转规则，竞争上岗，打包区块数据进行挖矿。目前已经有了代号 <strong>Casper</strong> 的测试网络可以运行、试用该共识机制。Casper网上的共识算法有惩戒措施，出块人取得资格需要质押一定数量的以太币，大家根据共识对新产出的块进行投票来判定该块是否有效，经过大部分人认可后，该块就能合法有效，但若在该过程中有少数人“作恶”被揪出，这些人就会被罚没所抵押的以太币以示惩戒。</p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[1]</a></td><td>Ethereum Community Authors (2018) ‘Ethash’, The Ethereum Wiki, Available at: <a class="reference external" href="https://github.com/ethereum/wiki/wiki/Ethash">https://github.com/ethereum/wiki/wiki/Ethash</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dig.html" class="btn btn-neutral float-right" title="资料篇：矿工与挖矿奖励" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="interval.html" class="btn btn-neutral float-left" title="扩展阅读" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, laalaguer
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-142187300-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

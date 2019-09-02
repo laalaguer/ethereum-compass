@@ -1,0 +1,652 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>语法进阶 &mdash; 以太坊的指南针 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="高级语法和概念" href="advanced.html" />
+    <link rel="prev" title="基础概念" href="basic.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> 以太坊的指南针
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../howto.html">如何学习这本书</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ch1/index.html">第 1 章 以太坊：一台全球计算机</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/born.html">简史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/progress.html">发展阶段</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch1/highlight.html">以太坊的特色</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch2/index.html">第 2 章 账户是什么</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/basic.html">小白基础知识问答</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id2">我的以太币记录在哪里？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id3">我的以太币余额如何变化？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id4">什么是区块？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id5">区块和状态的关系</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id6">“巨大的账本”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id7">我如何参与以太坊？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/basic.html#id8">我如何与其他人同步账本？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/account.html">账户探秘</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id2">账户与账户状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id3">账户状态的内涵</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id4">已执行交易总数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id5">持币数量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id6">存储区的哈希值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch2/account.html#id7">代码区的哈希值</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#app">没有钱包App, 如何生成账户？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2/account.html#id11">智能合约地址的生成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/keystore.html">资料篇：Keystore 与私钥保存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/app.html">资料篇：常用钱包 App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2/eip55.html">资料篇：EIP-55 格式的账户地址</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch3/index.html">第 3 章 交易是驱动力</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/how.html">交易的发送</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id2">交易与消息什么区别？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/how.html#id3">交易的特性是什么？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/what.html">交易的样子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/life.html">交易的生命周期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/pow.html">资料篇：共识与工作量证明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow">比特币的PoW机制（简单版）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#id2">比特币算力的中心化问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3/pow.html#pow-pos">以太坊的Pow/Pos机制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch3/dig.html">资料篇：矿工与挖矿奖励</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch4/index.html">第 4 章 数据结构</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/radix.html">Radix树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/merkle.html">Merkle树和 Merkle证明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/mpt.html">Merkle Patricia树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/rlp.html">RLP编码</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id1">RLP字符/字符串编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id3">RLP字符/字符串解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id4">RLP数组编码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4/rlp.html#id5">RLP数组解码</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/interval.html">扩展阅读</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/stateroot.html">资料篇：状态树 (以及存储树）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/transroot.html">资料篇：交易树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/receiptroot.html">资料篇：收据树</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch4/block.html">资料篇：区块</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch5/index.html">第 5 章 构建一条以太坊私链</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/install.html">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/geth.html">Geth客户端的结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/build.html">启动一条以太坊私链</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/coinbase.html">接收挖矿奖励</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch5/transfer.html">转账与收款</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch6/index.html">第 6 章 手把手教你部署智能合约</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/what.html">什么是智能合约？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/install.html">安装编译器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/compile.html">Solc编译智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/prepare.html">智能合约发布准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/deploy.html">部署智能合约</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch6/call.html">调用智能合约</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch7/index.html">第 7 章 以太坊虚拟机探秘</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/result.html">虚拟机的执行结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/resource.html">虚拟机的执行资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/call.html">合约调用合约?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/io.html">虚拟机的输入输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/gas.html">Gas 花费与退回</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch7/instructions.html">虚拟机指令集</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">第 8 章 Solidity语法练习</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic.html">基础概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id2">没有浮点数运算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id3">合约基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id4">变量类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id5">运算符号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#struct">结构体 Struct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#array">数组array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id6">函数申明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id7">类型转换与内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#id8">合约与事件</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">语法进阶</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#map">数据结构：map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#msg-sender">环境变量：msg.sender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#requireassert">require还是assert?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">继承和引入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">省钱妙招：内存变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">接口与合约调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">多返回值</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html">高级语法和概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#contract">Contract 构造函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#ownable">Ownable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#pausable">Pausable控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#struct">省钱妙招：struct 结构体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#id2">时间单位表达</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#id3">带参数的函数修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#for">for 循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#payable">合约收款：payable修饰符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html#transfer">支付费用：transfer方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="summary.html">小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch9/index.html">第 9 章 Truffle合约开发实战</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/install.html">编译、测试工具安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#truffle">Truffle的安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/install.html#ganache">Ganache的安装</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/sample.html">Truffle启动样例项目</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id1">下载样例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id2">编译项目</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#ganache">部署项目到 Ganache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/sample.html#id3">测试项目</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/erc20.html">上手实践：ERC20合约</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id1">新建项目目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#erc20-basic">ERC20 Basic合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#id2">ERC20 合约接口</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#safemath">SafeMath基础数学库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/erc20.html#cat">猫币：CAT数字资产合约</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch9/test.html">上手实践：ERC20合约测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id1">准备工作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id2">测试辅助函数与库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id3">测试代码分析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9/test.html#id4">测试运行与结果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ch10/index.html">附录 有意思的冷知识</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/shortattack.html">短地址攻击</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/block.html">比特币的区块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/utxo.html">以太坊与比特币账户的区别</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id2">隐私与安全性的比较</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id3">数据体积与并发能力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/utxo.html#id4">发送交易时对双花的处理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/triangle.html">“不可能的三角”问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ch10/ethash.html">ETHASH 挖矿算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#ethashpow">ETHASH和比特币PoW的异同</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id1">ETHASH的设计目标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id2">ETHASH的挖矿运行总流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10/ethash.html#id3">ETHASH算法源代码解读</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">以太坊的指南针</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">第 8 章 Solidity语法练习</a> &raquo;</li>
+        
+      <li>语法进阶</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ch8/levelup.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>语法进阶<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>本小节我们进一步讲解常用的合约与合约的关系，并引入更高级的数据结构。</p>
+<div class="section" id="map">
+<h2>数据结构：map<a class="headerlink" href="#map" title="Permalink to this headline">¶</a></h2>
+<p>我们已经学习过了结构体struct和数组两种高级数据结构，这两者都是为了有结构地存储数据而设计的。另一种在编程语言中不可或缺的数据结构是映射关系。。在Solidity语言中也如同Python的dict或者JavaScript的对象一样，现成内置了一个映射数据结构，mapping。</p>
+<p>例如我们可以存储账号地址以及它对应的合约内的token数量的关系(假设是一个代币合约)。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="kr">public</span> <span class="n">accountBalance</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>这里我们申明关键字mapping表示这是一个映射关系；address代表的是一个账户的地址；uint代表了该账户对应的token数量；接着我们用修饰符public申明这个变量可以读取；这个映射关系我们命名为accountBalance。</p>
+<div class="admonition- admonition">
+<p class="first admonition-title">小练习</p>
+<p>请申明两个 mapping 映射。</p>
+<p>保存汽车Car和对应的主人Owner address的对应关系。</p>
+<p>保存主人地址address和它对应的 Car 的数量关系。</p>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Car</span><span class="p">[]</span> <span class="kr">public</span> <span class="n">cars</span><span class="p">;</span>
+<span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="n">_____</span><span class="p">)</span> <span class="kr">public</span> <span class="n">carToOwner</span><span class="p">;</span>
+<span class="kd">mapping</span> <span class="p">(</span><span class="n">_____</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">ownerCarCount</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="msg-sender">
+<h2>环境变量：msg.sender<a class="headerlink" href="#msg-sender" title="Permalink to this headline">¶</a></h2>
+<p>智能合约没有main函数，它是被动地响应外部调用的。谁来调用呢？根据之前我们第7章对以太坊虚拟机的学习，可以知道肯定是首先由外部使用者触发的，这种触发可以调用一个合约，该合约也可以链式调用其他合约为自己填充部分数据、执行某项操作。调用的当事人地址可以被智能合约知晓，即为msg.sender全局变量。这个全局变量存在于每个智能合约的执行环境上下文中。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">myNumber</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="n">setMyNumber</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_myNumber</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+  <span class="c1">// 设置一个调用者最喜欢的数字</span>
+  <span class="n">myNumber</span> <span class="p">[</span><span class="nb">msg.sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">_myNumber</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="n">whatIsMyNumber</span><span class="p">()</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 取回设置好的数字，如果未被设置，则返回0</span>
+  <span class="k">return</span> <span class="n">myNumber</span> <span class="p">[</span><span class="nb">msg.sender</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>上述合约代码片段，允许调用者设置一个数字，并且把数字再次从合约中读取出来。在这两个操作中都直接对于一个映射对象myNumber进行了读写操作。我们可以看到msg.sender始终存在于合约运行环境中，无需引入或者申明；另外mapping的读取和写入也如同数组一样，通过键值对的方式写入和读取。</p>
+<div class="admonition- admonition">
+<p class="first admonition-title">小练习</p>
+<p>请修改下列_createCar函数，让其除了发出事件以外，更能够记录下汽车Car和主人的两种对应关系：carToOwner和ownerCarCount：</p>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Car</span><span class="p">[]</span> <span class="kr">public</span> <span class="n">cars</span><span class="p">;</span>
+
+<span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="kt">address</span><span class="p">)</span> <span class="kr">public</span> <span class="n">carToOwner</span><span class="p">;</span>
+<span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">ownerCarCount</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="n">_createCar</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">_color</span><span class="p">)</span> <span class="kr">private</span> <span class="p">{</span>
+    <span class="kt">uint</span> <span class="n">id</span> <span class="o">=</span> <span class="n">cars</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">Car</span><span class="p">(</span><span class="n">_name</span><span class="p">,</span> <span class="n">_color</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">_______</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">msg.sender</span><span class="p">;</span> <span class="c1">// 此处填充</span>
+    <span class="n">ownerCarCount</span><span class="p">[</span><span class="n">________</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>  <span class="c1">// 此处填充</span>
+    <span class="kr">emit</span> <span class="n">NewCar</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">_name</span><span class="p">,</span> <span class="n">_color</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="requireassert">
+<h2>require还是assert?<a class="headerlink" href="#requireassert" title="Permalink to this headline">¶</a></h2>
+<p>有时候我们会进行一定的函数条件检查，来判定是否可以接下去进行函数执行。读者会联想到if-else语法来进行判断，但是某些场合下，我们要求进行更严肃的权限检查，或者条件满足检查。require和assert两个关键字就应运而生，两者都在条件不满足时可以终止程序的运行，但是有如下区别。</p>
+<blockquote>
+<div><ul class="simple">
+<li>require条件检查语句如果不通过，则扣除运行到当前语句时，程序执行所花费的 gas，终止程序执行，并返回。</li>
+<li>assert 条件检查语句如果不通过，则视为严重错误，扣除所有的gas，终止程序执行，并返回.</li>
+</ul>
+</div></blockquote>
+<p>例如以下程序将会检查发送方的字符串是否符合一定标准。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">sayHi</span> <span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nf">require</span><span class="p">(</span><span class="nf">keccak256</span><span class="p">(</span><span class="n">_name</span><span class="p">)</span> <span class="o">==</span> <span class="nf">keccak256</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">));</span>
+  <span class="c1">//条件满足，则执行:</span>
+  <span class="k">return</span> <span class="s">&quot;Hi!&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这里位置上替换为assert关键字也是完全可行的。两者都会检查输入值是否是Hello。因为没有原生态的string比较函数，所以我们采用哈希的方法比较了两者的哈希值。Assert关键字相比于require更加具有惩罚性，经常用在检查变量范围上下溢出等场合，如果检查出错，表明程序出现了严重错误。而require则一般用在权限检查场合，检查是否有权操作合约等，权限不够则弹出提示，相对比较温和。</p>
+<div class="admonition- admonition">
+<p class="first admonition-title">小练习</p>
+<p>我们不希望每个客户都创建无数的车。他们在我们合约内有且只能保留一辆车。所以创建第二辆车是不可能的。请改造如下函数，并仅允许合约调用者在无车的时候创建一辆：</p>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">createRandomCar</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+   <span class="nf">require</span><span class="p">(</span><span class="n">ownerCarCount</span><span class="p">[</span><span class="n">______</span><span class="p">]</span> <span class="o">==</span> <span class="n">____</span><span class="p">);</span> <span class="c1">// 填充此处</span>
+   <span class="kt">uint</span> <span class="n">randColor</span> <span class="o">=</span> <span class="n">_generateRandomColor</span><span class="p">(</span><span class="n">_name</span><span class="p">);</span>
+    <span class="n">_createCar</span><span class="p">(</span><span class="n">_name</span><span class="p">,</span> <span class="n">randColor</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>继承和引入<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>智能合约的代码来源可以来源于自身项目内，也可以来源于外部已经早已部署完毕的链上合约。使用合约继承语法，不但可以减少重复的代码数量，也可以将代码更清晰地划分成数个组成部分。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Dog</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">bark</span><span class="p">()</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s">&quot;Wong!&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">contract</span> <span class="n">BabyDog</span> <span class="kr">is</span> <span class="n">Dog</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">feed</span><span class="p">()</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s">&quot;Drink some milk.&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这里小奶狗 BabyDog 继承了狗 Dog 的合约（通过 is 关键字），他们俩都具有bark()方法，同时 BabyDog还具有独特的feed()方法。</p>
+<p>但是合约的代码不可能总是正好处在同一个文件内，我们经常要应用其他项目中的合约文件。怎么操作呢？我们可以将其分成两个文件，并放置在同一个目录下，并通过import 关键字来引入，还是用 Dog 合约来举例。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Dog</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">bark</span><span class="p">()</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s">&quot;Wong!&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kn">import</span> <span class="s">&quot;./Dog.sol&quot;</span>
+
+<span class="kd">contract</span> <span class="n">BabyDog</span> <span class="kr">is</span> <span class="n">Dog</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">feed</span><span class="p">()</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s">&quot;Drink some milk.&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition- admonition">
+<p class="first admonition-title">小练习</p>
+<p>请填充如下文件CarMaking.sol ，让合约能够顺利继承CarFactory。</p>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="n">_________</span><span class="p">;</span>
+<span class="n">_______</span> <span class="s">&quot;./CarFactory.sol&quot;</span><span class="p">;</span>
+
+<span class="kd">contract</span> <span class="n">CarMaking</span> <span class="kr">is</span> <span class="n">CarFactory</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>省钱妙招：内存变量<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>在以太坊虚拟机讲解的时候，我们提到了不同的存储类型，花费的gas数额不同。它们的最终存储地方也不同。有时候为了省钱，我们经常不把临时变量保存在区块链上，而是留在内存里。随着程序执行，内存里的变量会消亡，而区块链上的永存。申明内存变量(memory)的花费和状态变量(storage)的花费有天壤之别，比例是百倍。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Restaurant</span> <span class="p">{</span>
+  <span class="kd">struct</span> <span class="n">Hamburger</span> <span class="p">{</span>
+    <span class="kt">string</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="n">status</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">Hamburger</span><span class="p">[]</span> <span class="n">hamburgers</span><span class="p">;</span>
+
+  <span class="kd">function</span> <span class="n">eatHamburger</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_index</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+
+    <span class="c1">// Hamburger myHamburger = hamburgers[_index];</span>
+    <span class="c1">// 上面这句编译器给一个 warning，然如果我们用下列代码，则warning消失</span>
+    <span class="n">Hamburger</span> <span class="kr">storage</span> <span class="n">myHamburger</span> <span class="o">=</span> <span class="n">hamburgers</span><span class="p">[</span><span class="n">_index</span><span class="p">];</span> <span class="c1">// storage 关键字</span>
+    <span class="c1">// 直接修改了区块链上的数据</span>
+    <span class="n">myHamburger</span><span class="p">.</span><span class="n">status</span> <span class="o">=</span> <span class="s">&quot;Eaten!&quot;</span><span class="p">;</span>
+
+    <span class="c1">// 也可以使用 memory 关键字</span>
+    <span class="n">Hamburger</span> <span class="kr">memory</span> <span class="n">anotherHamburger</span> <span class="o">=</span> <span class="n">hamburgers</span><span class="p">[</span><span class="n">_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="c1">// 此时修改的是内存中的数据，区块链不收影响</span>
+    <span class="n">anotherHamburger</span><span class="p">.</span><span class="n">status</span> <span class="o">=</span> <span class="s">&quot;Eaten!&quot;</span><span class="p">;</span>
+    <span class="c1">// 强制回写，影响区块链上的数据</span>
+    <span class="n">hamburgers</span><span class="p">[</span><span class="n">_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">anotherHamburger</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>上述分别使用了 storage 和 memory 关键字来区别我们索引的对象，可以看见当我们用 storage 显式声明了之后，指针 myHamburger 指向了区块链上的某一个存储类型的数据，修改myHamburger后，立即在区块链上生效。而memory关键字神明的anotherHamburger 则不然，它仅为一份存储类型数据的内存拷贝，任何修改都不影响原数据，仅在内存中生效，如果想让修改在区块链上生效，必须回写到存储类型的数据上。</p>
+</div>
+<div class="section" id="id4">
+<h2>接口与合约调用<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>合约的接口就是合约的抽象。我们可以通过定义合约接口，并指定合约地址，来调用另外一个在以太坊上早已经部署好的合约。例如下的合约。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">MyNumber</span> <span class="p">{</span>
+  <span class="kd">mapping</span><span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">numbers</span><span class="p">;</span>
+
+  <span class="kd">function</span> <span class="n">setNum</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_num</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+    <span class="n">numbers</span><span class="p">[</span><span class="nb">msg.sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">_num</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="n">getNum</span><span class="p">(</span><span class="kt">address</span> <span class="n">_myAddress</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">numbers</span><span class="p">[</span><span class="n">_myAddress</span><span class="p">];</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这个合约可以提炼成为一个简单的合约接口：</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">NumberInterface</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">getNum</span><span class="p">(</span><span class="kt">address</span> <span class="n">_myAddress</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>我们因为只关心getNum函数来获取数字，所以就定义了getNum这一个合约接口函数。那么合约如何使用呢？我们可以配合合约地址来使用，如下所示。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">MyContract</span> <span class="p">{</span>
+  <span class="c1">//取得已经部署好的合约的地址</span>
+  <span class="kt">address</span> <span class="n">NumberInterfaceAddress</span> <span class="o">=</span> <span class="mh">0x1E24F805d89211eD515dD8A4A8C54f96a3E0C1FE</span>
+  <span class="c1">// 初始化合约，获得合约实例</span>
+  <span class="n">NumberInterface</span> <span class="n">numberContract</span> <span class="o">=</span> <span class="n">NumberInterface</span><span class="p">(</span><span class="n">NumberInterfaceAddress</span><span class="p">);</span>
+  <span class="kd">function</span> <span class="n">someFunction</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+  <span class="c1">//调用合约的方法</span>
+    <span class="kt">uint</span> <span class="n">num</span> <span class="o">=</span> <span class="n">numberContract</span><span class="p">.</span><span class="n">getNum</span><span class="p">(</span><span class="nb">msg.sender</span><span class="p">);</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition- admonition">
+<p class="first admonition-title">小练习</p>
+<p>请为如下的合约生成接口，命名该接口，并调用该接口的方法。</p>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Dog</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">bark</span><span class="p">()</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s">&quot;Wong!&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">contract</span> <span class="n">DogInterface</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">____</span><span class="p">()</span> <span class="n">______</span> <span class="n">_______</span> <span class="p">(</span><span class="n">______</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">contract</span> <span class="n">MyContract</span> <span class="p">{</span>
+  <span class="c1">//取得已经部署好的合约的地址</span>
+  <span class="kt">address</span> <span class="n">DogInterfaceAddress</span> <span class="o">=</span> <span class="mh">0x735E388e9A8a073f14bdbb1C2bd4704dd386213c</span>
+  <span class="c1">// 初始化合约，获得合约实例</span>
+  <span class="n">DogInterface</span> <span class="n">dogContract</span> <span class="o">=</span> <span class="n">____________</span><span class="p">(</span><span class="n">____________</span><span class="p">);</span>
+  <span class="kd">function</span> <span class="n">someFunction</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+   <span class="c1">//调用合约的方法</span>
+   <span class="kt">string</span> <span class="n">message</span> <span class="o">=</span> <span class="n">dogContract</span><span class="p">.</span><span class="n">_____</span><span class="p">();</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>多返回值<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>Solidity 的语法对于返回值并没有强制规定是一个单值，相反它鼓励多值返回来减少编程复杂度。多值返回的语法相对简单，如下所示。</p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="c1">// 申明要返回3个值</span>
+<span class="kd">function</span> <span class="n">someFunction</span><span class="p">()</span> <span class="kr">internal</span> <span class="k">returns</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c1">//封装，返回3个值</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="n">processMultipleReturns</span><span class="p">()</span> <span class="kr">external</span> <span class="p">{</span>
+  <span class="kt">uint</span> <span class="n">a</span><span class="p">;</span>
+  <span class="kt">uint</span> <span class="n">b</span><span class="p">;</span>
+  <span class="kt">uint</span> <span class="n">c</span><span class="p">;</span>
+  <span class="c1">//多值返回，直接解封装:</span>
+  <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="n">someFunction</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="n">getLastReturnValue</span><span class="p">()</span> <span class="kr">external</span> <span class="p">{</span>
+  <span class="kt">uint</span> <span class="n">c</span><span class="p">;</span>
+  <span class="c1">//我们也可以直接抛弃某些不关心的值:</span>
+  <span class="p">(,,</span><span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="n">someFunction</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="advanced.html" class="btn btn-neutral float-right" title="高级语法和概念" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="basic.html" class="btn btn-neutral float-left" title="基础概念" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, laalaguer
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-142187300-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>
