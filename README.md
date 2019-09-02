@@ -1,4 +1,6 @@
-## 《以太坊的指南针》
+## [《以太坊的指南针》](http://ethbook.abyteahead.com/)
+
+全书链接：http://ethbook.abyteahead.com/
 
 这是给 **程序员** 读的入门书，更是一本面向 **从未接触过以太坊人群** 的书。
 
@@ -10,7 +12,6 @@
 
 书中的知识点都是作者在日常编程工作中总结的。希望对你们有帮助。
 
-全书链接：http://ethbook.abyteahead.com/
 
 ## 目录
 ```
