@@ -22,7 +22,7 @@ copyright = u'2019, laalaguer'
 author = 'laalaguer'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = '1.0.0'
 
 # -- Backward compatibility with Sphinx v1.8.3 -------------------------------
 
