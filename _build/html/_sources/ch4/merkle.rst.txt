@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch4/merkle.rst
+
 Merkle树和 Merkle证明
 ==================================
 

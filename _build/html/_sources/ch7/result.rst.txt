@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch7/result.rst
+
 虚拟机的执行结果
 ===========================
 

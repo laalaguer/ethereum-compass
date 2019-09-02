@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch6/deploy.rst
+
 部署智能合约
 ===============
 

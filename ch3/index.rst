@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch3/index.rst
+
 .. _ref-transaction-index:
 
 第 3 章 交易是驱动力

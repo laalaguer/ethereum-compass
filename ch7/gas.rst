@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch7/gas.rst
+
 Gas 花费与退回
 =====================
 

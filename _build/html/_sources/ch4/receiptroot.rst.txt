@@ -1,5 +1,7 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch4/receiptroot.rst
+
 资料篇：收据树
-============
+=================================
 
 每个区块都有一棵独立的 **收据树** （receiptsRoot）。
 

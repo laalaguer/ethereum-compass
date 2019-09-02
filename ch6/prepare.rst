@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch6/prepare.rst
+
 智能合约发布准备
 ============================
 

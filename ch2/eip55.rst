@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch2/eip55.rst
+
 资料篇：EIP-55 格式的账户地址
 ==========================================
 

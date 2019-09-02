@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch9/erc20.rst
+
 上手实践：ERC20合约
 ==============================
 

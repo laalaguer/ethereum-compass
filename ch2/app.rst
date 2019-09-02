@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch2/app.rst
+
 资料篇：常用钱包 App
 ====================================
 

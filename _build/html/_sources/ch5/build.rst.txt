@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch5/build.rst
+
 启动一条以太坊私链
 ==========================
 

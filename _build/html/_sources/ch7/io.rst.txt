@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch7/io.rst
+
 虚拟机的输入输出
 ==========================
 

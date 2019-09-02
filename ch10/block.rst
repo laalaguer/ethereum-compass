@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch10/block.rst
+
 .. _reference-block-compare:
 
 比特币的区块

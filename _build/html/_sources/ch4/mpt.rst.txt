@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch4/mpt.rst
+
 .. _reference-mpt:
 
 Merkle Patricia树

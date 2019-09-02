@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch2/basic.rst
+
 小白基础知识问答
 ====================
 

@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch10/utxo.rst
+
 .. _reference-utxo:
 
 以太坊与比特币账户的区别

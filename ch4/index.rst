@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch4/index.rst
+
 第 4 章 数据结构
 ==========================
 

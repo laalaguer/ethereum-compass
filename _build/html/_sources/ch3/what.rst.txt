@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch3/what.rst
+
 .. _reference-what-is-transaction:
 
 交易的样子

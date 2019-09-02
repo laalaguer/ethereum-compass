@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch4/stateroot.rst
+
 资料篇：状态树 (以及存储树）
 ====================================
 

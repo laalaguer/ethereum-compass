@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/index.rst
+
 《以太坊的指南针》
 ======================================
 

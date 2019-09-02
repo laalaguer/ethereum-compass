@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch5/geth.rst
+
 Geth客户端的结构
 ===========================
 

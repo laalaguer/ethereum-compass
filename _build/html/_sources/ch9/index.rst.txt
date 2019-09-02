@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch9/index.rst
+
 第 9 章 Truffle合约开发实战
 ================================
 

@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch3/dig.rst
+
 .. _ref-dig:
 
 资料篇：矿工与挖矿奖励

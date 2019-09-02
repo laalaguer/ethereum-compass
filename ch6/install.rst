@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch6/install.rst
+
 安装编译器
 ==================
 

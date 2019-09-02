@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch3/interval.rst
+
 扩展阅读
 ====================
 

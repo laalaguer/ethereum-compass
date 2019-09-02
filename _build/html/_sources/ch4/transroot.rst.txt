@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch4/transroot.rst
+
 资料篇：交易树
 ==============
 

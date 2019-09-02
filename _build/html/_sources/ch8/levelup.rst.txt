@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch8/levelup.rst
+
 语法进阶
 ===========
 

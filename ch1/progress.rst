@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch1/progress.rst
+
 发展阶段
 ==============================
 

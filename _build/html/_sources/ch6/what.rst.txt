@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch6/what.rst
+
 什么是智能合约？
 ======================
 

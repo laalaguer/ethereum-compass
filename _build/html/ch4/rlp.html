@@ -308,6 +308,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -322,7 +324,10 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/ch4/rlp.rst.txt" rel="nofollow"> View page source</a>
+            
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch4/rlp.rst" class="fa fa-github"> Edit on GitHub</a>
+            
           
         
       </li>
@@ -467,12 +472,15 @@
 <li>总编码结果为：[ <code class="docutils literal notranslate"><span class="pre">0xcc</span></code> , <code class="docutils literal notranslate"><span class="pre">0x85,</span> <span class="pre">0x68,</span> <span class="pre">0x65,</span> <span class="pre">0x6c,</span> <span class="pre">0x6c,</span> <span class="pre">0x6f</span></code> , <code class="docutils literal notranslate"><span class="pre">0x85,</span> <span class="pre">0x77,</span> <span class="pre">0x6f,</span> <span class="pre">0x72,</span> <span class="pre">0x6c,</span> <span class="pre">0x64</span></code> ]</li>
 </ul>
 </li>
-<li><p class="first">如果各数据项的RLP编码结果综合数据在 55 个字符以上，则按照三部分安排，</p>
-</li>
-</ul>
-<p>从 <strong>右往左</strong> 依次是：各数据项分别经过RLP编码后的结果 <em>P1</em> ，
+<li><dl class="first docutils">
+<dt>如果各数据项的RLP编码结果综合数据在 55 个字符以上，则按照三部分安排，</dt>
+<dd><p class="first last">从 <strong>右往左</strong> 依次是：各数据项分别经过RLP编码后的结果 <em>P1</em> ，
 总数据体量的 16 进制表达 <em>P2</em> ，
 <code class="docutils literal notranslate"><span class="pre">0xf7</span></code> + 数据体量的长度前缀 <em>P3</em> ，P3的范围在 <code class="docutils literal notranslate"><span class="pre">0xf8</span></code> ～ <code class="docutils literal notranslate"><span class="pre">0xff</span></code> 。</p>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 <div class="section" id="id5">
 <h2>RLP数组解码<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>

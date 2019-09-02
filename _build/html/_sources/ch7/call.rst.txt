@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch7/call.rst
+
 合约调用合约?
 ==================
 

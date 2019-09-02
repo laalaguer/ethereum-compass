@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch3/life.rst
+
 交易的生命周期
 ========================
 

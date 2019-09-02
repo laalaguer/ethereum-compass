@@ -308,6 +308,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -322,7 +324,10 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/ch5/coinbase.rst.txt" rel="nofollow"> View page source</a>
+            
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch5/coinbase.rst" class="fa fa-github"> Edit on GitHub</a>
+            
           
         
       </li>
@@ -339,7 +344,7 @@
 <h1>接收挖矿奖励<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>恭喜你，至此我们已经成功完成了创世并且启动了我们私有的以太坊链，目前这个链上有且仅有我们一台计算机在做挖掘工作，虽然不停地挖掘出了很多区块，但这些区块都是空区块，同时挖矿奖励也汇入了一个我们随机指定的账户内：</p>
 <p class="centered">
-<strong>0x7df9a875a174b3bc565e6424a0050ebc1b2d1d82</strong></p><p>这个地址我们没有它的私钥，也就是说这部分汇入的币就永远不可能为我们所用。我们下面来应用 <a class="reference internal" href="../ch2/index.html#reference-account"><span class="std std-ref">第 2 章 账户是什么</span></a> 所学的账户知识，生成两个以太坊账户并且将其中一个设置为挖矿的奖励地址替换上方的地址。</p>
+<strong>0x7df9a875a174b3bc565e6424a0050ebc1b2d1d82</strong></p><p>这个地址我们没有它的私钥，也就是说这部分汇入的币就永远不可能为我们所用。我们下面来应用 <a class="reference internal" href="../ch2/account.html#reference-account"><span class="std std-ref">账户探秘</span></a> 所学的账户知识，生成两个以太坊账户并且将其中一个设置为挖矿的奖励地址替换上方的地址。</p>
 <p><strong>请确保你的Geth节点尚在运行</strong> ，我们新开命令行窗口执行 attach 命令依附上正在运行中的Geth节点：</p>
 <div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> ether-test

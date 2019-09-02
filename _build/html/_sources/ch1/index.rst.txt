@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch1/index.rst
+
 第 1 章 以太坊：一台全球计算机
 =========================================
 

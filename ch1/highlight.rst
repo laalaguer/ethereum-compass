@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch1/highlight.rst
+
 .. _reference-total-supply:
 
 以太坊的特色
@@ -36,7 +38,7 @@
 用户在使用全球以太坊网络计算服务的时候需要支付以太币作为交易费，以太币的涨跌直接关系着用户运行智能合约的成本。
 
 .. Note::
-   以太币约3/4在创世之初即已经存在，总量没有上限，会无限通货膨胀。
+   以太币约3/4在创世之初即已经存在，其总发行量会跟随项目进度而调整。
 
 
 .. topic:: 挖矿速度

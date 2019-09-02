@@ -1,4 +1,4 @@
-.. _reference-account:
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch2/index.rst
 
 第 2 章 账户是什么
 ===============================

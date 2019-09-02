@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch9/install.rst
+
 编译、测试工具安装
 ====================
 

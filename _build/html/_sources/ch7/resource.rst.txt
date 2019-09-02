@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch7/resource.rst
+
 虚拟机的执行资源
 =======================
 

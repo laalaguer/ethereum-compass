@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch7/index.rst
+
 第 7 章 以太坊虚拟机探秘
 ==========================
 

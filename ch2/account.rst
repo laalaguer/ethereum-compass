@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch2/account.rst
+
 .. _reference-account:
 
 账户探秘

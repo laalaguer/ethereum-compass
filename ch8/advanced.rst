@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch8/advanced.rst
+
 高级语法和概念
 =====================
 

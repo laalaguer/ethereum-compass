@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch10/triangle.rst
+
 .. _reference-impossible-triangle:
 
 "不可能的三角"问题

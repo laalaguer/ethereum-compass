@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch4/block.rst
+
 .. _reference-eth-block:
 
 资料篇：区块

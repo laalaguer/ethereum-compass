@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch5/index.rst
+
 第 5 章 构建一条以太坊私链
 =============================
 

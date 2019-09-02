@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch8/index.rst
+
 第 8 章 Solidity语法练习
 ============================
 

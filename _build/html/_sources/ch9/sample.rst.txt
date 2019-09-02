@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch9/sample.rst
+
 Truffle启动样例项目
 ==========================
 

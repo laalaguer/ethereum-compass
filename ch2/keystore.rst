@@ -1,3 +1,5 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch2/keystore.rst
+
 .. _reference-keystore:
 
 资料篇：Keystore 与私钥保存
