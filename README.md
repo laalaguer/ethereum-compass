@@ -6,7 +6,7 @@
 
 发现错误或者建议，请在Github 页面上 Issue 页面直接提出 Issue
 
-## 方式一： 直接提 Issue
+## 方式二： 直接提 Issue
 
 克隆本项目到本地
 
@@ -14,7 +14,7 @@
 
 发现错误或者建议，请在Github 页面上 Issue 页面直接提出 Issue
 
-## 方式二： 启动本地编辑
+## 方式三： 启动本地编辑
 ```
    pip3 install -r requirements.txt 
 
