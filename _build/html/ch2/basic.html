@@ -346,9 +346,10 @@
 <div class="section" id="id2">
 <h2>我的以太币记录在哪里？<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>你的以太币记载在 <strong>世界状态</strong> （world state）里。</p>
-<p>世界状态是一份不断变化的数据。
+<p class="centered">
+<strong>世界状态 = 每个人账户的状态的总集合</strong></p><p>世界状态是一份不断变化的数据。
 它在每个以太坊节点中都有一份一模一样的拷贝。
-该状态记录了所有世界上以太坊账户的信息，包括了外部账户（由私钥持有人所控制的账户）也包括了合约账户（由智能合约代码所控制）。</p>
+该状态记录了所有世界上以太坊账户的信息。</p>
 <p>如下图所示，读者既可以将其理解为由 “地址+地址对应的账户的状态”所组成的无序大集合，
 也可以理解为一种地址与地址对应账户的状态的映射的集合。
 任何一次世界状态的改变都代表这个集合中某些账户的状态值发生了改变。</p>
@@ -368,12 +369,12 @@
 <p class="last">促成  <strong>世界状态</strong> (world state) 转移的手段过程是 <strong>交易</strong></p>
 </div>
 <p>如下图所示：方框中弧线代表了交易过程，
-每个交易由 <span class="math notranslate nohighlight">\(T_{1}\)</span>, <span class="math notranslate nohighlight">\(T_{2}\)</span> , <span class="math notranslate nohighlight">\(T_{3}\)</span> 表示。而世界状态因为交易的发生，从 <span class="math notranslate nohighlight">\(σ_{t1}\)</span> 状态 <strong>转移</strong> 到了 <span class="math notranslate nohighlight">\(σ_{t+1}\)</span> 。
+每个交易由 <span class="math notranslate nohighlight">\(T_{1}\)</span>, <span class="math notranslate nohighlight">\(T_{2}\)</span> , <span class="math notranslate nohighlight">\(T_{3}\)</span> 表示。而世界状态因为交易的发生，从 <span class="math notranslate nohighlight">\(σ_{t}\)</span> 状态 <strong>转移</strong> 到了 <span class="math notranslate nohighlight">\(σ_{t+1}\)</span> 。
 每个用户的交易只要成功记录入区块链，都会引发世界状态的一小次局部部分变更。</p>
 <p>如果这笔发起的交易牵涉到了你，你的账户余额就会变化。</p>
 <div class="figure align-center" id="id10">
 <a class="reference internal image-reference" href="../_images/Picture3.png"><img alt="../_images/Picture3.png" src="../_images/Picture3.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">世界状态从 <span class="math notranslate nohighlight">\(σ_{t1}\)</span> 状态 <strong>转移</strong> 到了 <span class="math notranslate nohighlight">\(σ_{t+1}\)</span></span></p>
+<p class="caption"><span class="caption-text">世界状态从 <span class="math notranslate nohighlight">\(σ_{t}\)</span> 状态 <strong>转移</strong> 到了 <span class="math notranslate nohighlight">\(σ_{t+1}\)</span></span></p>
 </div>
 </div>
 <div class="section" id="id4">
@@ -411,32 +412,32 @@
 </div>
 <div class="section" id="id7">
 <h2>我如何参与以太坊？<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
-<p>你可以贡献一个计算机节点来参与以太坊网络。</p>
-<p>在以太坊网络中，没有中央服务器提供集中化的服务，
-而是由全世界的计算机组成网络并协同运行对外提供服务。
-在网络中的每个计算机节点都处于平等地位。
-在早期，也就是只有爱好者们的家庭计算机参与组成网络时，
-每个计算机都运行着同样一份开源软件的拷贝，矿工节点与普通验证节点的身份区别不是很明显。</p>
-<p>但随着时间的推移，网络中节点的类型发生了分化。</p>
-<p>有些节点例如 <strong>手机钱包</strong>，它并不保留完整区块链数据，仅做交易发送与校验；
-有些节点运行在服务器上，参与日常区块的同步与校验工作；
-有些节点改进了代码和硬件架构进行挖矿，并可以高速进行区块链记账，我们称其为矿工节点。</p>
-<p>虽然这些节点的侧重点不同，但在共识算法和通讯协议层面上统统遵循统一的标准，可以视为网络中平等的计算机节点。</p>
-<p>普通用户只要拥有手机钱包 App，就可以参与日常以太坊网络交易了。</p>
+<p>你可以通过一台计算机来联网参与以太坊网络。也可以下载手机钱包 App，参与以太坊网络。</p>
 <div class="figure align-center" id="id13">
 <a class="reference internal image-reference" href="../_images/Picture7.png"><img alt="../_images/Picture7.png" src="../_images/Picture7.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text">区块链网络由计算机节点组成</span></p>
 </div>
+<p>在以太坊网络中，没有中央服务器提供集中化的服务，
+而是由全世界的计算机组成网络并协同运行对外提供服务。
+在网络中的每个计算机节点都处于平等地位。</p>
+<p>在早期，也就是只有爱好者们的 <strong>家庭计算机</strong> 参与组成网络时，
+每个计算机都运行着同样一份开源软件的拷贝，矿工节点与普通验证节点的身份区别不是很明显。</p>
+<p>但随着时间的推移，网络中节点的类型发生了分化。</p>
+<p>有些节点例如 <strong>手机钱包</strong>，它并不保留完整区块链数据，仅做交易发送与校验；</p>
+<p>有些节点运行在 <strong>服务器上</strong> ，常年在线，参与日常区块的同步与校验工作；</p>
+<p>有些节点运行高性能 <strong>专用硬件</strong> 进行挖矿（出块记账），我们称其为矿工节点。</p>
+<p>虽然这些节点的侧重点不同，但在共识算法和通讯协议层面上统统遵循统一的标准，可以视为网络中逻辑上平等的计算机节点。</p>
 </div>
 <div class="section" id="id8">
 <h2>我如何与其他人同步账本？<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
-<p>以太坊计算机之间的消息传递是通过将大块数据分割成小块后，用 <strong>点对点(P2P)</strong> 的技术传送、扩散的。</p>
+<p>以太坊节点之间的消息传递是将大块数据分割成小块后，用 <strong>点对点(P2P)</strong> 的技术传送、扩散的。</p>
 <p>没有一个中央服务器负责数据校准或者消息扩散引导，这与分布式下载工具 <strong>比特彗星(BitComet)</strong> 有相似之处。
 网络交易的发送、智能合约的调用、被挖掘出的新区块的播报，都是通过点对点网络进行广播的。
 当发送交易时，用户将交易通过节点广播出去，在矿工成功打包出块后将区块广播到网络里。</p>
-<p>只要出具的区块符合共识算法，接收到广播的普通节点会进一步地将这个消息传递给相邻的节点，
-点对点网络承担着各个节点之间数据同步的责任。
-在整个自治网络中，没有中央服务器，节点可以选择自愿加入或者离开节点网络。</p>
+<p>所以你的本地账本是通过 P2P 网络分块下载的。就和BT下载差不多。</p>
+<p>你发出的交易也是通过同一个 P2P 网络扩散出去的。</p>
+<p>你的交易被打包后，最后也是通过P2P网络传消息回来，告诉你的。</p>
+<p>在整个自治网络中，没有中央服务器，节点可以 <em>随时*</em> 选择自愿加入或者离开节点网络。</p>
 </div>
 </div>
 
