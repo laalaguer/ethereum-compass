@@ -374,25 +374,26 @@
 <hr class="docutils" />
 <div class="section" id="id2">
 <h2>交易与消息什么区别？<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>在以太坊中，经常混淆的两个概念是交易(transaction)与消息(message) <span class="guilabel">深度话题</span>。</p>
+<p>在以太坊中，经常混淆的两个概念是交易<span class="guilabel">transaction)</span>与消息<span class="guilabel">message</span>。</p>
 <p>甚至有人用外部交易与内部交易来解释这两个概念，这是错误的。</p>
-<p>交易是外部账户发起的，可以包含一条消息，两者是包含关系。这里着重解释一下消息的定义：消息在账户与账户之间传递数据(data)与价值(value)，消息的具体表现形式如下：</p>
+<p>交易是外部账户发起的，可以包含一条消息，两者是包含关系。</p>
+<p>这里着重解释一下消息的定义：消息在账户与账户之间传递数据(data)与价值(value)，消息的具体表现形式如下：</p>
 <blockquote>
 <div><ul class="simple">
-<li>一个账户向另一个账户请求函数调用。</li>
-<li>一个账户向另一个账户发送以太币。</li>
+<li>数据：一个账户向另一个账户请求函数调用。</li>
+<li>价值：一个账户向另一个账户发送以太币。</li>
 </ul>
 </div></blockquote>
 <p><strong>读者会问，那不就是发起交易吗?</strong></p>
-<p>非也，消息的确可以由外部账户通过请求一次交易来触发。但是，被作用的对象如果是一个合约账户的话， <strong>它还可以进一步调用其他的合约</strong> （进一步发送消息）；</p>
-<p>如果合约账户经过代码运行后要修改其他外部账户的状态，例如给外部账户转账以太币，则又会向该外部账户发送一次消息，这类消息并不是外部可见的交易，不会在区块链上产生新的交易。</p>
+<p>非也，消息的确可以由外部账户通过请求一次交易来触发。但是，被作用的对象如果是一个智能合约的话， <strong>它还可以进一步调用其他的合约</strong> （进一步发送消息）；</p>
+<p>如果合约账户经过代码运行后要修改其他外部账户的状态，例如给外部账户转账以太币，则又会向该外部账户发送一次消息，<strong>这类消息并不是外部可见的交易</strong>，不会在区块链上产生新的交易。</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>根据以太坊黄皮书中的定义：</p>
 <p>Transaction: A piece of data, signed by an External Actor. It represents either a Message or a new Autonomous Object. Transactions are recorded into each block of the blockchain.</p>
-<p><strong>意即交易由外部账户持有人签名发起，交易内包含了一个消息或一个新的智能合约。</strong></p>
+<p><strong>交易由外部账户持有人签名发起，交易内包含了一个消息或一个新的智能合约。</strong></p>
 <p>Message: Data (as a set of bytes) and Value (specified as Ether) that is passed between two Accounts, either through the deterministic operation of an Autonomous Object or the cryptographically secure signature of the Transaction.</p>
-<p class="last"><strong>意即消息是用于在两个账户之间传递数据和以太币的载体，消息由智能合约调用另一个智能合约产生，也可以由外部签名的交易产生。</strong></p>
+<p class="last"><strong>消息是用于在两个账户之间传递数据和以太币的载体，消息由智能合约调用另一个智能合约产生，也可以由外部签名的交易产生。</strong></p>
 </div>
 </div>
 <hr class="docutils" />
@@ -400,7 +401,7 @@
 <h2>交易的特性是什么？<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><p><strong>“原子性”</strong></p>
-<p>如果将区块链看作是一个巨型分布式计算机驱动的数据库，一次交易就是执行对该数据库的一次修改操作。例如某智能合约在执行的过程中修改了一个或者数个外部账户的余额。 <strong>这些修改操作要么完全执行，要么完全不执行</strong> ，它不会部分执行，部分不执行。哪怕智能合约在执行某些操作后出现异常而失败，之前执行成功的部分操作也会被“回滚”来撤销影响，这就叫“原子性”。</p>
+<p>如果将区块链看作是一个巨型分布式数据库，一次交易就是执行对该数据库的一次修改操作。例如某智能合约在执行的过程中修改了一个或者数个外部账户的余额。 <strong>这些修改操作要么完全执行，要么完全不执行</strong> ，它不会部分执行，部分不执行。哪怕智能合约在执行某些操作后出现异常而失败，之前执行成功的部分操作也会被“回滚”来撤销影响，这就叫“原子性”。</p>
 <p><strong>“串行”</strong> 执行</p>
 <p>每一笔交易都会影响世界状态的一小部分，它们发生影响的顺序不是同时的，而是一个接一个的，单一时刻只有一个交易被执行，不会有并行出现。哪怕归入了同一个区块的数笔交易，在以太坊虚拟机上也有先后的执行顺序，并不会在虚拟机中多线程并发执行。</p>
 <p><strong>“进入区块链的顺序不确定”</strong></p>
