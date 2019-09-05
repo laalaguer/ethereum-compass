@@ -122,7 +122,7 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">第 3 章 交易是驱动力</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="how.html">交易的发送</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="how.html#id2">交易与消息什么区别？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how.html#id2">交易与消息的区别</a></li>
 <li class="toctree-l3"><a class="reference internal" href="how.html#id3">交易的特性是什么？</a></li>
 </ul>
 </li>
@@ -358,13 +358,25 @@
 </div>
 </div>
 <p><strong>每个字段解释如下：</strong></p>
-<p><span class="guilabel">nonce</span> 该账户已发送交易数量 nonce，为一个正整数。每次每当用户发出一笔交易后，这个字段需要自增 +1。例如我曾发送过 <code class="docutils literal notranslate"><span class="pre">5</span></code> 个交易，这个值在下次发送时变为 <code class="docutils literal notranslate"><span class="pre">6</span></code> .
-矿工在打包过程中，如果收到一个相同账户发出的，且为相同 nonce 的交易，则在等待池中的交易会被替换。一般使用者可以由客户端软件代为跟踪、指定该值，无须 需自己手动填写。</p>
-<p><span class="guilabel">GasPrice</span> 和 <span class="guilabel">Gas</span> 与现实生活中的汽油费类似。以太币用来购买运行交易所需的 Gas，单价 GasPrice 由市场价格决定，用户所愿意花销的交易手续费最大值由 Gas 确定指定，运行交易后多余的部分会退还给用户账户（惩罚性虚拟机指令 <code class="docutils literal notranslate"><span class="pre">assert</span></code> 例外，会扣除所有的剩余未花费的 Gas） 。一般智能合约部署是最花费最多Gas的交易，因为需要布置存储空间并执行初始化操作，而交易转账则花费较小 少Gas 。Gas 的花费，预测人工预测并不准确，可以让客户端软件在签发交易时代为预测、评估，无需无须自己手动填写。在矿工机器上，当用户的交易执行超过 Gas 这个的值的时候，Gas 耗尽，执行失败，退出执行流程。这么设计的目的是以防止单个合约代码有 bug 而无法在有限时间内执行完毕。</p>
-<p><span class="guilabel">From</span> 该笔交易的发送方。交易将由发送方发起，并最终转入接收方。</p>
-<p><span class="guilabel">To</span> 该笔交易的接收方。若该交易为普通以太币转账交易，则该地址为受益人账户地址；若该交易为调用智能合约的交易，则接收方地址为智能合约的地址；若该交易为创建智能合约，则接收方地址可空缺。</p>
-<p><span class="guilabel">value</span> 具体转移多少以太币到接收方。该数值以 <code class="docutils literal notranslate"><span class="pre">wei</span></code> 为单位（以太坊规定的数字运算最小不可分割单位），换算的公式为 <span class="guilabel">1 Ether=1 x 10^18  wei</span>，因为以太坊虚拟机没有浮点数运算，所以一律转为 <code class="docutils literal notranslate"><span class="pre">wei</span></code> 进行大数字运算。一般转账时让客户端软件进行换算即可，无需须人工干预。</p>
-<p><span class="guilabel">data</span> 当若进行以太币纯转账交易时，该字段可忽略；若进行为智能合约调用，则该值包含调用函数和参数的字节码；若为进行合约创建则该值包含初始化合约的相关字节代码。</p>
+<p><span class="guilabel">nonce</span> 该账户已发送交易数量，一个正整数。</p>
+<p>每次每当用户发出一笔交易后，这个字段需要自增 +1。例如我曾发送过 <code class="docutils literal notranslate"><span class="pre">5</span></code> 个交易，下次发送交易时变为 <code class="docutils literal notranslate"><span class="pre">6</span></code>。
+一般使用者可以由客户端软件代为跟踪、指定该值，无须需自己手动填写。</p>
+<p><span class="guilabel">GasPrice</span> 和 <span class="guilabel">Gas</span> 与现实生活中的汽油费类似，用以支付交易费。</p>
+<p class="centered">
+<strong>交易费 = Gas x GasPrice</strong></p><p>汽油数量<strong>Gas</strong>由用户指定，汽油单价<strong>GasPrice</strong>由市场价格决定。运行交易后多余的<strong>Gas</strong>会退还给用户(惩罚性虚拟机指令<code class="docutils literal notranslate"><span class="pre">assert</span></code>例外，会扣除所有的剩余未花费的 <strong>Gas</strong>) 。<strong>Gas</strong>的数值人工预测并不准确，可以让客户端软件在签发交易时代为预测，无需无须自己手动填写。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">一般智能合约部署是开销最大的交易，因为需要声明存储空间并执行初始化操作；而交易转账则花费较少；</p>
+</div>
+<p><span class="guilabel">From</span> 该笔交易的发送方。</p>
+<p><span class="guilabel">To</span> 该笔交易的接收方。</p>
+<p>若该交易为普通以太币转账交易，则接收方为受益人账户地址；若该交易为调用智能合约的交易，则接收方为智能合约的地址；若该交易为创建智能合约，则接收方地址可空缺。</p>
+<p><span class="guilabel">value</span> 具体转移多少以太币到接收方。</p>
+<p>该数值以 <code class="docutils literal notranslate"><span class="pre">wei</span></code> 为单位（以太坊规定的数字运算最小不可分割单位），换算的公式为</p>
+<p class="centered">
+<strong><span class="math notranslate nohighlight">\(1 {Ether}=1 x 10^{18} wei\)</span></strong></p><p>因为以太坊虚拟机没有浮点数运算，所以一律转为 <code class="docutils literal notranslate"><span class="pre">wei</span></code> 进行大数字运算。一般转账时让客户端软件进行换算即可。</p>
+<p><span class="guilabel">data</span> 数据字段。</p>
+<p>当若进行以太币纯转账交易时，该字段可空缺；若进行为智能合约调用，则该值包含编码后的函数名和参数的字节码；若为进行合约创建，则该值包含初始化合约的字节码。</p>
 </div>
 
 
