@@ -362,58 +362,62 @@
 <div><ol class="arabic simple">
 <li>单一区块所包含的交易集合在执行哈希后的 <code class="docutils literal notranslate"><span class="pre">256bits</span></code> (32字节) 的哈希值必须是一个特殊数值，它的开头必须满足一定数量的 <code class="docutils literal notranslate"><span class="pre">0000...</span></code> 作为起始。</li>
 <li>区块串联形成区块链，每个链条环节（称为高度）有且仅有一个区块。</li>
-<li>一旦找到符合条件的区块，立即广播给所有节点，区块进入该高度的候选区。</li>
-<li>若候选区内有区块，则新的区块可以从它基础上往后计算新区块。</li>
-<li>最长的链才是最终的区块链账本，其他较短的分支链条都不被承认。</li>
+<li>一旦找到符合条件的区块，立即广播，该区块进入该高度的候选区。候选区内可以包含多个候选者。</li>
+<li>可以从任一候选者基础上，往后计算新区块。</li>
+<li>最高的链才是最终的区块链账本，其他较短的分支链条都不被承认，优胜劣汰。</li>
 </ol>
 </div></blockquote>
-<p>这几条规定相辅相成，解决了甄别真假消息和统一共识的难题。它通过 <strong>牺牲巨大电力和交易速度，保障了共识与安全性。</strong> 具体分析如下：</p>
-<p><strong>第 1 条规定</strong> 即为PoW：矿工需要反复排列组合，选取合适的交易加入区块进行 <strong>SHA-256</strong> 哈希试算计算哈希值，直到符合开头 0 数量多寡的规定。例如比特币区块链上高度为 <strong>#286819</strong> 的合法区块的哈希值为：（开头有16个 0）</p>
+<p>这几条规定相辅相成，解决了甄别真假消息和统一共识的难题。它通过<strong>牺牲巨大电力和交易速度，保障了共识与安全性。</strong> 具体分析如下：</p>
+<p><strong>第 1 条规定</strong> 即为PoW：矿工需要反复排列组合，选取合适的交易加入区块进行 <strong>SHA-256</strong> 哈希试算计算哈希值，直到符合开头 0 数量多寡的规定。例如比特币区块链上高度为 <strong>#286819</strong> 的合法区块的哈希值 (开头有16个 0):</p>
 <p class="centered">
-<strong>0000000000000000e067a478024addfecdc93628978aa52d91fabd4292982a50</strong></p><p>区块链选取的散列函数也称之为哈希函数，这个函数的特性是输入任意长的字符串，该函数都能将其映射为固定长度的散列值，例如比特币选取的 SHA3-256 函数即为第三代散列函数，输出定长为 <code class="docutils literal notranslate"><span class="pre">256</span></code> 位（256bits）。
-散列函数满足以下特性：</p>
-<blockquote>
+<strong>0000000000000000e067a478024addfecdc93628978aa52d91fabd4292982a50</strong></p><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>哈希函数的特性是输入任意长的字符串，该函数都能将其映射为固定长度的散列值，例如比特币选取的 SHA3-256 函数即为第三代散列函数，输出定长为 <code class="docutils literal notranslate"><span class="pre">256</span></code> 位（256bits）。</p>
+<p>哈希函数满足以下特性：</p>
+<blockquote class="last">
 <div><ol class="arabic simple">
 <li>碰撞不易：不同的输入值，产生不同的输出值，微小的输入改动也会引起输出的巨大变化。</li>
 <li>单向性：给定输入值，可快速计算输出值；给出输出值，却无法推断输入值。</li>
 <li>穷举性：若要输出值介于某范围，没有比穷举输入更好的尝试方法。</li>
 </ol>
 </div></blockquote>
-<p>在区块链的领域中，利用哈希函数对不同的输入产生的输出迥异，且无法通过规律预测的特性，无法投机取巧来猜测，只能通过耗费 CPU 算力与电力的方式反复排列输入参数来尝试。
-需要计算出特定的结果，必定付出了艰巨的工作，此称为 <strong>工作量证明</strong> (PoW，Proof of Work)。</p>
+</div>
+<p>在区块链的领域中，利用哈希函数对不同的输入产生的输出迥异，且无法通过规律预测的特性，来保障矿工确实花费了大量资源来进行计算。矿工无法投机取巧来猜测，只能通过耗费 CPU 算力与电力的方式反复排列输入参数来尝试。
+此称为 <strong>工作量证明</strong> (PoW，Proof of Work)。</p>
 </div>
 <div class="section" id="id2">
 <h2>比特币算力的中心化问题<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>比特币网络规定每个区块头的哈希值必须符合一定数量的 <code class="docutils literal notranslate"><span class="pre">000...</span></code>，这就给找到符合条件的区块制造了难度。
-但这个难度并非 <strong>一成不变</strong> ，输出结果的开头 0 数量的要求会随着全球全网算力而动态调整。
+但这个难度并非<strong>一成不变</strong>，输出结果的开头 0 数量的要求会随着全球全网算力而动态调整。
 每隔 <code class="docutils literal notranslate"><span class="pre">2016</span></code> 个块根据全网算力提升或下降自动动态调整难度，调整周期大约为 <code class="docutils literal notranslate"><span class="pre">2周</span></code>。
-动态调整的结果是控制这个计算难度维持在 <code class="docutils literal notranslate"><span class="pre">10分钟</span></code> 左右出一个块 。</p>
-<p>正因为有 PoW 机制的存在，区块链的 <strong>转账是缓慢的</strong> ，无法和支付宝等互联网支付工具实时性到账相媲美。</p>
+动态调整的结果是控制这个计算难度维持在 <code class="docutils literal notranslate"><span class="pre">10</span></code> 分钟左右出一个块 。</p>
+<p>正因为有 PoW 机制的存在，<strong>转账是缓慢的</strong>，无法和支付宝等互联网支付工具实时性到账相媲美。</p>
 <p>两者在中心化模式和分布式模式、在效率与公开透明上是各有取舍的。</p>
 <p><strong>中心化的模式</strong> 的假设前提是“信任”。需要各个使用者相信中央节点的可靠与权威（例如相信支付宝系统的诚实可靠、权威），换来的优势就是近乎瞬间的转账效率。</p>
-<p><strong>分布式系统</strong> 的假设前提是“互不信任”。则需要在协调各节点达成共识后才能完成转账，这是需要付出昂贵的时间代价的，换来的优势就是转账账本的可靠性极高且没有中央节点作弊的嫌疑。</p>
+<p><strong>分布式系统</strong> 的假设前提是“互不信任”。则需要在协调各节点达成共识后才能完成转账，这是需要付出昂贵的时间代价的，换来的优势就是账本的可靠性较高且没有中心化风险。</p>
 <div class="figure align-center" id="id5">
 <a class="reference internal image-reference" href="../_images/Picture22.png"><img alt="../_images/Picture22.png" src="../_images/Picture22.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text">中心化支付系统，与去中心化支付系统的拓扑结构</span></p>
 </div>
-<p>比特币的共识机制被证明是单纯依赖高性能 CPU 就可提升算力的。
+<p>比特币的共识机制被证明是单纯依赖高性能 CPU 就可提升算力。
 各个参与的玩家都在千方百计提升自己在全网算力中所占的比例，
 有 <code class="docutils literal notranslate"><span class="pre">n%</span></code> 的算力占有率就有 <code class="docutils literal notranslate"><span class="pre">n%</span></code> 的概率挖到合法区块。
 为了提升算力来获得更大的概率，市场中有层出不穷的高性能比特币专用 <strong>ASIC</strong> 芯片矿机，
 它们的出现让算力集中于买得起矿机的高端玩家手中，而设备制造也被少数高端矿机生产厂商所垄断，
-ASIC 矿机的出现让普通的家庭计算机一夜之间被淘汰出局，耗尽数十年也挖不到一个比特币，
-违背了中本聪设计网络时的初衷：“人人参与，家庭计算机就可挖矿”。目前还没有很好的解决方案。</p>
+ASIC 矿机的出现让普通的家庭计算机一夜之间被淘汰出局，数十年也挖不到一个比特币。</p>
+<p>这违背了中本聪设计网络时的初衷：“人人参与，家庭计算机就可挖矿”。目前还没有很好的解决方案。</p>
 </div>
 <div class="section" id="pow-pos">
 <h2>以太坊的Pow/Pos机制<a class="headerlink" href="#pow-pos" title="Permalink to this headline">¶</a></h2>
-<p><strong>以太坊在前三个阶段采用 PoW 的共识机制</strong> ，核心是自以太坊1.0起推出的 <strong>Ethash</strong> 算法 <a class="footnote-reference" href="#id4" id="id3">[1]</a> (代码赏析本书第10章)。</p>
+<p><strong>以太坊在前三个阶段采用 PoW 的共识机制</strong> ，核心是自以太坊1.0起推出的 <strong>Ethash</strong> 算法 <a class="footnote-reference" href="#id4" id="id3">[1]</a> (代码赏析见 <a class="reference internal" href="../ch10/ethash.html#reference-ethash-chapter"><span class="std std-ref">ETHASH 挖矿算法</span></a>)。</p>
 <p>为了克服比特币的算力中心化问题，Ethash算法做了诸多调整。</p>
-<p>该算法依赖一个预先生成的大型数据集（1GB），在计算的过程中需要反复、分片地读取该数据集，这部分数据集体积远超过 <strong>ASIC/GPU/FPGA矿机</strong> 的内部寄存器体积，较慢的内存读写 I/O 操作时间抵消了 ASIC 矿机厂商的专用芯片集成化带来的计算时间优势，具体的算法规则如下。</p>
+<p>该算法依赖一个预先生成的大型数据集（1GB），在计算的过程中需要反复、分片地读取该数据集，这部分数据集体积远超过<strong>ASIC/GPU/FPGA矿机</strong>的内部寄存器体积，
+较慢的内存读写 I/O 操作时间抵消了 ASIC 矿机厂商的专用芯片集成化带来的计算时间优势，具体的算法规则如下。</p>
 <blockquote>
 <div><ul class="simple">
-<li>每一个区块通过区块头计算一个 <strong>种子</strong> ，该种子仅与本区块有关。</li>
-<li>基于种子生成一份16MB 的伪随机 <strong>缓存</strong>。</li>
-<li>基于缓存生成一份大型数据集，称为 <strong>DAG</strong> (有向无环图)，体积 1 GB。DAG的数据可由伪随机缓存快速地推导出来，而且 DAG 的数据分块，每块都和对应的缓存块有关。</li>
+<li>每一个区块通过区块头计算一个<strong>种子</strong>，该种子仅与本区块有关。</li>
+<li>基于种子生成一份16MB 的伪随机<strong>缓存</strong>。</li>
+<li>基于缓存生成一份大型数据集，称为<strong>DAG</strong>(有向无环图)，体积 1 GB。DAG的数据可由伪随机缓存快速地推导出来，而且 DAG 的数据分块，每块都和对应的缓存块有关。</li>
 <li>矿工挖矿的过程是不断地从 DAG 中取出数据作为输入值，再配合反复更改 nonce 试探，达到满足一定难度的输出值的运算。</li>
 <li>校验者仅需在得到输出值后，经由缓存推断出对应的DAG数据，代入计算验证输出值，轻客户端也能快速执行该任务。</li>
 <li>和比特币一样，Ethash 是一个”挖矿难，检测易”的算法。</li>
@@ -427,13 +431,13 @@ ASIC 矿机的出现让普通的家庭计算机一夜之间被淘汰出局，耗
 <p>在 <strong>第四阶段的以太坊经济模型采用PoS机制</strong> ，PoS全称 Proof of Stake，任何持有以太币的参与者都可以发起特殊交易，将自己的币锁定在一个存储中，让自己获得打包交易的资格，然后通过一个当前验证着都能参与的共识算法，完成新区块的打包和广播。PoS 算法的特点如下。</p>
 <blockquote>
 <div><ul class="simple">
-<li>不需要耗费大量电力资源来“苦劳”，挖块奖励可以减少，理论上发行总量可以被控制。</li>
+<li>不需要耗费大量电力资源来“挖矿”。理论上发行总量可以被控制。</li>
 <li>不需要购买昂贵设备，持有以太币即可参与挖矿。</li>
 <li>出块速度更快，不受制于PoW挖矿带来的时间延迟。</li>
 <li>减少挖矿工具中心化带来的风险。</li>
 </ul>
 </div></blockquote>
-<p>预计当第四阶段启动时，众多以太坊爱好者已经进入以太坊世界并持有了以太币，他们可以根据自己持币数量和轮转规则，竞争上岗，打包区块数据进行挖矿。目前已经有了代号 <strong>Casper</strong> 的测试网络可以运行、试用该共识机制。Casper网上的共识算法有惩戒措施，出块人取得资格需要质押一定数量的以太币，大家根据共识对新产出的块进行投票来判定该块是否有效，经过大部分人认可后，该块就能合法有效，但若在该过程中有少数人“作恶”被揪出，这些人就会被罚没所抵押的以太币以示惩戒。</p>
+<p>预计当第四阶段启动时，众多以太坊爱好者已经进入以太坊世界并持有了以太币，他们可以根据自己持币数量和挖矿规则，竞争上岗，打包区块数据进行挖矿。目前已经有了代号 <strong>Casper</strong> 的测试网络可以运行、试用该共识机制。Casper 网上的共识算法有惩戒措施，出块人取得资格需要质押一定数量的以太币，大家根据共识对新产出的块进行投票来判定该块是否有效，经过大部分人认可后，该块就能合法有效，但若在该过程中有少数人“作恶”被揪出，这些人就会被罚没所抵押的以太币以示惩戒。</p>
 <table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">

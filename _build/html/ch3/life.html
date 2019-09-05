@@ -348,9 +348,9 @@
 <a class="reference internal image-reference" href="../_images/Picture21.jpg"><img alt="../_images/Picture21.jpg" src="../_images/Picture21.jpg" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text">一笔交易的流转过程</span></p>
 </div>
-<dl class="docutils">
-<dt>从最源头开始，一笔交易的流转过程如下所示。</dt>
-<dd><ul class="first last simple">
+<p>从最源头开始，一笔交易的流转过程如下所示。</p>
+<blockquote>
+<div><ul class="simple">
 <li>客户端软件在收集完交易信息，组织成相应的结构体，需要使用用户的私钥来签名该交易。</li>
 <li>交易后编码为一个公开消息，通过节点网络发出并逐渐扩散到网络中各个节点。</li>
 <li>挖矿节点和众多其他普通节点同时收到该消息，矿工将其暂时缓存起来。</li>
@@ -358,29 +358,28 @@
 <li>矿工把打包好的区块（包含该交易）广播到网络中，参与共识算法挑选。</li>
 <li>区块进入最终的区块链被永久保存。</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <div class="admonition danger">
 <p class="first admonition-title">Danger</p>
 <p>若该笔交易费过低，则可能被调低优先级，在矿工的交易等待池(pending transaction pool)中等待较长的时间，或者在等待时，被其他高交易费的交易挤出等待池子。</p>
-<p>若该消息是智能合约调用，且所调用的智能合约在执行时 Gas花费过高，超过用户在结构体中指定的的Gas 上限，则会导致交易未能完整执行而失败。</p>
-<p class="last">然而，期间也可能因为多种原因而未能入选最终的区块链中，此时交易失败，需要重传该交易。</p>
+<p class="last">若所调用的智能合约在执行时<strong>Gas</strong>花费过高，超过用户在交易中指定的的<strong>Gas</strong>上限，则会导致交易失败。</p>
 </div>
-<p>实际世界里，在以太坊网络的拓扑结构中，普通的节点运行着不同厂家出品的节点程序，比如 Geth、Parity 等。节点之间通过“广播”的形式互相传递信息，用户的交易请求作为一种信息，在初始阶段经由某一个联网节点传递入网络中，如图所示。</p>
+<p>实际世界里，在以太坊网络的拓扑结构中，普通的节点运行着不同厂家出品的节点程序，比如 Geth、Parity 等。节点之间通过“广播”的形式互相传递信息，用户的交易请求，在初始阶段经由某一个联网节点传递入网络中，如图所示。</p>
 <div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="../_images/Picture20.jpg"><img alt="../_images/Picture20.jpg" src="../_images/Picture20.jpg" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text">一笔交易在以太坊网络的节点间传播过程</span></p>
 </div>
-<dl class="docutils">
-<dt>以太坊上最常见的交易是：</dt>
-<dd><ul class="first last simple">
+<p>以太坊上最常见的交易是：</p>
+<blockquote>
+<div><ul class="simple">
 <li>以太币转账</li>
 <li>智能合约调用</li>
 <li>智能合约创建</li>
 </ul>
-</dd>
-</dl>
-<p>这三种交易在交易发送时经历的步骤是 <strong>一模一样</strong> 的，区别仅在于填写交易时选择传递数据 <span class="guilabel">data</span> 还是传递价值 <span class="guilabel">value</span> 。传递数据的即为合约相关操作，传递价值即为转账操作。我们将在第6章中用动手实践的方式为读者展示具体的操作方法。</p>
+</div></blockquote>
+<p>这三种交易在交易发送时经历的步骤是<strong>一模一样</strong>的，区别仅在于填写交易时选择传递数据 <span class="guilabel">data</span> 还是传递价值 <span class="guilabel">value</span> 。
+传递数据的即为合约相关操作，传递价值即为转账操作。
+我们将在 <a class="reference internal" href="../ch6/index.html#reference-deploy-contract"><span class="std std-ref">第 6 章 手把手教你部署智能合约</span></a> 中用动手实践的方式为读者展示具体的操作方法。</p>
 </div>
 
 
