@@ -1,4 +1,5 @@
 :github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch6/index.rst
+
 .. _reference-deploy-contract:
 
 第 6 章 手把手教你部署智能合约

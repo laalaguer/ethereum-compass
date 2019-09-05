@@ -364,11 +364,13 @@
 <span id="id1"></span><a class="reference internal image-reference" href="../_images/Picture30.png"><img alt="../_images/Picture30.png" src="../_images/Picture30.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text">一棵包含了数字1到8的Merkle二叉树</span></p>
 </div>
-<p>在图中的 Merkle树里，我们一共持有8个基础数据， <code class="docutils literal notranslate"><span class="pre">1</span></code> 到 <code class="docutils literal notranslate"><span class="pre">8</span></code> ，它们两两分组形成最初的小组，
-例如数据 <code class="docutils literal notranslate"><span class="pre">1</span></code> 与数据 <code class="docutils literal notranslate"><span class="pre">2</span></code> ，它们分在一组中，并计算它们串联后的哈希值 <span class="math notranslate nohighlight">\(H_{1}={hash}(1,2)\)</span> ，
-同理将数据 <code class="docutils literal notranslate"><span class="pre">3</span></code> 与数据 <code class="docutils literal notranslate"><span class="pre">4</span></code> 串联的串联哈希值计算为 <span class="math notranslate nohighlight">\(H_2\)</span>，依次类推，形成第二层的节点。
-之后再将相邻第二层的小组的哈希值 <span class="math notranslate nohighlight">\(H_1\)</span>，
-逐层聚合反复递归组合低层级的节点并执行哈希计算。直到的过程直仅剩下一个节点：到计算出根节点哈希值 <strong>Root</strong> ，该过程完毕。如果碰上基础数据集不是偶数个元素（例如仅有7个数据），则复制一个元素，让它与自己的双胞胎做哈希运算。</p>
+<p>在图中的 Merkle树里，我们一共持有8个基础数据， <code class="docutils literal notranslate"><span class="pre">1</span></code> 到 <code class="docutils literal notranslate"><span class="pre">8</span></code> ，它们两两分组形成最初的小组。</p>
+<p>例如数据 <code class="docutils literal notranslate"><span class="pre">1</span></code> 与数据 <code class="docutils literal notranslate"><span class="pre">2</span></code> ，它们分在一组中，并计算它们串联后的哈希值 <span class="math notranslate nohighlight">\(H_{1}={hash}(1,2)\)</span> ，</p>
+<p>同理将数据 <code class="docutils literal notranslate"><span class="pre">3</span></code> 与数据 <code class="docutils literal notranslate"><span class="pre">4</span></code> 串联的串联哈希值计算为 <span class="math notranslate nohighlight">\(H_2\)</span>，依次类推，形成第二层的树中节点。</p>
+<p>之后再将第二层的树中节点<span class="math notranslate nohighlight">\(H_1\)</span>~ <span class="math notranslate nohighlight">\(H_4\)</span>两两分组。例如 (<span class="math notranslate nohighlight">\(H_1\)</span>与<span class="math notranslate nohighlight">\(H_2\)</span>串联计算第三层的哈希值<span class="math notranslate nohighlight">\(H_5\)</span>)。</p>
+<p>逐层聚合反复递归，执行哈希计算。直到的仅剩下一个哈希值节点：根节点哈希值 <strong>Root</strong> ，该过程完毕。</p>
+<p>如果碰上基础数据集不是偶数个元素（例如仅有7个数据），则复制一个元素，让它与自己的双胞胎做哈希运算。</p>
+<p>由此我们可以推论：Merkle树的树叶都是数据、树中的节点都是哈希值。</p>
 <div class="topic">
 <p class="topic-title first">那么，Merkle树如何提升了校验效率呢？</p>
 <p>Merkle树的精妙在于它将一个庞大的数据集分散成组。</p>
@@ -400,17 +402,17 @@
 <p>按照 <strong>Merkle证明</strong> ，我们仅需知晓4个哈希值即可作出证明。</p>
 <blockquote>
 <div><ul class="simple">
-<li>数字 <code class="docutils literal notranslate"><span class="pre">64</span></code> 的相邻数字 <code class="docutils literal notranslate"><span class="pre">18</span></code> 的哈希值(图中为 <span class="guilabel">1FXq</span>)</li>
-<li>相邻分组 <code class="docutils literal notranslate"><span class="pre">[5,</span> <span class="pre">27]</span></code> 的联合哈希值(图中为 <span class="guilabel">ec20</span>)</li>
-<li>相邻分支的哈希值(图中为 <span class="guilabel">8f74</span>)</li>
-<li>根节点哈希值(图中为 <span class="guilabel">6c0a</span>)</li>
+<li>数字 <code class="docutils literal notranslate"><span class="pre">64</span></code> 的相邻数字 <code class="docutils literal notranslate"><span class="pre">18</span></code> 的哈希值 (图中为 <span class="guilabel">1FXq</span>)</li>
+<li>相邻分组 <code class="docutils literal notranslate"><span class="pre">[5,</span> <span class="pre">27]</span></code> 的联合哈希值 (图中为 <span class="guilabel">ec20</span>)</li>
+<li>相邻分支的哈希值 (图中为 <span class="guilabel">8f74</span>)</li>
+<li>根节点哈希值 (图中为 <span class="guilabel">6c0a</span>)</li>
 </ul>
 </div></blockquote>
 <p><strong>证明推导过程如下：</strong></p>
 <p>我们计算得出 <code class="docutils literal notranslate"><span class="pre">64</span></code> 的哈希值为 <span class="guilabel">9Dog</span>，将结果与哈希值 <span class="guilabel">1FXq</span> 串联，计算得出联合哈希值 <span class="guilabel">781a</span>。</p>
 <p>重复上述过程，将 <span class="guilabel">781a</span> 与 <span class="guilabel">ec20</span> 串联，计算得出联合哈希值 <span class="guilabel">5c71</span>。</p>
-<p>重复上述过程，将 <span class="guilabel">5c71</span> 与 <span class="guilabel">8f74</span> 串联，计算出根哈希值。</p>
-<p>若根哈希值与我们从数据发送方传来的值 <span class="guilabel">6c0a</span> 对比，相等，则证明完毕。</p>
+<p>重复上述过程，将 <span class="guilabel">5c71</span> 与 <span class="guilabel">8f74</span> 串联，计算出根哈希值 <span class="guilabel">6c0a</span>。</p>
+<p>若根哈希值与我们从数据发送方传来的值 <code class="docutils literal notranslate"><span class="pre">6c0a</span></code> 对比，相等，则证明完毕。</p>
 <p>在整个校验过程中，我们并没有下载任何其他的数据，仅通过哈希值就能鉴别数据 <code class="docutils literal notranslate"><span class="pre">64</span></code> 的位置以及是否存在，是一种极其高效的方式，且可以横向扩展到任意大数量的数据集。</p>
 </div>
 

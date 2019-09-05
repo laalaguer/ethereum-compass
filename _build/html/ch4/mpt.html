@@ -348,7 +348,7 @@
 <div class="topic">
 <p class="topic-title first">首先我们定义一个节点。</p>
 <p>节点在逻辑上，由 <span class="guilabel">索引</span> 、<span class="guilabel">路径</span> 和 <span class="guilabel">数据</span> 这三部分组成。</p>
-<p>在实际中，我们保留 <cite>索引</cite>, 并将 <span class="guilabel">路径</span> 和 <span class="guilabel">数据</span> 编码成一个单元，称为 <cite>存储</cite>。</p>
+<p>在实际中, <span class="guilabel">索引</span>对应了数据库软件中一条记录的 <cite>键</cite>；将 <span class="guilabel">路径</span> 和 <span class="guilabel">数据</span> 编码成一个单元，称为 <cite>存储</cite>，对应了数据库软件中一条记录的“值”。</p>
 <p>节点可以利用数据库软件例如MySQL、SQLite或轻量级数据库LevelDB来存储，它需要保证查询一个索引时候快速高效。</p>
 <p>以太坊节点的 <span class="guilabel">路径</span> 是16格的Hex值，表示为0~f 的16个元素，节点的第17个元素是节点存储。具体结构如下图 <a class="reference internal" href="#id1">4-7</a> 所示, 数据库存储 <cite>key</cite> 和 <cite>value</cite> 为一组键值对。其中 <cite>value</cite> 包含了 <span class="guilabel">路径</span> 和 <span class="guilabel">数据</span> 。</p>
 </div>

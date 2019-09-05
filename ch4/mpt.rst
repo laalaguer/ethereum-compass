@@ -15,7 +15,7 @@ Merkle Patiricia树 (以下简称MPT树) 是一个可以存储键值对 (key-val
 
    节点在逻辑上，由 :guilabel:`索引` 、:guilabel:`路径` 和 :guilabel:`数据` 这三部分组成。
    
-   在实际中，我们保留 `索引`, 并将 :guilabel:`路径` 和 :guilabel:`数据` 编码成一个单元，称为 `存储`。
+   在实际中, :guilabel:`索引`\ 对应了数据库软件中一条记录的 `键`；将 :guilabel:`路径` 和 :guilabel:`数据` 编码成一个单元，称为 `存储`，对应了数据库软件中一条记录的“值”。
 
    节点可以利用数据库软件例如MySQL、SQLite或轻量级数据库LevelDB来存储，它需要保证查询一个索引时候快速高效。
    

@@ -1,4 +1,5 @@
 :github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch10/ethash.rst
+
 .. _reference-ethash-chapter:
 
 ETHASH 挖矿算法
