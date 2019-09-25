@@ -408,7 +408,7 @@
 </div>
 <div class="section" id="pausable">
 <h2>Pausable控制<a class="headerlink" href="#pausable" title="Permalink to this headline">¶</a></h2>
-<p>有了Ownable来明确合约所有权，那么合约是否可以由合约所有者（owner）控制，随时的暂停呢？因为有些合约是只能转账合约，它一旦发生灾难则暴露在公众下不可控制，如果合约所有者能够进行“临时暂停”该多好啊！Pausable可暂停合约就是这样设计的。</p>
+<p>有了Ownable来明确合约所有权，那么合约是否可以由合约所有者（owner）控制，随时地暂停呢？因为有些合约是智能转账合约，它一旦发生灾难则暴露在公众下不可控制，如果合约所有者能够进行“临时暂停”该多好啊！Pausable可暂停合约就是这样设计的。</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Pausable</span> <span class="kr">is</span> <span class="n">Ownable</span> <span class="p">{</span>
   <span class="kd">event</span> <span class="n">Pause</span><span class="p">();</span>
   <span class="kd">event</span> <span class="n">Unpause</span><span class="p">();</span>
@@ -548,7 +548,7 @@
 </div>
 <div class="section" id="payable">
 <h2>合约收款：payable修饰符<a class="headerlink" href="#payable" title="Permalink to this headline">¶</a></h2>
-<p>在虚拟机章节里面提到，以太坊只能合约调用就是消息的传递，消息传递包含两部分：调用智能合约方法（传递数据）以及以太币的支付。那么，合约能否接受调用者的以太币支付呢？答案当然是可以的，请看下列网上商城的代码。</p>
+<p>在虚拟机章节里面提到，以太坊智能合约调用就是消息的传递，消息传递包含两部分：调用智能合约方法（传递数据）以及以太币的支付。那么，合约能否接受调用者的以太币支付呢？答案当然是可以的，请看下列网上商城的代码。</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">OnlineStore</span> <span class="p">{</span>
   <span class="kd">function</span> <span class="n">buySomething</span><span class="p">()</span> <span class="kr">external</span> <span class="kr">payable</span> <span class="p">{</span>
     <span class="c1">// 查看付款金额</span>
