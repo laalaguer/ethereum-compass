@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>资料篇：共识与工作量证明 &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="资料篇：矿工与挖矿奖励" href="dig.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 3 章 交易是驱动力</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch3/pow.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -428,7 +436,7 @@ ASIC 矿机的出现让普通的家庭计算机一夜之间被淘汰出局，数
 <p>该算法的理想是：虽然普通家庭计算机的 CPU 无法和和专用的 ASIC 矿机媲美，但是专用矿机在 1GB 内存数据的读取上也没有巨大的优势。</p>
 <p class="last">Ethash 算法实现了部分普通计算机参与挖矿、算力去中心化的理想。但是近来有通过GPU显卡来进行高内存高算力运算的显卡矿机，也有矿机厂商研制出的 ASIC 矿机在慢慢侵蚀 Ethash算法的屏障作用。所以以太坊的共识算法将在不久将来的第四阶段切换到 <strong>PoS</strong> 模式。</p>
 </div>
-<p>在 <strong>第四阶段的以太坊经济模型采用PoS机制</strong> ，PoS全称 Proof of Stake，任何持有以太币的参与者都可以发起特殊交易，将自己的币锁定在一个存储中，让自己获得打包交易的资格，然后通过一个当前验证着都能参与的共识算法，完成新区块的打包和广播。PoS 算法的特点如下。</p>
+<p>在 <strong>第四阶段的以太坊经济模型采用PoS机制</strong> ，PoS全称 Proof of Stake，任何持有以太币的参与者都可以发起特殊交易，将自己的币锁定在一个存储中，让自己获得打包交易的资格，然后通过一个当前验证者都能参与的共识算法，完成新区块的打包和广播。PoS 算法的特点如下。</p>
 <blockquote>
 <div><ul class="simple">
 <li>不需要耗费大量电力资源来“挖矿”。理论上发行总量可以被控制。</li>
@@ -452,29 +460,29 @@ ASIC 矿机的出现让普通的家庭计算机一夜之间被淘汰出局，数
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="dig.html" class="btn btn-neutral float-right" title="资料篇：矿工与挖矿奖励" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="interval.html" class="btn btn-neutral float-left" title="扩展阅读" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="dig.html" class="btn btn-neutral float-right" title="资料篇：矿工与挖矿奖励" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="interval.html" class="btn btn-neutral float-left" title="扩展阅读" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -482,7 +490,6 @@ ASIC 矿机的出现让普通的家庭计算机一夜之间被淘汰出局，数
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -501,6 +508,7 @@ ASIC 矿机的出现让普通的家庭计算机一夜之间被淘汰出局，数
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

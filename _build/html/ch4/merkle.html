@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Merkle树和 Merkle证明 &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Merkle Patricia树" href="mpt.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 4 章 数据结构</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch4/merkle.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -350,7 +358,7 @@
 <strong><span class="math notranslate nohighlight">\(h = {hash}(a_1 + a_2 + a_3)\)</span></strong></p><p>在收到数据后，接收方进行相同形式的串联，并按同样的哈希函数计算，比较哈希值是否一致就可知数据是否完整。</p>
 <p class="centered">
 <strong><span class="math notranslate nohighlight">\(h' = {hash}(a_1 + a_2 + a_3)\)</span></strong></p><div class="topic">
-<p class="topic-title first">但这个思路存在一定的效率问题。</p>
+<p class="topic-title">但这个思路存在一定的效率问题。</p>
 <p>在于当数据量比较大时候，例如有 <span class="math notranslate nohighlight">\(a_1\)</span>、 <span class="math notranslate nohighlight">\(a_2\)</span>、 <span class="math notranslate nohighlight">\(a_3\)</span> … <span class="math notranslate nohighlight">\(a_{100}\)</span> 的数据片段的时候，
 我们往往分批传输这些小块，每次只要有一小部分数据损坏，整个数据校验和便无法对应上，
 我们也不知道过程中哪个小块错误了，导致我们重传整组数据，这是非常耗时的。
@@ -372,7 +380,7 @@
 <p>如果碰上基础数据集不是偶数个元素（例如仅有7个数据），则复制一个元素，让它与自己的双胞胎做哈希运算。</p>
 <p>由此我们可以推论：Merkle树的树叶都是数据、树中的节点都是哈希值。</p>
 <div class="topic">
-<p class="topic-title first">那么，Merkle树如何提升了校验效率呢？</p>
+<p class="topic-title">那么，Merkle树如何提升了校验效率呢？</p>
 <p>Merkle树的精妙在于它将一个庞大的数据集分散成组。</p>
 <p>在网络传输的过程中，仅需逐步传送各个小组，并执行组合校验，再逐步传送，直到拼接完成整个数据集。
 过程中若有任何数据传送出差错，仅需重传那个小分组。
@@ -384,7 +392,7 @@
 <p class="caption"><span class="caption-text">修改数据4为数据44后，相应的路径直到根节点哈希都发生了变化</span></p>
 </div>
 <div class="topic">
-<p class="topic-title first">Merkle树的应用场景在哪里呢？</p>
+<p class="topic-title">Merkle树的应用场景在哪里呢？</p>
 <p>Merkle树最实用的两个场景，其一是当比较两份大数据时，可以从根节点上就直接判断出两份数据是否相同（哪怕一个子数据不同，根节点的哈希值都不同）。</p>
 <p>其二是可以做 <strong>“Merkle证明”</strong>，即在整棵树尚未 <strong>完整下载</strong> 的情况下，仅通过下载的部分数据来进行完整性校验，快速判断某数据小组是否在其应处的位置，举例如图 <a class="reference internal" href="#id3">4-6</a> 所示。</p>
 </div>
@@ -421,29 +429,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="mpt.html" class="btn btn-neutral float-right" title="Merkle Patricia树" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="radix.html" class="btn btn-neutral float-left" title="Radix树" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="mpt.html" class="btn btn-neutral float-right" title="Merkle Patricia树" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="radix.html" class="btn btn-neutral float-left" title="Radix树" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -451,7 +459,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -470,6 +477,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

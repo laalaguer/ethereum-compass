@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>什么是智能合约？ &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="安装编译器" href="install.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 6 章 手把手教你部署智能合约</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch6/what.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -344,7 +352,7 @@
 <h1>什么是智能合约？<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>智能合约就是一组规则和规则指导下的数据的合体。相当于一个后端代码+数据库。</p>
 <div class="topic">
-<p class="topic-title first">智能合约是被创造出来的独立管家</p>
+<p class="topic-title">智能合约是被创造出来的独立管家</p>
 <p>在第 2 章讲过，以太坊中的账户分为外部账户和合约账户，我们来回忆一下。</p>
 <blockquote>
 <div><ul class="simple">
@@ -357,12 +365,12 @@
 合约账户具备外部账户所没有的数据存储区与代码存储区。
 它不具备私钥，故而任何人不能用破解它的私钥来控制合约中的资金，资金的流动仅由代码逻辑执行，具有独立性，仿佛一个管家一样。</p>
 <div class="topic">
-<p class="topic-title first">智能合约是能接收数据的实体</p>
+<p class="topic-title">智能合约是能接收数据的实体</p>
 <p>在第 3 章中提到交易以及交易体。我们说过无论是转账还是智能合约调用，都需要通过发送交易来完成。以太坊的交易就是一次消息传递，传递的是 <strong>数据</strong> 以及 <strong>价值</strong> (以太币)。</p>
 <p>区别仅仅在于交易体中是否携带数据。携带数据的交易可能是一个次智能合约调用，不携带数据的就是一次普通以太币转账。智能合约具备接收数据，处理数据的能力。</p>
 </div>
 <div class="topic">
-<p class="topic-title first">智能合约是代码编写的合同</p>
+<p class="topic-title">智能合约是代码编写的合同</p>
 <p>智能合约就是现实生活中“合同”概念在区块链上的延伸，比如在买卖场景中，买方与买方需要规定交割货品的数量、交割的方式以及交割的时间，并会押一部分或全部货款到第三方。当货物顺利交割时，第三方按照合同的约定放行货款；当产生纠纷时，按照合同既定条款，第三方部分扣除或全部扣除货款来补偿受损的一方。在这里第三方这个上帝对象起到公平、公正、公开的执行官的角色，这点在以太坊的智能合约上独具优势。</p>
 <blockquote>
 <div><ul class="simple">
@@ -380,29 +388,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="install.html" class="btn btn-neutral float-right" title="安装编译器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="第 6 章 手把手教你部署智能合约" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="install.html" class="btn btn-neutral float-right" title="安装编译器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="第 6 章 手把手教你部署智能合约" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -410,7 +418,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -429,6 +436,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>上手实践：ERC20合约测试 &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="附录 有意思的冷知识" href="../ch10/index.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 9 章 Truffle合约开发实战</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch9/test.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -397,11 +405,11 @@ $ touch Cat.js
 <div class="section" id="id2">
 <h2>测试辅助函数与库<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>Mocha框架和Chai断言库（测试中的库）都不是为了以太坊测试而专门设计的，为了在测试中，探测到一笔交易失败后是状态重置了退回了，还是直接异常了扣完了所有的gas费，我们需要有一个revert关键词的判断助手，所以我们编写了assertRevert.js助手函数库。</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">async</span> <span class="kd">function</span> <span class="nx">assertRevert</span> <span class="p">(</span><span class="nx">promise</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="kd">function</span> <span class="nx">assertRevert</span> <span class="p">(</span><span class="nx">promise</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
-    <span class="nx">await</span> <span class="nx">promise</span><span class="p">;</span>
+    <span class="k">await</span> <span class="nx">promise</span><span class="p">;</span>
   <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">revertFound</span> <span class="o">=</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s1">&#39;revert&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">revertFound</span> <span class="o">=</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s1">&#39;revert&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0</span><span class="p">;</span>
     <span class="nx">assert</span><span class="p">(</span><span class="nx">revertFound</span><span class="p">,</span> <span class="sb">`Expected &quot;revert&quot;, got </span><span class="si">${</span><span class="nx">error</span><span class="si">}</span><span class="sb"> instead`</span><span class="p">);</span>
     <span class="k">return</span><span class="p">;</span>
   <span class="p">}</span>
@@ -418,24 +426,24 @@ $ touch Cat.js
 <div class="section" id="id3">
 <h2>测试代码分析<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>我们来逐步构建Cat.js 测试剧本。</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">Cat</span> <span class="o">=</span> <span class="nx">artifacts</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;Cat&#39;</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">BigNumber</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;bignumber.js&#39;</span><span class="p">)</span>
-<span class="kr">const</span> <span class="p">{</span> <span class="nx">assertRevert</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../helpers/assertRevert&#39;</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">Cat</span> <span class="o">=</span> <span class="nx">artifacts</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;Cat&#39;</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">BigNumber</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;bignumber.js&#39;</span><span class="p">)</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">assertRevert</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../helpers/assertRevert&#39;</span><span class="p">);</span>
 
 <span class="nx">contract</span><span class="p">(</span><span class="s1">&#39;Cat&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">accounts</span><span class="p">){</span>
-  <span class="kr">const</span> <span class="nx">symbolName</span> <span class="o">=</span> <span class="s1">&#39;CAT&#39;</span>
-  <span class="kr">const</span> <span class="nx">decimals</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="nx">symbolName</span> <span class="o">=</span> <span class="s1">&#39;CAT&#39;</span>
+  <span class="kd">const</span> <span class="nx">decimals</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mf">18</span><span class="p">)</span>
 
-  <span class="kr">const</span> <span class="nx">allTokens</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BigNumber</span><span class="p">(</span><span class="mi">10000000000</span><span class="nx">e18</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="nx">allTokens</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BigNumber</span><span class="p">(</span><span class="mf">10000000000e18</span><span class="p">)</span>
 
   <span class="kd">let</span> <span class="nx">catInstance</span>
 
-  <span class="kr">const</span> <span class="nx">deployer</span> <span class="o">=</span> <span class="nx">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-  <span class="kr">const</span> <span class="nx">user1</span> <span class="o">=</span> <span class="nx">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-  <span class="kr">const</span> <span class="nx">user2</span> <span class="o">=</span> <span class="nx">accounts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+  <span class="kd">const</span> <span class="nx">deployer</span> <span class="o">=</span> <span class="nx">accounts</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span>
+  <span class="kd">const</span> <span class="nx">user1</span> <span class="o">=</span> <span class="nx">accounts</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span>
+  <span class="kd">const</span> <span class="nx">user2</span> <span class="o">=</span> <span class="nx">accounts</span><span class="p">[</span><span class="mf">2</span><span class="p">]</span>
 
-  <span class="nx">beforeEach</span><span class="p">(</span><span class="s1">&#39;setup contract for each test&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">catInstance</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Cat</span><span class="p">.</span><span class="k">new</span><span class="p">()</span>
+  <span class="nx">beforeEach</span><span class="p">(</span><span class="s1">&#39;setup contract for each test&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">catInstance</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Cat</span><span class="p">.</span><span class="k">new</span><span class="p">()</span>
   <span class="p">})</span>
 </pre></div>
 </div>
@@ -443,16 +451,16 @@ $ touch Cat.js
 <p>这里尤其注意的是，我们调用了beforeEach()函数，让每一次测试之前我们都部署一个新的合约，这样有利于合约存储空间的初始化，让每个合约测试互不干扰。</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Initla deployment&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
   <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;totalSupply&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns 1 * (10 ** 10) * (10 ** 18)&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="kd">function</span> <span class="p">(){</span>
-      <span class="kr">const</span> <span class="nx">total</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">totalSupply</span><span class="p">()</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns 1 * (10 ** 10) * (10 ** 18)&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span> <span class="p">(){</span>
+      <span class="kd">const</span> <span class="nx">total</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">totalSupply</span><span class="p">()</span>
 
       <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">total</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="nx">allTokens</span><span class="p">.</span><span class="nx">toString</span><span class="p">())</span>
     <span class="p">})</span>
   <span class="p">})</span>
 
   <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;symbol&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns correct symbol name&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="kd">function</span><span class="p">(){</span>
-      <span class="kr">const</span> <span class="nx">symbol</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">symbol</span><span class="p">()</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns correct symbol name&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="kd">const</span> <span class="nx">symbol</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">symbol</span><span class="p">()</span>
 
       <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">symbol</span><span class="p">,</span> <span class="nx">symbolName</span><span class="p">)</span>
     <span class="p">})</span>
@@ -463,16 +471,16 @@ $ touch Cat.js
 <p>Mocha 框架通过describe关键字来将测试语句分组，每个分组包含了多个子describe 语句。我们在初始化阶段检查Cat合约的符号和发行总量是否符合我们的预期。</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;init balance&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;user1 has no tokens&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns zero&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-      <span class="kr">const</span> <span class="nx">balance</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user1</span><span class="p">)</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns zero&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">balance</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user1</span><span class="p">)</span>
 
-      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">balance</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">balance</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
     <span class="p">})</span>
   <span class="p">})</span>
 
   <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;deployer has all tokens&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns the total amount of tokens&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-      <span class="kr">const</span> <span class="nx">balance</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">deployer</span><span class="p">)</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns the total amount of tokens&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">balance</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">deployer</span><span class="p">)</span>
 
       <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">balance</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="nx">allTokens</span><span class="p">.</span><span class="nx">toString</span><span class="p">())</span>
     <span class="p">})</span>
@@ -482,43 +490,43 @@ $ touch Cat.js
 </div>
 <p>在合约创世后，我们检查构造函数是否如约定将所有的CAT币转移给了创始人 deployer，并检查用户1的账户里面持有CAT币的数量为0。</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;transfer&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;normal transfers&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;transfers among deployer, user1, user2&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;normal transfers&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;transfers among deployer, user1, user2&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span><span class="p">(){</span>
       <span class="c1">// Success: transfer all tokens deployer =&gt; user1</span>
-      <span class="kd">let</span> <span class="nx">amount1</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mi">10000000000</span><span class="p">)</span>
-      <span class="kd">let</span> <span class="nx">value1</span> <span class="o">=</span> <span class="nx">amount1</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">pow</span><span class="p">(</span><span class="nx">decimals</span><span class="p">))</span>
+      <span class="kd">let</span> <span class="nx">amount1</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mf">10000000000</span><span class="p">)</span>
+      <span class="kd">let</span> <span class="nx">value1</span> <span class="o">=</span> <span class="nx">amount1</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mf">10</span><span class="p">).</span><span class="nx">pow</span><span class="p">(</span><span class="nx">decimals</span><span class="p">))</span>
 
-      <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">transfer</span><span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">value1</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">deployer</span> <span class="p">})</span>
-      <span class="kd">let</span> <span class="nx">deployerBalance</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">deployer</span><span class="p">)</span>
-      <span class="kd">let</span> <span class="nx">user1Balance</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user1</span><span class="p">)</span>
+      <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">transfer</span><span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">value1</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">deployer</span> <span class="p">})</span>
+      <span class="kd">let</span> <span class="nx">deployerBalance</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">deployer</span><span class="p">)</span>
+      <span class="kd">let</span> <span class="nx">user1Balance</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user1</span><span class="p">)</span>
 
-      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">deployerBalance</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">deployerBalance</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
       <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">user1Balance</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="nx">value1</span><span class="p">.</span><span class="nx">toString</span><span class="p">())</span>
 
       <span class="c1">// Success: transfer 500 tokens user1 =&gt; user2</span>
-      <span class="kd">let</span> <span class="nx">amount2</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
-      <span class="kd">let</span> <span class="nx">value2</span> <span class="o">=</span> <span class="nx">amount2</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">pow</span><span class="p">(</span><span class="nx">decimals</span><span class="p">))</span>
+      <span class="kd">let</span> <span class="nx">amount2</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mf">500</span><span class="p">)</span>
+      <span class="kd">let</span> <span class="nx">value2</span> <span class="o">=</span> <span class="nx">amount2</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mf">10</span><span class="p">).</span><span class="nx">pow</span><span class="p">(</span><span class="nx">decimals</span><span class="p">))</span>
 
-      <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">transfer</span><span class="p">(</span><span class="nx">user2</span><span class="p">,</span> <span class="nx">value2</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">user1</span> <span class="p">})</span>
-      <span class="kd">let</span> <span class="nx">user1Balance_new</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user1</span><span class="p">)</span>
-      <span class="kd">let</span> <span class="nx">user2Balance_new</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user2</span><span class="p">)</span>
+      <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">transfer</span><span class="p">(</span><span class="nx">user2</span><span class="p">,</span> <span class="nx">value2</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">user1</span> <span class="p">})</span>
+      <span class="kd">let</span> <span class="nx">user1Balance_new</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user1</span><span class="p">)</span>
+      <span class="kd">let</span> <span class="nx">user2Balance_new</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user2</span><span class="p">)</span>
       <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">user2Balance_new</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="nx">value2</span><span class="p">.</span><span class="nx">toString</span><span class="p">())</span>
       <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">user1Balance</span><span class="p">.</span><span class="nx">minus</span><span class="p">(</span><span class="nx">user1Balance_new</span><span class="p">).</span><span class="nx">toString</span><span class="p">(),</span> <span class="nx">value2</span><span class="p">.</span><span class="nx">toString</span><span class="p">())</span>
     <span class="p">})</span>
   <span class="p">})</span>
 
-  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;abnormal transfers&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;throws on insufficient balance&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;abnormal transfers&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;throws on insufficient balance&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span><span class="p">(){</span>
       <span class="c1">// Fail: insufficient funds</span>
-      <span class="kd">let</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-      <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">amount</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">pow</span><span class="p">(</span><span class="nx">decimals</span><span class="p">))</span>
+      <span class="kd">let</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mf">1000</span><span class="p">)</span>
+      <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">amount</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mf">10</span><span class="p">).</span><span class="nx">pow</span><span class="p">(</span><span class="nx">decimals</span><span class="p">))</span>
 
-      <span class="nx">await</span> <span class="nx">assertRevert</span><span class="p">(</span><span class="nx">catInstance</span><span class="p">.</span><span class="nx">transfer</span><span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">user2</span> <span class="p">}))</span>
-      <span class="kd">let</span> <span class="nx">user1Balance</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user1</span><span class="p">)</span>
-      <span class="kd">let</span> <span class="nx">user2Balance</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user2</span><span class="p">)</span>
+      <span class="k">await</span> <span class="nx">assertRevert</span><span class="p">(</span><span class="nx">catInstance</span><span class="p">.</span><span class="nx">transfer</span><span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">user2</span> <span class="p">}))</span>
+      <span class="kd">let</span> <span class="nx">user1Balance</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user1</span><span class="p">)</span>
+      <span class="kd">let</span> <span class="nx">user2Balance</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user2</span><span class="p">)</span>
 
-      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">user1Balance</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">user2Balance</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">user1Balance</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">user2Balance</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
     <span class="p">})</span>
   <span class="p">})</span>
 <span class="p">})</span>
@@ -527,36 +535,36 @@ $ touch Cat.js
 <p>在上述代码中，我们对Transfer转账相关的函数进行了深入测试。我们首先进行了一笔正常的转账，将创始人deployer持有的所有CAT币转移给用户1，再将部分CAT币从用户1转移到用户2。</p>
 <p>我们接着进行了不正常的转账，从一个余额不足的账户转账出来，这里我们希望引发一场，并且让交易放弃执行，转而触发 revert()函数回到测试开头的状态。</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;allow&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;normal allow&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;allows user1 to transfer from deployer&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="kd">function</span><span class="p">(){</span>
-      <span class="kd">let</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-      <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">amount</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">pow</span><span class="p">(</span><span class="nx">decimals</span><span class="p">))</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;normal allow&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;allows user1 to transfer from deployer&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="kd">let</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mf">1000</span><span class="p">)</span>
+      <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">amount</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mf">10</span><span class="p">).</span><span class="nx">pow</span><span class="p">(</span><span class="nx">decimals</span><span class="p">))</span>
 
       <span class="c1">// Approve transfer</span>
-      <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">approve</span><span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">deployer</span> <span class="p">})</span>
+      <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">approve</span><span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">deployer</span> <span class="p">})</span>
       <span class="c1">// Check allowance</span>
-      <span class="kd">let</span> <span class="nx">allowance</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">allowance</span><span class="p">(</span><span class="nx">deployer</span><span class="p">,</span> <span class="nx">user1</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">user1</span> <span class="p">})</span>
+      <span class="kd">let</span> <span class="nx">allowance</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">allowance</span><span class="p">(</span><span class="nx">deployer</span><span class="p">,</span> <span class="nx">user1</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">user1</span> <span class="p">})</span>
       <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">allowance</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">())</span>
 
       <span class="c1">// Success: transferFrom</span>
-      <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">transferFrom</span><span class="p">(</span><span class="nx">deployer</span><span class="p">,</span> <span class="nx">user1</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">user1</span> <span class="p">})</span>
+      <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">transferFrom</span><span class="p">(</span><span class="nx">deployer</span><span class="p">,</span> <span class="nx">user1</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">user1</span> <span class="p">})</span>
       <span class="c1">// Check balance and allowance</span>
-      <span class="kd">let</span> <span class="nx">allowance_new</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">allowance</span><span class="p">(</span><span class="nx">deployer</span><span class="p">,</span> <span class="nx">user1</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">user1</span> <span class="p">})</span>
-      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">allowance_new</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="kd">let</span> <span class="nx">user1Balance</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user1</span><span class="p">)</span>
+      <span class="kd">let</span> <span class="nx">allowance_new</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">allowance</span><span class="p">(</span><span class="nx">deployer</span><span class="p">,</span> <span class="nx">user1</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">user1</span> <span class="p">})</span>
+      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">allowance_new</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+      <span class="kd">let</span> <span class="nx">user1Balance</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">catInstance</span><span class="p">.</span><span class="nx">balanceOf</span><span class="p">(</span><span class="nx">user1</span><span class="p">)</span>
       <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">user1Balance</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">())</span>
     <span class="p">})</span>
   <span class="p">})</span>
 
-  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;abnormal allow&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;throws on insufficient balance&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="kd">function</span><span class="p">(){</span>
-      <span class="kd">let</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-      <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">amount</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">pow</span><span class="p">(</span><span class="nx">decimals</span><span class="p">))</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;abnormal allow&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;throws on insufficient balance&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="kd">let</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mf">1000</span><span class="p">)</span>
+      <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">amount</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">toBigNumber</span><span class="p">(</span><span class="mf">10</span><span class="p">).</span><span class="nx">pow</span><span class="p">(</span><span class="nx">decimals</span><span class="p">))</span>
 
       <span class="c1">// Success: approve transfer</span>
       <span class="nx">catInstance</span><span class="p">.</span><span class="nx">approve</span><span class="p">(</span><span class="nx">user2</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">user1</span> <span class="p">})</span>
       <span class="c1">// Fail: cannot transfer</span>
-      <span class="nx">await</span> <span class="nx">assertRevert</span><span class="p">(</span><span class="nx">catInstance</span><span class="p">.</span><span class="nx">transferFrom</span><span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">user1</span> <span class="p">}))</span>
+      <span class="k">await</span> <span class="nx">assertRevert</span><span class="p">(</span><span class="nx">catInstance</span><span class="p">.</span><span class="nx">transferFrom</span><span class="p">(</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="nx">user1</span> <span class="p">}))</span>
     <span class="p">})</span>
   <span class="p">})</span>
 <span class="p">})</span>
@@ -617,29 +625,29 @@ Compiling ./contracts/SafeMath.sol...
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../ch10/index.html" class="btn btn-neutral float-right" title="附录 有意思的冷知识" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="erc20.html" class="btn btn-neutral float-left" title="上手实践：ERC20合约" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../ch10/index.html" class="btn btn-neutral float-right" title="附录 有意思的冷知识" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="erc20.html" class="btn btn-neutral float-left" title="上手实践：ERC20合约" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -647,7 +655,6 @@ Compiling ./contracts/SafeMath.sol...
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -666,6 +673,7 @@ Compiling ./contracts/SafeMath.sol...
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

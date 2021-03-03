@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>资料篇：常用钱包 App &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="资料篇：EIP-55 格式的账户地址" href="eip55.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 2 章 账户是什么</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch2/app.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -357,7 +365,7 @@
 </div></blockquote>
 <p>下面，我们挑选一些桌面端以及手机端的常见钱包应用程序向读者介绍。</p>
 <div class="topic">
-<p class="topic-title first">Geth</p>
+<p class="topic-title">Geth</p>
 <p>运行环境：Windows/Linux/Mac</p>
 <p>这是用 Golang 语言写作的，由 <strong>官方发布</strong> [#]_的命令行客户端 。它能够在计算机上运行并提供强大的账户管理、区块链同步、区块浏览、交易组织以及智能合约调试功能。是主要面向开发者的钱包，开发进度紧跟以太坊黄皮书的定义规范与最新的社区提议。用户能够选择同步主网或者是测试网络，也能够脱离上述网络构建自己的私有以太坊链。</p>
 </div>
@@ -366,7 +374,7 @@
 <p class="caption"><span class="caption-text">Geth客户端，正在同步区块链数据</span></p>
 </div>
 <div class="topic">
-<p class="topic-title first">Parity</p>
+<p class="topic-title">Parity</p>
 <p>运行环境：Windows/Linux/Mac</p>
 <p>Parity 客户端号称是世界上最快最轻便的 <strong>客户端</strong> <a class="footnote-reference" href="#id8" id="id2">[2]</a>，它包含了一个命令行工具和一个 WebUI，该UI界面运行在计算机本地 <a class="reference external" href="http://localhost:8180">http://localhost:8180</a>。Parity 由 Rust 语言编写并且开源，开发者是以太坊基金会的几个创始会员，以太坊的黄皮书作者 Gavin Wood 博士就是其中之一。</p>
 <p>该客户端的一大特色就是启动速度快，支持命令行工具，当初始化网络下载区块链数据时较为顺畅，相比于 Geth 更加注重性能体验。</p>
@@ -376,7 +384,7 @@
 <p class="caption"><span class="caption-text">Parity客户端账户总览页面</span></p>
 </div>
 <div class="topic">
-<p class="topic-title first">Mist</p>
+<p class="topic-title">Mist</p>
 <p>运行环境：Windows/Linux/Mac</p>
 <p>官方推荐的图形化界面全节点钱包，技术实力雄厚，已经开源，成为实质上的官方钱包桌面版 <strong>应用程序</strong> <a class="footnote-reference" href="#id9" id="id3">[3]</a> 。该钱包的优点是自身就是一个完整同步区块链的节点，当广播交易时，不需要通过额外的服务器中转，发送给自身即可。该钱包自带区块链浏览功能，方便在图形界面中找到用户关心的地址、关心的区块、想调用的智能合约。缺点是因为同步的是全部区块链数据，需要用户自网络下载接近1TB 的数据（截至2018年7月），需要几天的时间才能同步完毕。并非普通轻度使用的用户的首选。</p>
 </div>
@@ -385,7 +393,7 @@
 <p class="caption"><span class="caption-text">Mist客户端账户总览界面</span></p>
 </div>
 <div class="topic">
-<p class="topic-title first">MyEtherWallet</p>
+<p class="topic-title">MyEtherWallet</p>
 <p>运行环境：Chrome/Firefox/Safari网页浏览器</p>
 <p>以太坊社区受欢迎的轻量级开源 <strong>网页钱包</strong> <a class="footnote-reference" href="#id10" id="id4">[4]</a> 。前端网页代码完全在浏览器中执行。可以在线创建账户、接收发送以太币、下载 keystore以供离线存储、具备智能合约相关功能。由于只在网页前端运行，在浏览器关闭后并不会替用户持久保存私钥，所以还要用户自行妥善下载私钥来保存。因为网页钱包始终需要用户联网使用，存在一定的私钥泄漏的安全风险。由于该网站实在太出名，针对它的钓鱼网站层出不穷，不少用户在假网站上输入私钥而被黑客窃取了以太币。在使用该网站之前，请务必检查你访问的是否为MyEtherWallet的正确网址，且确认网络防火墙软件已经开启防护。</p>
 </div>
@@ -394,7 +402,7 @@
 <p class="caption"><span class="caption-text">MyEtherWallet 在浏览器中运行时的界面</span></p>
 </div>
 <div class="topic">
-<p class="topic-title first">MetaMask</p>
+<p class="topic-title">MetaMask</p>
 <p>运行环境：Chrome</p>
 <p>这是一款Chrome 电脑插件 <a class="footnote-reference" href="#id11" id="id5">[5]</a>，可以运行在 Chrome 浏览器中。它是一个值得推荐的的钱包。它的优点是可以自动在浏览器页面中注入 <code class="docutils literal notranslate"><span class="pre">web3.js</span></code> 的Object实例，这样网页应用 DApp 需要读取以太坊区块链数据，或者需要账户授权签名的时候，MetaMask 会自动提示客户签名并执行发送交易。
 它支持许多符合 ERC20格式智能合约的币种，有丰富的多账户管理体系。它的缺点是不易获取和安装，国内用户需要连接Google Chrome 官方商店才能下载这款插件。</p>
@@ -404,7 +412,7 @@
 <p class="caption"><span class="caption-text">Metamask的界面</span></p>
 </div>
 <div class="topic">
-<p class="topic-title first">imToken</p>
+<p class="topic-title">imToken</p>
 <p>运行环境：安卓/苹果手机</p>
 <p>国内团队打造的手机 App 应用。客服沟通效率高，支持的以太坊 ERC20格式智能合约代币非常丰富。已经推出了1.0版本，现在正逐步推出2.0版本。操作简单，容易上手。当用户转账时，通过imToken的服务器节点进行交易广播。它的源代码曾是闭源的 <a class="footnote-reference" href="#id12" id="id6">[6]</a>，公信力不如前述几家强。</p>
 </div>
@@ -461,29 +469,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="eip55.html" class="btn btn-neutral float-right" title="资料篇：EIP-55 格式的账户地址" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="keystore.html" class="btn btn-neutral float-left" title="资料篇：Keystore 与私钥保存" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="eip55.html" class="btn btn-neutral float-right" title="资料篇：EIP-55 格式的账户地址" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="keystore.html" class="btn btn-neutral float-left" title="资料篇：Keystore 与私钥保存" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -491,7 +499,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -510,6 +517,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

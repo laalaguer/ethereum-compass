@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>上手实践：ERC20合约 &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="上手实践：ERC20合约测试" href="test.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 9 章 Truffle合约开发实战</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch9/erc20.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -368,7 +376,7 @@ $ truffle init
   <span class="nx">networks</span><span class="o">:</span> <span class="p">{</span>
       <span class="nx">development</span><span class="o">:</span> <span class="p">{</span>
           <span class="nx">host</span><span class="o">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
-          <span class="nx">port</span><span class="o">:</span> <span class="mi">8545</span><span class="p">,</span>
+          <span class="nx">port</span><span class="o">:</span> <span class="mf">8545</span><span class="p">,</span>
           <span class="nx">network_id</span><span class="o">:</span> <span class="s2">&quot;*&quot;</span> <span class="c1">// Match any network id</span>
       <span class="p">}</span>
   <span class="p">}</span>
@@ -379,7 +387,7 @@ $ truffle init
 <div class="section" id="erc20-basic">
 <h2>ERC20 Basic合约接口<a class="headerlink" href="#erc20-basic" title="Permalink to this headline">¶</a></h2>
 <p>最早的 ERC20合约仅支持部分函数与公开属性，它受到社区改进提议EIP179所提出的标准启发，共支持3个函数和一个事件，它的代码如下。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="k">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * </span><span class="cs">@title</span><span class="cm"> ERC20Basic</span>
@@ -388,15 +396,15 @@ $ truffle init
 <span class="cm"> */</span>
 <span class="kd">contract</span> <span class="n">ERC20Basic</span> <span class="p">{</span>
     <span class="c1">// Total supply of token.</span>
-    <span class="kd">function</span> <span class="n">totalSupply</span><span class="p">()</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+    <span class="kd">function</span> <span class="n">totalSupply</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
     <span class="c1">// Balance of a holder _who</span>
-    <span class="kd">function</span> <span class="n">balanceOf</span><span class="p">(</span><span class="kt">address</span> <span class="n">_who</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+    <span class="kd">function</span> <span class="n">balanceOf</span><span class="p">(</span><span class="kt">address</span> <span class="n">_who</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
     <span class="c1">// Transfer _value from msg.sender to receiver _to.</span>
-    <span class="kd">function</span> <span class="nf">transfer</span><span class="p">(</span><span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+    <span class="kd">function</span> <span class="nf">transfer</span><span class="p">(</span><span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
     <span class="c1">// Fired when a transfer is made</span>
     <span class="kd">event</span> <span class="n">Transfer</span><span class="p">(</span>
-        <span class="kt">address</span> <span class="kr">indexed</span> <span class="kr">from</span><span class="p">,</span>
-        <span class="kt">address</span> <span class="kr">indexed</span> <span class="n">to</span><span class="p">,</span>
+        <span class="kt">address</span> <span class="k">indexed</span> <span class="k">from</span><span class="p">,</span>
+        <span class="kt">address</span> <span class="k">indexed</span> <span class="n">to</span><span class="p">,</span>
         <span class="kt">uint256</span> <span class="n">value</span>
     <span class="p">);</span>
 <span class="p">}</span>
@@ -416,7 +424,7 @@ $ truffle init
 <div class="section" id="id2">
 <h2>ERC20 合约接口<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>ERC20合约在ERC20 Basic合约上进行了部分扩容，增加了函数定义.转让Token的过程可以由“主动转账”变为“授权索取”，在便利性上而言,主动转账更为直接，但要求知道转让对象是谁；而被动索取更适用于家长-孩子关系中管理的零花钱模式，让家长能够定授权孩子动用一部分的资金，至于资金流向何方，是孩子的决定权。ERC20代码如下。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="k">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
 
 <span class="kn">import</span> <span class="s">&quot;./ERC20Basic.sol&quot;</span><span class="p">;</span>
 <span class="cm">/**</span>
@@ -424,20 +432,20 @@ $ truffle init
 <span class="cm"> * </span><span class="cs">@dev</span><span class="cm"> Enhanced interface with allowance functions.</span>
 <span class="cm"> * See https://github.com/ethereum/EIPs/issues/20</span>
 <span class="cm"> */</span>
-<span class="kd">contract</span> <span class="n">ERC20</span> <span class="kr">is</span> <span class="n">ERC20Basic</span> <span class="p">{</span>
+<span class="kd">contract</span> <span class="n">ERC20</span> <span class="k">is</span> <span class="n">ERC20Basic</span> <span class="p">{</span>
     <span class="c1">// Check the allowed value that the _owner allows the _spender to take from his balance.</span>
-    <span class="kd">function</span> <span class="n">allowance</span><span class="p">(</span><span class="kt">address</span> <span class="n">_owner</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_spender</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+    <span class="kd">function</span> <span class="n">allowance</span><span class="p">(</span><span class="kt">address</span> <span class="n">_owner</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_spender</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
 
     <span class="c1">// Transfer _value from the balance of holder _from to the receiver _to.</span>
-    <span class="kd">function</span> <span class="n">transferFrom</span><span class="p">(</span><span class="kt">address</span> <span class="n">_from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+    <span class="kd">function</span> <span class="n">transferFrom</span><span class="p">(</span><span class="kt">address</span> <span class="n">_from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
 
     <span class="c1">// Approve _spender to take some _value from the balance of msg.sender.</span>
-    <span class="kd">function</span> <span class="n">approve</span><span class="p">(</span><span class="kt">address</span> <span class="n">_spender</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+    <span class="kd">function</span> <span class="n">approve</span><span class="p">(</span><span class="kt">address</span> <span class="n">_spender</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
 
     <span class="c1">// Fired when an approval is made.</span>
     <span class="kd">event</span> <span class="n">Approval</span><span class="p">(</span>
-        <span class="kt">address</span> <span class="kr">indexed</span> <span class="n">owner</span><span class="p">,</span>
-        <span class="kt">address</span> <span class="kr">indexed</span> <span class="n">spender</span><span class="p">,</span>
+        <span class="kt">address</span> <span class="k">indexed</span> <span class="n">owner</span><span class="p">,</span>
+        <span class="kt">address</span> <span class="k">indexed</span> <span class="n">spender</span><span class="p">,</span>
         <span class="kt">uint256</span> <span class="n">value</span>
     <span class="p">);</span>
 <span class="p">}</span>
@@ -458,7 +466,7 @@ $ truffle init
 <h2>SafeMath基础数学库<a class="headerlink" href="#safemath" title="Permalink to this headline">¶</a></h2>
 <p>以太坊上因为没有整型边界检查，所以号称最安全的合约语言其实有很大几率会整形溢出，也就是在最大值上再+1，就上溢出，变成最小值；最小值-1也向下溢出，变为最大值。这样会无端造成账户财产增多或者减少，造成合约的参与者的损失。</p>
 <p>在我们的ERC20合约里面必定会用上加减两样算术。以太坊上的整型溢出问题我们必须格外小心处理。我们可以小心翼翼处理每一个加减法的地方，也可以直接用 openZepplin 的合约库SafeMath来帮我们处理加减法。我们截取一段如下。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="k">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * </span><span class="cs">@title</span><span class="cm"> SafeMath</span>
@@ -468,7 +476,7 @@ $ truffle init
     <span class="cm">/**</span>
 <span class="cm">    * </span><span class="cs">@dev</span><span class="cm"> Multiplies two numbers, throws on overflow.</span>
 <span class="cm">    */</span>
-    <span class="kd">function</span> <span class="n">mul</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_b</span><span class="p">)</span> <span class="kr">internal</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="n">mul</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_b</span><span class="p">)</span> <span class="k">internal</span> <span class="k">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Gas optimization: this is cheaper than asserting &#39;a&#39; not being zero, but the</span>
       <span class="c1">// benefit is lost if &#39;b&#39; is also tested.</span>
       <span class="c1">// See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522</span>
@@ -484,7 +492,7 @@ $ truffle init
     <span class="cm">/**</span>
 <span class="cm">    * </span><span class="cs">@dev</span><span class="cm"> Integer division of two numbers, truncating the quotient.</span>
 <span class="cm">    */</span>
-    <span class="kd">function</span> <span class="n">div</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_b</span><span class="p">)</span> <span class="kr">internal</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="n">div</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_b</span><span class="p">)</span> <span class="k">internal</span> <span class="k">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// assert(_b &gt; 0); // Solidity automatically throws when dividing by 0</span>
         <span class="c1">// uint256 c = _a / _b;</span>
         <span class="c1">// assert(_a == _b * c + _a % _b); // There is no case in which this doesn&#39;t hold</span>
@@ -494,7 +502,7 @@ $ truffle init
     <span class="cm">/**</span>
 <span class="cm">    * </span><span class="cs">@dev</span><span class="cm"> Subtracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).</span>
 <span class="cm">    */</span>
-    <span class="kd">function</span> <span class="n">sub</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_b</span><span class="p">)</span> <span class="kr">internal</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="n">sub</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_b</span><span class="p">)</span> <span class="k">internal</span> <span class="k">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
         <span class="nf">assert</span><span class="p">(</span><span class="n">_b</span> <span class="o">&lt;=</span> <span class="n">_a</span><span class="p">);</span>
         <span class="k">return</span> <span class="n">_a</span> <span class="o">-</span> <span class="n">_b</span><span class="p">;</span>
     <span class="p">}</span>
@@ -502,7 +510,7 @@ $ truffle init
     <span class="cm">/**</span>
 <span class="cm">    * </span><span class="cs">@dev</span><span class="cm"> Adds two numbers, throws on overflow.</span>
 <span class="cm">    */</span>
-    <span class="kd">function</span> <span class="n">add</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_b</span><span class="p">)</span> <span class="kr">internal</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="n">add</span><span class="p">(</span><span class="kt">uint256</span> <span class="n">_a</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_b</span><span class="p">)</span> <span class="k">internal</span> <span class="k">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">_a</span> <span class="o">+</span> <span class="n">_b</span><span class="p">;</span>
         <span class="nf">assert</span><span class="p">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="n">_a</span><span class="p">);</span>
         <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
@@ -546,7 +554,7 @@ $ truffle init
 </pre></div>
 </div>
 <p>Cat.sol合约代码我们分拆开来解析，分析如下。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="k">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
 
 <span class="kn">import</span> <span class="s">&quot;./ERC20.sol&quot;</span><span class="p">;</span>
 <span class="kn">import</span> <span class="s">&quot;./SafeMath.sol&quot;</span><span class="p">;</span>
@@ -556,23 +564,23 @@ $ truffle init
 <span class="cm"> * </span><span class="cs">@dev</span><span class="cm"> Compatible with ERC20/VIP180 Standard.</span>
 <span class="cm"> * Special thanks go to openzeppelin-solidity project.</span>
 <span class="cm"> */</span>
-<span class="kd">contract</span> <span class="n">CAT</span> <span class="kr">is</span> <span class="n">ERC20</span> <span class="p">{</span>
+<span class="kd">contract</span> <span class="n">CAT</span> <span class="k">is</span> <span class="n">ERC20</span> <span class="p">{</span>
     <span class="kn">using</span> <span class="n">SafeMath</span> <span class="k">for</span> <span class="kt">uint256</span><span class="p">;</span>
 
     <span class="c1">// Name of token</span>
-    <span class="kt">string</span> <span class="kr">public</span> <span class="kr">constant</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;CAT Token&quot;</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="k">public</span> <span class="k">constant</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;CAT Token&quot;</span><span class="p">;</span>
     <span class="c1">// Symbol of token</span>
-    <span class="kt">string</span> <span class="kr">public</span> <span class="kr">constant</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s">&quot;CAT&quot;</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="k">public</span> <span class="k">constant</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s">&quot;CAT&quot;</span><span class="p">;</span>
     <span class="c1">// Decimals of token</span>
-    <span class="kt">uint8</span> <span class="kr">public</span> <span class="kr">constant</span> <span class="n">decimals</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+    <span class="kt">uint8</span> <span class="k">public</span> <span class="k">constant</span> <span class="n">decimals</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
     <span class="c1">// Total supply of the tokens</span>
-    <span class="kt">uint256</span> <span class="kr">internal</span> <span class="n">totalSupply_</span><span class="p">;</span>
+    <span class="kt">uint256</span> <span class="k">internal</span> <span class="n">totalSupply_</span><span class="p">;</span>
 
     <span class="c1">// balances: (_holder =&gt; _value)</span>
-    <span class="kd">mapping</span><span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint256</span><span class="p">)</span> <span class="kr">public</span> <span class="n">balances</span><span class="p">;</span>
+    <span class="kd">mapping</span><span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint256</span><span class="p">)</span> <span class="k">public</span> <span class="n">balances</span><span class="p">;</span>
 
     <span class="c1">// allowed: (_owner, =&gt; (_spender, _value))</span>
-    <span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint256</span><span class="p">))</span> <span class="kr">internal</span> <span class="n">allowed</span><span class="p">;</span>
+    <span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint256</span><span class="p">))</span> <span class="k">internal</span> <span class="n">allowed</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>合约文件开头立即引用了SafeMath.sol和ERC20.sol两个库。之后定义了合约名称CAT,继承自ERC20标准。为简略引用SafeMath，每个 uint256的地方使用加减乘除函数，申明用SafeMath来操作两个或以上的操作数。</p>
@@ -589,21 +597,21 @@ $ truffle init
 </ul>
 </dd>
 </dl>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">constructor</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">constructor</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
   <span class="n">totalSupply_</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="mi">18</span><span class="p">);</span> <span class="c1">// 10 000 000 000 tokens of 18 decimals.</span>
   <span class="n">balances</span><span class="p">[</span><span class="nb">msg.sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">totalSupply_</span><span class="p">;</span>
-  <span class="kr">emit</span> <span class="n">Transfer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">msg.sender</span><span class="p">,</span> <span class="n">totalSupply_</span><span class="p">);</span>  <span class="c1">// init mint of coins complete.</span>
+  <span class="k">emit</span> <span class="n">Transfer</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">msg.sender</span><span class="p">,</span> <span class="n">totalSupply_</span><span class="p">);</span>  <span class="c1">// init mint of coins complete.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>以上代码表明我们共发行100亿枚 CAT币，每个币可以分为1018位小数。在创世的构造函数里，我们将所有的CAT币全数转给msg.sender也就是开创合约的人。接下去由他负责发送给任意想要获取CAT币的人。</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="c1">// Get the total supply of the coins</span>
-<span class="kd">function</span> <span class="n">totalSupply</span><span class="p">()</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="n">totalSupply</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="n">totalSupply_</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="c1">// Get the balance of _owner</span>
-<span class="kd">function</span> <span class="n">balanceOf</span><span class="p">(</span><span class="kt">address</span> <span class="n">_owner</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span> <span class="nb">balance</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="n">balanceOf</span><span class="p">(</span><span class="kt">address</span> <span class="n">_owner</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span> <span class="nb">balance</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="n">balances</span><span class="p">[</span><span class="n">_owner</span><span class="p">];</span>
 <span class="p">}</span>
 
@@ -612,14 +620,14 @@ $ truffle init
 <span class="cm">* </span><span class="cs">@param</span><span class="cm"> _to address The address the funds go to.</span>
 <span class="cm">* </span><span class="cs">@param</span><span class="cm"> _value uint256 The amount of funds.</span>
 <span class="cm">*/</span>
-<span class="kd">function</span> <span class="nf">transfer</span><span class="p">(</span><span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nf">transfer</span><span class="p">(</span><span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
   <span class="nf">require</span><span class="p">(</span><span class="n">_to</span> <span class="o">!=</span> <span class="kt">address</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&quot;Cannot send to all zero address.&quot;</span><span class="p">);</span>
   <span class="nf">require</span><span class="p">(</span><span class="n">_value</span> <span class="o">&lt;=</span> <span class="n">balances</span><span class="p">[</span><span class="nb">msg.sender</span><span class="p">],</span> <span class="s">&quot;msg.sender balance is not enough.&quot;</span><span class="p">);</span>
 
   <span class="c1">// SafeMath.sub will throw if there is not enough balance.</span>
   <span class="n">balances</span><span class="p">[</span><span class="nb">msg.sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">balances</span><span class="p">[</span><span class="nb">msg.sender</span><span class="p">].</span><span class="n">sub</span><span class="p">(</span><span class="n">_value</span><span class="p">);</span>
   <span class="n">balances</span><span class="p">[</span><span class="n">_to</span><span class="p">]</span> <span class="o">=</span> <span class="n">balances</span><span class="p">[</span><span class="n">_to</span><span class="p">].</span><span class="n">add</span><span class="p">(</span><span class="n">_value</span><span class="p">);</span>
-  <span class="kr">emit</span> <span class="n">Transfer</span><span class="p">(</span><span class="nb">msg.sender</span><span class="p">,</span> <span class="n">_to</span><span class="p">,</span> <span class="n">_value</span><span class="p">);</span>
+  <span class="k">emit</span> <span class="n">Transfer</span><span class="p">(</span><span class="nb">msg.sender</span><span class="p">,</span> <span class="n">_to</span><span class="p">,</span> <span class="n">_value</span><span class="p">);</span>
   <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -632,7 +640,7 @@ $ truffle init
 <span class="cm">   * </span><span class="cs">@param</span><span class="cm"> _spender address The address which will spend the funds.</span>
 <span class="cm">   * </span><span class="cs">@return</span><span class="cm"> A uint256 specifying the amount of tokens still available for the spender.</span>
 <span class="cm">  */</span>
-  <span class="kd">function</span> <span class="n">allowance</span><span class="p">(</span><span class="kt">address</span> <span class="n">_owner</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_spender</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">allowance</span><span class="p">(</span><span class="kt">address</span> <span class="n">_owner</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_spender</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint256</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">allowed</span><span class="p">[</span><span class="n">_owner</span><span class="p">][</span><span class="n">_spender</span><span class="p">];</span>
   <span class="p">}</span>
 
@@ -642,7 +650,7 @@ $ truffle init
 <span class="cm"> * </span><span class="cs">@param</span><span class="cm"> _to address The address which you want to transfer to</span>
 <span class="cm"> * </span><span class="cs">@param</span><span class="cm"> _value uint256 the amount of tokens to be transferred</span>
 <span class="cm">*/</span>
-<span class="kd">function</span> <span class="n">transferFrom</span><span class="p">(</span><span class="kt">address</span> <span class="n">_from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="n">transferFrom</span><span class="p">(</span><span class="kt">address</span> <span class="n">_from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">_to</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
     <span class="nf">require</span><span class="p">(</span><span class="n">_value</span> <span class="o">&lt;=</span> <span class="n">balances</span><span class="p">[</span><span class="n">_from</span><span class="p">],</span> <span class="s">&quot;_from doesnt have enough balance.&quot;</span><span class="p">);</span>
     <span class="nf">require</span><span class="p">(</span><span class="n">_value</span> <span class="o">&lt;=</span> <span class="n">allowed</span><span class="p">[</span><span class="n">_from</span><span class="p">][</span><span class="nb">msg.sender</span><span class="p">],</span> <span class="s">&quot;Allowance of msg.sender is not enough.&quot;</span><span class="p">);</span>
     <span class="nf">require</span><span class="p">(</span><span class="n">_to</span> <span class="o">!=</span> <span class="kt">address</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&quot;Cannot send to all zero address.&quot;</span><span class="p">);</span>
@@ -650,7 +658,7 @@ $ truffle init
     <span class="n">balances</span><span class="p">[</span><span class="n">_from</span><span class="p">]</span> <span class="o">=</span> <span class="n">balances</span><span class="p">[</span><span class="n">_from</span><span class="p">].</span><span class="n">sub</span><span class="p">(</span><span class="n">_value</span><span class="p">);</span>
     <span class="n">balances</span><span class="p">[</span><span class="n">_to</span><span class="p">]</span> <span class="o">=</span> <span class="n">balances</span><span class="p">[</span><span class="n">_to</span><span class="p">].</span><span class="n">add</span><span class="p">(</span><span class="n">_value</span><span class="p">);</span>
     <span class="n">allowed</span><span class="p">[</span><span class="n">_from</span><span class="p">][</span><span class="nb">msg.sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">allowed</span><span class="p">[</span><span class="n">_from</span><span class="p">][</span><span class="nb">msg.sender</span><span class="p">].</span><span class="n">sub</span><span class="p">(</span><span class="n">_value</span><span class="p">);</span>
-    <span class="kr">emit</span> <span class="n">Transfer</span><span class="p">(</span><span class="n">_from</span><span class="p">,</span> <span class="n">_to</span><span class="p">,</span> <span class="n">_value</span><span class="p">);</span>
+    <span class="k">emit</span> <span class="n">Transfer</span><span class="p">(</span><span class="n">_from</span><span class="p">,</span> <span class="n">_to</span><span class="p">,</span> <span class="n">_value</span><span class="p">);</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -659,9 +667,9 @@ $ truffle init
 <span class="cm"> * </span><span class="cs">@param</span><span class="cm"> _spender The address which will spend the funds.</span>
 <span class="cm"> * </span><span class="cs">@param</span><span class="cm"> _value The amount of tokens to be spent.</span>
 <span class="cm">*/</span>
-<span class="kd">function</span> <span class="n">approve</span><span class="p">(</span><span class="kt">address</span> <span class="n">_spender</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="n">approve</span><span class="p">(</span><span class="kt">address</span> <span class="n">_spender</span><span class="p">,</span> <span class="kt">uint256</span> <span class="n">_value</span><span class="p">)</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">allowed</span><span class="p">[</span><span class="nb">msg.sender</span><span class="p">][</span><span class="n">_spender</span><span class="p">]</span> <span class="o">=</span> <span class="n">_value</span><span class="p">;</span>
-    <span class="kr">emit</span> <span class="n">Approval</span><span class="p">(</span><span class="nb">msg.sender</span><span class="p">,</span> <span class="n">_spender</span><span class="p">,</span> <span class="n">_value</span><span class="p">);</span>
+    <span class="k">emit</span> <span class="n">Approval</span><span class="p">(</span><span class="nb">msg.sender</span><span class="p">,</span> <span class="n">_spender</span><span class="p">,</span> <span class="n">_value</span><span class="p">);</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="p">}</span>
@@ -677,29 +685,29 @@ $ truffle init
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="test.html" class="btn btn-neutral float-right" title="上手实践：ERC20合约测试" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="sample.html" class="btn btn-neutral float-left" title="Truffle启动样例项目" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="test.html" class="btn btn-neutral float-right" title="上手实践：ERC20合约测试" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="sample.html" class="btn btn-neutral float-left" title="Truffle启动样例项目" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -707,7 +715,6 @@ $ truffle init
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -726,6 +733,7 @@ $ truffle init
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

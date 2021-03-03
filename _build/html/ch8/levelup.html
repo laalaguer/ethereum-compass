@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>语法进阶 &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="高级语法和概念" href="advanced.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 8 章 Solidity语法练习</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch8/levelup.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -347,7 +355,7 @@
 <h2>数据结构：map<a class="headerlink" href="#map" title="Permalink to this headline">¶</a></h2>
 <p>我们已经学习过了结构体struct和数组两种高级数据结构，这两者都是为了有结构地存储数据而设计的。另一种在编程语言中不可或缺的数据结构是映射关系。在Solidity语言中也如同Python的dict或者JavaScript的对象一样，现成内置了一个映射数据结构，mapping。</p>
 <p>例如我们可以存储账号地址以及它对应的合约内的token数量的关系(假设是一个代币合约)。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="kr">public</span> <span class="n">accountBalance</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="k">public</span> <span class="n">accountBalance</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>这里我们申明关键字mapping表示这是一个映射关系；address代表的是一个账户的地址；uint代表了该账户对应的token数量；接着我们用修饰符public申明这个变量可以读取；这个映射关系我们命名为accountBalance。</p>
@@ -356,8 +364,8 @@
 <p>请申明两个 mapping 映射。</p>
 <p>保存汽车Car和对应的主人Owner address的对应关系。</p>
 <p>保存主人地址address和它对应的 Car 的数量关系。</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Car</span><span class="p">[]</span> <span class="kr">public</span> <span class="n">cars</span><span class="p">;</span>
-<span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="n">_____</span><span class="p">)</span> <span class="kr">public</span> <span class="n">carToOwner</span><span class="p">;</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Car</span><span class="p">[]</span> <span class="k">public</span> <span class="n">cars</span><span class="p">;</span>
+<span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="n">_____</span><span class="p">)</span> <span class="k">public</span> <span class="n">carToOwner</span><span class="p">;</span>
 <span class="kd">mapping</span> <span class="p">(</span><span class="n">_____</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">ownerCarCount</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -368,12 +376,12 @@
 <p>智能合约没有main函数，它是被动地响应外部调用的。谁来调用呢？根据之前我们第7章对以太坊虚拟机的学习，可以知道肯定是首先由外部使用者触发的，这种触发可以调用一个合约，该合约也可以链式调用其他合约为自己填充部分数据、执行某项操作。调用的当事人地址可以被智能合约知晓，即为msg.sender全局变量。这个全局变量存在于每个智能合约的执行环境上下文中。</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">myNumber</span><span class="p">;</span>
 
-<span class="kd">function</span> <span class="n">setMyNumber</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_myNumber</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="n">setMyNumber</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_myNumber</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span>
   <span class="c1">// 设置一个调用者最喜欢的数字</span>
   <span class="n">myNumber</span> <span class="p">[</span><span class="nb">msg.sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">_myNumber</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="n">whatIsMyNumber</span><span class="p">()</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="n">whatIsMyNumber</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// 取回设置好的数字，如果未被设置，则返回0</span>
   <span class="k">return</span> <span class="n">myNumber</span> <span class="p">[</span><span class="nb">msg.sender</span><span class="p">];</span>
 <span class="p">}</span>
@@ -383,16 +391,16 @@
 <div class="admonition- admonition">
 <p class="first admonition-title">小练习</p>
 <p>请修改下列_createCar函数，让其除了发出事件以外，更能够记录下汽车Car和主人的两种对应关系：carToOwner和ownerCarCount：</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Car</span><span class="p">[]</span> <span class="kr">public</span> <span class="n">cars</span><span class="p">;</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Car</span><span class="p">[]</span> <span class="k">public</span> <span class="n">cars</span><span class="p">;</span>
 
-<span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="kt">address</span><span class="p">)</span> <span class="kr">public</span> <span class="n">carToOwner</span><span class="p">;</span>
+<span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="kt">address</span><span class="p">)</span> <span class="k">public</span> <span class="n">carToOwner</span><span class="p">;</span>
 <span class="kd">mapping</span> <span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">ownerCarCount</span><span class="p">;</span>
 
-<span class="kd">function</span> <span class="n">_createCar</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">_color</span><span class="p">)</span> <span class="kr">private</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="n">_createCar</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">_color</span><span class="p">)</span> <span class="k">private</span> <span class="p">{</span>
     <span class="kt">uint</span> <span class="n">id</span> <span class="o">=</span> <span class="n">cars</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">Car</span><span class="p">(</span><span class="n">_name</span><span class="p">,</span> <span class="n">_color</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
     <span class="n">_______</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">msg.sender</span><span class="p">;</span> <span class="c1">// 此处填充</span>
     <span class="n">ownerCarCount</span><span class="p">[</span><span class="n">________</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>  <span class="c1">// 此处填充</span>
-    <span class="kr">emit</span> <span class="n">NewCar</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">_name</span><span class="p">,</span> <span class="n">_color</span><span class="p">);</span>
+    <span class="k">emit</span> <span class="n">NewCar</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">_name</span><span class="p">,</span> <span class="n">_color</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -408,7 +416,7 @@
 </ul>
 </div></blockquote>
 <p>例如以下程序将会检查发送方的字符串是否符合一定标准。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">sayHi</span> <span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">sayHi</span> <span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">)</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
   <span class="nf">require</span><span class="p">(</span><span class="nf">keccak256</span><span class="p">(</span><span class="n">_name</span><span class="p">)</span> <span class="o">==</span> <span class="nf">keccak256</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">));</span>
   <span class="c1">//条件满足，则执行:</span>
   <span class="k">return</span> <span class="s">&quot;Hi!&quot;</span><span class="p">;</span>
@@ -419,7 +427,7 @@
 <div class="admonition- admonition">
 <p class="first admonition-title">小练习</p>
 <p>我们不希望每个客户都创建无数的车。他们在我们合约内有且只能保留一辆车。所以创建第二辆车是不可能的。请改造如下函数，并仅允许合约调用者在无车的时候创建一辆：</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">createRandomCar</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">createRandomCar</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span>
    <span class="nf">require</span><span class="p">(</span><span class="n">ownerCarCount</span><span class="p">[</span><span class="n">______</span><span class="p">]</span> <span class="o">==</span> <span class="n">____</span><span class="p">);</span> <span class="c1">// 填充此处</span>
    <span class="kt">uint</span> <span class="n">randColor</span> <span class="o">=</span> <span class="n">_generateRandomColor</span><span class="p">(</span><span class="n">_name</span><span class="p">);</span>
     <span class="n">_createCar</span><span class="p">(</span><span class="n">_name</span><span class="p">,</span> <span class="n">randColor</span><span class="p">);</span>
@@ -432,13 +440,13 @@
 <h2>继承和引入<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>智能合约的代码可以来源于自身项目内，也可以来源于外部早已部署完毕的链上合约。使用合约继承语法，不但可以减少重复的代码数量，也可以将代码更清晰地划分成数个组成部分。</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Dog</span> <span class="p">{</span>
-  <span class="kd">function</span> <span class="n">bark</span><span class="p">()</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">bark</span><span class="p">()</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="s">&quot;Wong!&quot;</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">contract</span> <span class="n">BabyDog</span> <span class="kr">is</span> <span class="n">Dog</span> <span class="p">{</span>
-  <span class="kd">function</span> <span class="n">feed</span><span class="p">()</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">contract</span> <span class="n">BabyDog</span> <span class="k">is</span> <span class="n">Dog</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">feed</span><span class="p">()</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="s">&quot;Drink some milk.&quot;</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -447,15 +455,15 @@
 <p>这里小奶狗 BabyDog 继承了狗 Dog 的合约（通过 is 关键字），他们俩都具有bark()方法，同时 BabyDog还具有独特的feed()方法。</p>
 <p>但是合约的代码不可能总是正好处在同一个文件内，我们经常要应用其他项目中的合约文件。怎么操作呢？我们可以将其分成两个文件，并放置在同一个目录下，并通过import 关键字来引入，还是用 Dog 合约来举例。</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Dog</span> <span class="p">{</span>
-  <span class="kd">function</span> <span class="n">bark</span><span class="p">()</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">bark</span><span class="p">()</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="s">&quot;Wong!&quot;</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kn">import</span> <span class="s">&quot;./Dog.sol&quot;</span>
 
-<span class="kd">contract</span> <span class="n">BabyDog</span> <span class="kr">is</span> <span class="n">Dog</span> <span class="p">{</span>
-  <span class="kd">function</span> <span class="n">feed</span><span class="p">()</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">contract</span> <span class="n">BabyDog</span> <span class="k">is</span> <span class="n">Dog</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">feed</span><span class="p">()</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="s">&quot;Drink some milk.&quot;</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -464,10 +472,10 @@
 <div class="admonition- admonition">
 <p class="first admonition-title">小练习</p>
 <p>请填充如下文件CarMaking.sol ，让合约能够顺利继承CarFactory。</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="n">_________</span><span class="p">;</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="k">pragma solidity</span> <span class="o">^</span><span class="n">_________</span><span class="p">;</span>
 <span class="n">_______</span> <span class="s">&quot;./CarFactory.sol&quot;</span><span class="p">;</span>
 
-<span class="kd">contract</span> <span class="n">CarMaking</span> <span class="kr">is</span> <span class="n">CarFactory</span> <span class="p">{</span>
+<span class="kd">contract</span> <span class="n">CarMaking</span> <span class="k">is</span> <span class="n">CarFactory</span> <span class="p">{</span>
 
 <span class="p">}</span>
 </pre></div>
@@ -485,16 +493,16 @@
 
   <span class="n">Hamburger</span><span class="p">[]</span> <span class="n">hamburgers</span><span class="p">;</span>
 
-  <span class="kd">function</span> <span class="n">eatHamburger</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_index</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">eatHamburger</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_index</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span>
 
     <span class="c1">// Hamburger myHamburger = hamburgers[_index];</span>
     <span class="c1">// 上面这句编译器给一个 warning，然如果我们用下列代码，则warning消失</span>
-    <span class="n">Hamburger</span> <span class="kr">storage</span> <span class="n">myHamburger</span> <span class="o">=</span> <span class="n">hamburgers</span><span class="p">[</span><span class="n">_index</span><span class="p">];</span> <span class="c1">// storage 关键字</span>
+    <span class="n">Hamburger</span> <span class="k">storage</span> <span class="n">myHamburger</span> <span class="o">=</span> <span class="n">hamburgers</span><span class="p">[</span><span class="n">_index</span><span class="p">];</span> <span class="c1">// storage 关键字</span>
     <span class="c1">// 直接修改了区块链上的数据</span>
     <span class="n">myHamburger</span><span class="p">.</span><span class="n">status</span> <span class="o">=</span> <span class="s">&quot;Eaten!&quot;</span><span class="p">;</span>
 
     <span class="c1">// 也可以使用 memory 关键字</span>
-    <span class="n">Hamburger</span> <span class="kr">memory</span> <span class="n">anotherHamburger</span> <span class="o">=</span> <span class="n">hamburgers</span><span class="p">[</span><span class="n">_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="n">Hamburger</span> <span class="k">memory</span> <span class="n">anotherHamburger</span> <span class="o">=</span> <span class="n">hamburgers</span><span class="p">[</span><span class="n">_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
     <span class="c1">// 此时修改的是内存中的数据，区块链不收影响</span>
     <span class="n">anotherHamburger</span><span class="p">.</span><span class="n">status</span> <span class="o">=</span> <span class="s">&quot;Eaten!&quot;</span><span class="p">;</span>
     <span class="c1">// 强制回写，影响区块链上的数据</span>
@@ -511,11 +519,11 @@
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">MyNumber</span> <span class="p">{</span>
   <span class="kd">mapping</span><span class="p">(</span><span class="kt">address</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">numbers</span><span class="p">;</span>
 
-  <span class="kd">function</span> <span class="n">setNum</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_num</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">setNum</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_num</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span>
     <span class="n">numbers</span><span class="p">[</span><span class="nb">msg.sender</span><span class="p">]</span> <span class="o">=</span> <span class="n">_num</span><span class="p">;</span>
   <span class="p">}</span>
 
-  <span class="kd">function</span> <span class="n">getNum</span><span class="p">(</span><span class="kt">address</span> <span class="n">_myAddress</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">getNum</span><span class="p">(</span><span class="kt">address</span> <span class="n">_myAddress</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">numbers</span><span class="p">[</span><span class="n">_myAddress</span><span class="p">];</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -523,7 +531,7 @@
 </div>
 <p>这个合约可以提炼成为一个简单的合约接口：</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">NumberInterface</span> <span class="p">{</span>
-  <span class="kd">function</span> <span class="n">getNum</span><span class="p">(</span><span class="kt">address</span> <span class="n">_myAddress</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">);</span>
+  <span class="kd">function</span> <span class="n">getNum</span><span class="p">(</span><span class="kt">address</span> <span class="n">_myAddress</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -533,7 +541,7 @@
   <span class="kt">address</span> <span class="n">NumberInterfaceAddress</span> <span class="o">=</span> <span class="mh">0x1E24F805d89211eD515dD8A4A8C54f96a3E0C1FE</span>
   <span class="c1">// 初始化合约，获得合约实例</span>
   <span class="n">NumberInterface</span> <span class="n">numberContract</span> <span class="o">=</span> <span class="n">NumberInterface</span><span class="p">(</span><span class="n">NumberInterfaceAddress</span><span class="p">);</span>
-  <span class="kd">function</span> <span class="n">someFunction</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">someFunction</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
   <span class="c1">//调用合约的方法</span>
     <span class="kt">uint</span> <span class="n">num</span> <span class="o">=</span> <span class="n">numberContract</span><span class="p">.</span><span class="n">getNum</span><span class="p">(</span><span class="nb">msg.sender</span><span class="p">);</span>
  <span class="p">}</span>
@@ -544,7 +552,7 @@
 <p class="first admonition-title">小练习</p>
 <p>请为如下的合约生成接口，命名该接口，并调用该接口的方法。</p>
 <div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Dog</span> <span class="p">{</span>
-  <span class="kd">function</span> <span class="n">bark</span><span class="p">()</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">bark</span><span class="p">()</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="s">&quot;Wong!&quot;</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -558,7 +566,7 @@
   <span class="kt">address</span> <span class="n">DogInterfaceAddress</span> <span class="o">=</span> <span class="mh">0x735E388e9A8a073f14bdbb1C2bd4704dd386213c</span>
   <span class="c1">// 初始化合约，获得合约实例</span>
   <span class="n">DogInterface</span> <span class="n">dogContract</span> <span class="o">=</span> <span class="n">____________</span><span class="p">(</span><span class="n">____________</span><span class="p">);</span>
-  <span class="kd">function</span> <span class="n">someFunction</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">someFunction</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
    <span class="c1">//调用合约的方法</span>
    <span class="kt">string</span> <span class="n">message</span> <span class="o">=</span> <span class="n">dogContract</span><span class="p">.</span><span class="n">_____</span><span class="p">();</span>
  <span class="p">}</span>
@@ -571,11 +579,11 @@
 <h2>多返回值<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>Solidity 的语法对于返回值并没有强制规定是一个单值，相反它鼓励多值返回来减少编程复杂度。多值返回的语法相对简单，如下所示。</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="c1">// 申明要返回3个值</span>
-<span class="kd">function</span> <span class="n">someFunction</span><span class="p">()</span> <span class="kr">internal</span> <span class="k">returns</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="n">someFunction</span><span class="p">()</span> <span class="k">internal</span> <span class="k">returns</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c1">//封装，返回3个值</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="n">processMultipleReturns</span><span class="p">()</span> <span class="kr">external</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="n">processMultipleReturns</span><span class="p">()</span> <span class="k">external</span> <span class="p">{</span>
   <span class="kt">uint</span> <span class="n">a</span><span class="p">;</span>
   <span class="kt">uint</span> <span class="n">b</span><span class="p">;</span>
   <span class="kt">uint</span> <span class="n">c</span><span class="p">;</span>
@@ -583,7 +591,7 @@
   <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="n">someFunction</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="n">getLastReturnValue</span><span class="p">()</span> <span class="kr">external</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="n">getLastReturnValue</span><span class="p">()</span> <span class="k">external</span> <span class="p">{</span>
   <span class="kt">uint</span> <span class="n">c</span><span class="p">;</span>
   <span class="c1">//我们也可以直接抛弃某些不关心的值:</span>
   <span class="p">(,,</span><span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="n">someFunction</span><span class="p">();</span>
@@ -598,29 +606,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="advanced.html" class="btn btn-neutral float-right" title="高级语法和概念" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="basic.html" class="btn btn-neutral float-left" title="基础概念" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="advanced.html" class="btn btn-neutral float-right" title="高级语法和概念" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="basic.html" class="btn btn-neutral float-left" title="基础概念" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -628,7 +636,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -647,6 +654,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

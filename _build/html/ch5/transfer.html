@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>转账与收款 &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="第 6 章 手把手教你部署智能合约" href="../ch6/index.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 5 章 构建一条以太坊私链</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch5/transfer.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -345,12 +353,12 @@
 <p>听到这个有人又要兴奋了，收钱了！怎么操作呢？</p>
 <p>读者回忆仔细回忆的话，<a class="reference internal" href="../ch3/index.html#ref-transaction-index"><span class="std std-ref">第 3 章 交易是驱动力</span></a> 我们简述了与以太坊区块链互动的唯一方式就是发送交易！无论是简单的转账，还是复杂的智能合约创建/调用，都是包含在交易内发送给以太坊网络的。本小节将带领读者亲自进行一次简单的转账交易。</p>
 <p>若读者的Geth节点已经停止的话，请用如下命令重启节点，这次我们不需要它有带console控制台互动功能。请读者替换正确的地址为挖矿奖励地址。</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> ether-test
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> ether-test
 geth --datadir ./db/ --rpc --rpcaddr<span class="o">=</span><span class="m">127</span>.0.0.1 --rpcport <span class="m">8545</span> --rpccorsdomain <span class="s2">&quot;*&quot;</span> <span class="se">\</span>
    --rpcapi <span class="s2">&quot;eth,net,web3,personal,admin,shh,txpool,debug,miner&quot;</span> <span class="se">\</span>
    --nodiscover --maxpeers <span class="m">30</span> --networkid <span class="m">198989</span> --port <span class="m">30303</span> <span class="se">\</span>
@@ -360,23 +368,23 @@ geth --datadir ./db/ --rpc --rpcaddr<span class="o">=</span><span class="m">127<
 </td></tr></table></div>
 <hr class="docutils" />
 <div class="topic">
-<p class="topic-title first">转账</p>
+<p class="topic-title">转账</p>
 <p>请确保你的Geth节点尚在运行，我们新开命令行窗口执行attach命令依附到正在运行中的Geth节点：</p>
 </div>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> ether-test
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> ether-test
 geth --datadir ./db attach ipc:./db/geth.ipc
 </pre></div>
 </td></tr></table></div>
 <p>在控制台上我们让节点暂停挖矿。</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; miner.stop<span class="o">()</span>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; miner.stop<span class="o">()</span>
 <span class="nb">true</span>
 </pre></div>
 </td></tr></table></div>
 <p>同样在控制台上我们解锁的转账方的账户，输入解锁密码，以及解锁时长 <code class="docutils literal notranslate"><span class="pre">300秒</span></code> 。</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; personal.unlockAccount<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">]</span>, <span class="s1">&#39;123&#39;</span>, <span class="m">300</span><span class="o">)</span>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; personal.unlockAccount<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">]</span>, <span class="s1">&#39;123&#39;</span>, <span class="m">300</span><span class="o">)</span>
 <span class="nb">true</span>
 </pre></div>
 </td></tr></table></div>
@@ -386,15 +394,15 @@ geth --datadir ./db attach ipc:./db/geth.ipc
 <p class="last">在使用签名过后或者解锁时长到达规定后再从内存中移除私钥。这是设计上安全性的考量。不签名直接发送交易，将导致交易异常，无法成功发出。</p>
 </div>
 <p>好，接下来我们发送一笔 <code class="docutils literal notranslate"><span class="pre">10</span></code> 个以太币的转账，转账接收方是另一个我们持有的账户。</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; eth.sendTransaction<span class="o">(</span>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; eth.sendTransaction<span class="o">(</span>
 ... <span class="o">{</span>
 ...... from: eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">]</span>,
 ...... to: eth.accounts<span class="o">[</span><span class="m">1</span><span class="o">]</span>,
@@ -410,14 +418,14 @@ geth --datadir ./db attach ipc:./db/geth.ipc
 <strong>0x45b6be881cf86b79dc7ad8bf4d9cbfafc9aa191062411d6606a086bbc42042ed</strong></p><p>这就是交易的哈希值(Transaction Hash, TxHash)，这个值能够唯一索引到一笔交易。</p>
 <hr class="docutils" />
 <div class="topic">
-<p class="topic-title first">查看转账状态</p>
+<p class="topic-title">查看转账状态</p>
 <p>之前我们已经命令挖矿停止。此时我们可以暂停查看全网状态。让我们深入研究此时刚发出去的交易处在什么阶段。</p>
 </div>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; txpool.status
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; txpool.status
 <span class="o">{</span>
   pending: <span class="m">1</span>,
   queued: <span class="m">0</span>
@@ -425,23 +433,23 @@ geth --datadir ./db attach ipc:./db/geth.ipc
 </pre></div>
 </td></tr></table></div>
 <p>此时交易尚处在 <strong>待打包</strong> （pending）的状态，它的具体内容又是什么呢？我们用交易的哈希值来查询一下它。</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; eth.getTransaction<span class="o">(</span><span class="s2">&quot;0x45b6be881cf86b79dc7ad8bf4d9cbfafc9aa191062411d6606a086bbc42042ed&quot;</span><span class="o">)</span>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; eth.getTransaction<span class="o">(</span><span class="s2">&quot;0x45b6be881cf86b79dc7ad8bf4d9cbfafc9aa191062411d6606a086bbc42042ed&quot;</span><span class="o">)</span>
 <span class="o">{</span>
   blockHash: <span class="s2">&quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;</span>,
   blockNumber: null,
@@ -462,17 +470,17 @@ geth --datadir ./db attach ipc:./db/geth.ipc
 </td></tr></table></div>
 <p>读者如果回忆 <a class="reference internal" href="../ch3/what.html#reference-what-is-transaction"><span class="std std-ref">交易的样子</span></a> ，就会发现一些非常眼熟的字段名，<code class="docutils literal notranslate"><span class="pre">from/to</span></code> 字段指明了交易的发送方和接收方； <code class="docutils literal notranslate"><span class="pre">gas/gasPrice</span></code> 指明了交易方愿意支付的交易费；<code class="docutils literal notranslate"><span class="pre">value</span></code> 指明了本次转账的以太币金额(<code class="docutils literal notranslate"><span class="pre">wei</span></code> 为单位)；由于我们不是调用合约的交易，所以 <code class="docutils literal notranslate"><span class="pre">input</span></code> 所代表的数据区域是空的 <code class="docutils literal notranslate"><span class="pre">0x</span></code> ； <code class="docutils literal notranslate"><span class="pre">nonce</span></code> 是账户曾经发出过的交易笔数的值；因为尚未被打包入区块，所以 <code class="docutils literal notranslate"><span class="pre">blockHash/blockNumber</span></code> 都是 <code class="docutils literal notranslate"><span class="pre">0</span></code> 或者不确定状态。</p>
 <p>让矿工运行！让这条交易被打包吧！</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; miner.start<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="p">;</span> admin.sleepBlocks<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="p">;</span> miner.stop<span class="o">()</span><span class="p">;</span>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; miner.start<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="p">;</span> admin.sleepBlocks<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="p">;</span> miner.stop<span class="o">()</span><span class="p">;</span>
 <span class="nb">true</span>
 </pre></div>
 </td></tr></table></div>
 <p>以上代码将会让挖矿节点重启挖矿，稍等片刻，并在出块1个以后暂停挖矿。停止后区块链再次停止出块，给我们一个机会再观察一下交易池。</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; txpool.status
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; txpool.status
 <span class="o">{</span>
   pending: <span class="m">0</span>,
   queued: <span class="m">0</span>
@@ -480,23 +488,23 @@ geth --datadir ./db attach ipc:./db/geth.ipc
 </pre></div>
 </td></tr></table></div>
 <p>交易已经成功被矿工捕获并打包，我们再查看一下交易状态。</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt;eth.getTransaction<span class="o">(</span><span class="s2">&quot;0x45b6be881cf86b79dc7ad8bf4d9cbfafc9aa191062411d6606a086bbc42042ed&quot;</span><span class="o">)</span>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt;eth.getTransaction<span class="o">(</span><span class="s2">&quot;0x45b6be881cf86b79dc7ad8bf4d9cbfafc9aa191062411d6606a086bbc42042ed&quot;</span><span class="o">)</span>
 <span class="o">{</span>
   blockHash: <span class="s2">&quot;0xa24f29bab9117a48ef6a83588dfecbb991ff2605dcfffffd3d486edb5a3bfe23&quot;</span>,
   blockNumber: <span class="m">1450</span>,
@@ -516,35 +524,35 @@ geth --datadir ./db attach ipc:./db/geth.ipc
 </pre></div>
 </td></tr></table></div>
 <p>此时交易的 <code class="docutils literal notranslate"><span class="pre">blockHash、blockNumber</span></code> 都已经填充完毕，我们的交易被包含在了高度 #1450 的区块之中。我们查看一下接收方的余额。</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt;web3.fromWei<span class="o">(</span>eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">1</span><span class="o">])</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt;web3.fromWei<span class="o">(</span>eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">1</span><span class="o">])</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span>
 <span class="m">10</span>
 </pre></div>
 </td></tr></table></div>
 <p>成功转账！至此这笔交易已经完整走完了从发出到最终入块的历程，那么，它被打包入的区块又是怎样的样子呢？我们来查看一下高度为#1450的区块</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt;eth.getBlock<span class="o">(</span><span class="m">1450</span><span class="o">)</span>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt;eth.getBlock<span class="o">(</span><span class="m">1450</span><span class="o">)</span>
 <span class="o">{</span>
   difficulty: <span class="m">230123</span>,
   extraData: <span class="s2">&quot;0xd98301080e846765746888676f312e31302e338664617277696e&quot;</span>,
@@ -655,29 +663,29 @@ geth --datadir ./db attach ipc:./db/geth.ipc
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../ch6/index.html" class="btn btn-neutral float-right" title="第 6 章 手把手教你部署智能合约" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="coinbase.html" class="btn btn-neutral float-left" title="接收挖矿奖励" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../ch6/index.html" class="btn btn-neutral float-right" title="第 6 章 手把手教你部署智能合约" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="coinbase.html" class="btn btn-neutral float-left" title="接收挖矿奖励" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -685,7 +693,6 @@ geth --datadir ./db attach ipc:./db/geth.ipc
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -704,6 +711,7 @@ geth --datadir ./db attach ipc:./db/geth.ipc
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

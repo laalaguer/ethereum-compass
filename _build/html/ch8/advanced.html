@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>高级语法和概念 &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="小结" href="summary.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 8 章 Solidity语法练习</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch8/advanced.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -347,9 +355,9 @@
 <h2>Contract 构造函数<a class="headerlink" href="#contract" title="Permalink to this headline">¶</a></h2>
 <p>构造函数在以前旧版本的Solidity里面是一个自定义的同名函数，例如下面的合约。</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Ownable</span> <span class="p">{</span>
-  <span class="kt">address</span> <span class="kr">public</span> <span class="n">owner</span><span class="p">;</span>
+  <span class="kt">address</span> <span class="k">public</span> <span class="n">owner</span><span class="p">;</span>
   <span class="c1">// 初始化，设定 owner</span>
-  <span class="kd">function</span> <span class="n">Ownable</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">Ownable</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
     <span class="n">owner</span> <span class="o">=</span> <span class="nb">msg.sender</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -357,9 +365,9 @@
 </div>
 <p>这里Ownable构造函数对应了Ownable合约，完成了初始化的操作。但是这个旧版的语法在新的编译器里面被替换，因为往往开发者在开发时候更换了合约的名字而忘记修改构造函数名，造成重大事故。所以现在统一用constructor关键字来替代。</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Ownable</span> <span class="p">{</span>
-  <span class="kt">address</span> <span class="kr">public</span> <span class="n">owner</span><span class="p">;</span>
+  <span class="kt">address</span> <span class="k">public</span> <span class="n">owner</span><span class="p">;</span>
   <span class="c1">// 初始化，设定 owner</span>
-  <span class="kd">constructor</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
     <span class="n">owner</span> <span class="o">=</span> <span class="nb">msg.sender</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -370,36 +378,36 @@
 <h2>Ownable控制<a class="headerlink" href="#ownable" title="Permalink to this headline">¶</a></h2>
 <p>控制合约的所有权，常常使用的一个控制结构就是Ownable，这只不过是一个约定俗成的表达写法。下面是openZeppelin公开项目中摘录的部分代码</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Ownable</span> <span class="p">{</span>
-  <span class="kt">address</span> <span class="kr">public</span> <span class="n">owner</span><span class="p">;</span>
-  <span class="kd">event</span> <span class="n">OwnershipTransferred</span><span class="p">(</span><span class="kt">address</span> <span class="kr">indexed</span> <span class="n">previousOwner</span><span class="p">,</span> <span class="kt">address</span> <span class="kr">indexed</span> <span class="n">newOwner</span><span class="p">);</span>
+  <span class="kt">address</span> <span class="k">public</span> <span class="n">owner</span><span class="p">;</span>
+  <span class="kd">event</span> <span class="n">OwnershipTransferred</span><span class="p">(</span><span class="kt">address</span> <span class="k">indexed</span> <span class="n">previousOwner</span><span class="p">,</span> <span class="kt">address</span> <span class="k">indexed</span> <span class="n">newOwner</span><span class="p">);</span>
 
   <span class="c1">// 初始化，设定 owner</span>
-  <span class="kd">function</span> <span class="n">Ownable</span><span class="p">()</span> <span class="kr">public</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">Ownable</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
     <span class="n">owner</span> <span class="o">=</span> <span class="nb">msg.sender</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="c1">// 设定仅允许 owner 访问</span>
   <span class="kd">modifier</span> <span class="n">onlyOwner</span><span class="p">()</span> <span class="p">{</span>
     <span class="nf">require</span><span class="p">(</span><span class="nb">msg.sender</span> <span class="o">==</span> <span class="n">owner</span><span class="p">);</span>
-    <span class="kr">_</span><span class="p">;</span>
+    <span class="k">_</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="c1">// 转移 owner 所有权</span>
-  <span class="kd">function</span> <span class="n">transferOwnership</span><span class="p">(</span><span class="kt">address</span> <span class="n">newOwner</span><span class="p">)</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">transferOwnership</span><span class="p">(</span><span class="kt">address</span> <span class="n">newOwner</span><span class="p">)</span> <span class="k">public</span> <span class="n">onlyOwner</span> <span class="p">{</span>
     <span class="nf">require</span><span class="p">(</span><span class="n">newOwner</span> <span class="o">!=</span> <span class="kt">address</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-    <span class="kr">emit</span> <span class="n">OwnershipTransferred</span><span class="p">(</span><span class="n">owner</span><span class="p">,</span> <span class="n">newOwner</span><span class="p">);</span>
+    <span class="k">emit</span> <span class="n">OwnershipTransferred</span><span class="p">(</span><span class="n">owner</span><span class="p">,</span> <span class="n">newOwner</span><span class="p">);</span>
     <span class="n">owner</span> <span class="o">=</span> <span class="n">newOwner</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>读者可能对onlyOwner()函数看得云里雾里。这里怎么会有一个 <code class="docutils literal notranslate"><span class="pre">_;</span></code> 奇怪的段落呢？其实这里 _; 函数代表了模板预留空位，当任意新的函数使用onlyOwner来修饰自己的时候，它就可以将自己的函数逻辑代码替代到 _; 位置来执行。例如下所示。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">MyContract</span> <span class="kr">is</span> <span class="n">Ownable</span> <span class="p">{</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">MyContract</span> <span class="k">is</span> <span class="n">Ownable</span> <span class="p">{</span>
   <span class="kd">event</span> <span class="n">Laugh</span><span class="p">(</span><span class="kt">string</span> <span class="n">laughter</span><span class="p">);</span>
 
   <span class="c1">// 用 OnlyOwner来修饰函数</span>
-  <span class="kd">function</span> <span class="n">likeABoss</span><span class="p">()</span> <span class="kr">external</span> <span class="n">onlyOwner</span> <span class="p">{</span>
-     <span class="kr">emit</span> <span class="n">Laugh</span><span class="p">(</span><span class="s">&quot;Muahahahaha&quot;</span><span class="p">);</span>
+  <span class="kd">function</span> <span class="n">likeABoss</span><span class="p">()</span> <span class="k">external</span> <span class="n">onlyOwner</span> <span class="p">{</span>
+     <span class="k">emit</span> <span class="n">Laugh</span><span class="p">(</span><span class="s">&quot;Muahahahaha&quot;</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -409,30 +417,30 @@
 <div class="section" id="pausable">
 <h2>Pausable控制<a class="headerlink" href="#pausable" title="Permalink to this headline">¶</a></h2>
 <p>有了Ownable来明确合约所有权，那么合约是否可以由合约所有者（owner）控制，随时地暂停呢？因为有些合约是智能转账合约，它一旦发生灾难则暴露在公众下不可控制，如果合约所有者能够进行“临时暂停”该多好啊！Pausable可暂停合约就是这样设计的。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Pausable</span> <span class="kr">is</span> <span class="n">Ownable</span> <span class="p">{</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Pausable</span> <span class="k">is</span> <span class="n">Ownable</span> <span class="p">{</span>
   <span class="kd">event</span> <span class="n">Pause</span><span class="p">();</span>
   <span class="kd">event</span> <span class="n">Unpause</span><span class="p">();</span>
 
-  <span class="kt">bool</span> <span class="kr">public</span> <span class="n">paused</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="k">public</span> <span class="n">paused</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
   <span class="kd">modifier</span> <span class="n">whenNotPaused</span><span class="p">()</span> <span class="p">{</span>
     <span class="nf">require</span><span class="p">(</span><span class="o">!</span><span class="n">paused</span><span class="p">);</span>
-    <span class="kr">_</span><span class="p">;</span>
+    <span class="k">_</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="kd">modifier</span> <span class="n">whenPaused</span><span class="p">()</span> <span class="p">{</span>
     <span class="nf">require</span><span class="p">(</span><span class="n">paused</span><span class="p">);</span>
-    <span class="kr">_</span><span class="p">;</span>
+    <span class="k">_</span><span class="p">;</span>
   <span class="p">}</span>
 
-  <span class="kd">function</span> <span class="n">pause</span><span class="p">()</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="n">whenNotPaused</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">pause</span><span class="p">()</span> <span class="k">public</span> <span class="n">onlyOwner</span> <span class="n">whenNotPaused</span> <span class="p">{</span>
     <span class="n">paused</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="kr">emit</span> <span class="n">Pause</span><span class="p">();</span>
+    <span class="k">emit</span> <span class="n">Pause</span><span class="p">();</span>
   <span class="p">}</span>
 
-  <span class="kd">function</span> <span class="n">unpause</span><span class="p">()</span> <span class="kr">public</span> <span class="n">onlyOwner</span> <span class="n">whenPaused</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">unpause</span><span class="p">()</span> <span class="k">public</span> <span class="n">onlyOwner</span> <span class="n">whenPaused</span> <span class="p">{</span>
     <span class="n">paused</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-    <span class="kr">emit</span> <span class="n">Unpause</span><span class="p">();</span>
+    <span class="k">emit</span> <span class="n">Unpause</span><span class="p">();</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -441,11 +449,11 @@
 <div class="admonition- admonition">
 <p class="first admonition-title">小练习</p>
 <p>请对下列合约的代码进行填补，让他在合约暂停时无法执行转账函数transfer。</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Token</span> <span class="kr">is</span> <span class="n">______</span> <span class="p">{</span>
-  <span class="kd">event</span> <span class="n">Transfer</span><span class="p">(</span><span class="kt">address</span> <span class="kr">from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">to</span><span class="p">);</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">Token</span> <span class="k">is</span> <span class="n">______</span> <span class="p">{</span>
+  <span class="kd">event</span> <span class="n">Transfer</span><span class="p">(</span><span class="kt">address</span> <span class="k">from</span><span class="p">,</span> <span class="kt">address</span> <span class="n">to</span><span class="p">);</span>
 
-  <span class="kd">function</span> <span class="nf">transfer</span><span class="p">(</span><span class="kt">address</span> <span class="n">_to</span><span class="p">)</span> <span class="kr">public</span> <span class="n">_______</span> <span class="p">{</span>
-    <span class="kr">emit</span> <span class="n">Tranfer</span><span class="p">(</span><span class="nb">msg.sender</span><span class="p">,</span> <span class="n">_to</span><span class="p">);</span>
+  <span class="kd">function</span> <span class="nf">transfer</span><span class="p">(</span><span class="kt">address</span> <span class="n">_to</span><span class="p">)</span> <span class="k">public</span> <span class="n">_______</span> <span class="p">{</span>
+    <span class="k">emit</span> <span class="n">Tranfer</span><span class="p">(</span><span class="nb">msg.sender</span><span class="p">,</span> <span class="n">_to</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -486,7 +494,7 @@
 <div class="section" id="id2">
 <h2>时间单位表达<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>在智能合约中经常使用到时间信息。转账时间、合约的倒计时、方法调用的冷却时间都会用到时间。除了用区块链的高度来“估算”时间以外（因为出块时间相对稳定），Solidity提供了一个Unix时间戳来记录时间，类似于1515527488这样的数字。在编程的时候并不需要我们手动拼写这个数字，仅需要通过文字描述即可达到目的。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">fiveMinutesHavePassed</span><span class="p">()</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">fiveMinutesHavePassed</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span><span class="nb">now</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">lastUpdated</span> <span class="o">+</span> <span class="mi">5</span> <span class="kc">minutes</span><span class="p">));</span>
 <span class="p">}</span>
 </pre></div>
@@ -510,16 +518,16 @@
 <h2>带参数的函数修饰符<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>我们经常看到函数的修饰符可以带一定的参数。这对修饰符号的扩展有很大好处。例如我们可以规定开车的基准年龄不得低于16岁。此时我们可以事先写好一些年龄现值函数，到了最终代码总装配的时候灵活填入16岁这个数值就可以。例如如下的函数。</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="c1">// ID 和年龄的映射</span>
-<span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="kr">public</span> <span class="n">age</span><span class="p">;</span>
+<span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="k">public</span> <span class="n">age</span><span class="p">;</span>
 
 <span class="c1">// 一个函数修饰</span>
 <span class="kd">modifier</span> <span class="n">olderThan</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_age</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">_userId</span><span class="p">)</span> <span class="p">{</span>
   <span class="nf">require</span><span class="p">(</span><span class="n">age</span><span class="p">[</span><span class="n">_userId</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">_age</span><span class="p">);</span>
-  <span class="kr">_</span><span class="p">;</span>
+  <span class="k">_</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="c1">// 限制年龄大于16岁才能开车</span>
-<span class="kd">function</span> <span class="n">driveCar</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_userId</span><span class="p">)</span> <span class="kr">public</span> <span class="n">olderThan</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">_userId</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="n">driveCar</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_userId</span><span class="p">)</span> <span class="k">public</span> <span class="n">olderThan</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">_userId</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">}</span>
 </pre></div>
@@ -529,8 +537,8 @@
 <div class="section" id="for">
 <h2>for 循环<a class="headerlink" href="#for" title="Permalink to this headline">¶</a></h2>
 <p>循环在智能合约中使用范围不是很明显。因为循环消耗大量的计算步骤，智能合约编纂者都尽量减少循环次数，甚至从根本上避免循环的产生。例如下面就是一个循环的例子。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">getOdds</span><span class="p">()</span> <span class="kr">pure</span> <span class="kr">external</span> <span class="k">returns</span><span class="p">(</span><span class="kt">uint</span><span class="p">[])</span> <span class="p">{</span>
-  <span class="kt">uint</span><span class="p">[]</span> <span class="kr">memory</span> <span class="n">odds</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">uint</span><span class="p">[](</span><span class="mi">5</span><span class="p">);</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">getOdds</span><span class="p">()</span> <span class="k">pure</span> <span class="k">external</span> <span class="k">returns</span><span class="p">(</span><span class="kt">uint</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="kt">uint</span><span class="p">[]</span> <span class="k">memory</span> <span class="n">odds</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">uint</span><span class="p">[](</span><span class="mi">5</span><span class="p">);</span>
 
   <span class="kt">uint</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
@@ -550,7 +558,7 @@
 <h2>合约收款：payable修饰符<a class="headerlink" href="#payable" title="Permalink to this headline">¶</a></h2>
 <p>在虚拟机章节里面提到，以太坊智能合约调用就是消息的传递，消息传递包含两部分：调用智能合约方法（传递数据）以及以太币的支付。那么，合约能否接受调用者的以太币支付呢？答案当然是可以的，请看下列网上商城的代码。</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">OnlineStore</span> <span class="p">{</span>
-  <span class="kd">function</span> <span class="n">buySomething</span><span class="p">()</span> <span class="kr">external</span> <span class="kr">payable</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">buySomething</span><span class="p">()</span> <span class="k">external</span> <span class="k">payable</span> <span class="p">{</span>
     <span class="c1">// 查看付款金额</span>
     <span class="nf">require</span><span class="p">(</span><span class="nb">msg.value</span> <span class="o">==</span> <span class="mf">0.001</span> <span class="kc">ether</span><span class="p">);</span>
     <span class="c1">// 将对应金额的物品转移给调用方</span>
@@ -564,9 +572,9 @@
 <p class="first admonition-title">小练习</p>
 <p>请填充下列合约，让用户可以用0.1以太币的价格购买1个 dog 代币。</p>
 <div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">OnlineStore</span> <span class="p">{</span>
-  <span class="kd">mapping</span> <span class="p">(</span><span class="n">____</span> <span class="o">=&gt;</span> <span class="n">unit</span><span class="p">)</span> <span class="kr">public</span> <span class="n">dogs</span><span class="p">;</span>
+  <span class="kd">mapping</span> <span class="p">(</span><span class="n">____</span> <span class="o">=&gt;</span> <span class="n">unit</span><span class="p">)</span> <span class="k">public</span> <span class="n">dogs</span><span class="p">;</span>
 
-  <span class="kd">function</span> <span class="n">buyDog</span><span class="p">()</span> <span class="kr">external</span> <span class="kr">payable</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">buyDog</span><span class="p">()</span> <span class="k">external</span> <span class="k">payable</span> <span class="p">{</span>
     <span class="c1">// 查看付款金额</span>
     <span class="nf">require</span><span class="p">(</span><span class="nb">msg.value</span> <span class="o">==</span> <span class="n">____</span> <span class="kc">ether</span><span class="p">);</span>
     <span class="c1">// 将对应金额的dog转移给调用方</span>
@@ -580,8 +588,8 @@
 <div class="section" id="transfer">
 <h2>支付费用：transfer方法<a class="headerlink" href="#transfer" title="Permalink to this headline">¶</a></h2>
 <p>智能合约的作者往往能获得报酬。怎么获得呢？就是通过用户不断向智能合约打入以太币，并积累在智能合约的balance余额中。当智能合约所有者想提取的时候，调用一个函数就可以执行，例如下面所示的合约。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">GetPaid</span> <span class="kr">is</span> <span class="n">Ownable</span> <span class="p">{</span>
-  <span class="kd">function</span> <span class="n">withdraw</span><span class="p">()</span> <span class="kr">external</span> <span class="n">onlyOwner</span> <span class="p">{</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">contract</span> <span class="n">GetPaid</span> <span class="k">is</span> <span class="n">Ownable</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="n">withdraw</span><span class="p">()</span> <span class="k">external</span> <span class="n">onlyOwner</span> <span class="p">{</span>
     <span class="n">owner</span><span class="p">.</span><span class="nf">transfer</span><span class="p">(</span><span class="nb">this</span><span class="p">.</span><span class="nb">balance</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -591,7 +599,7 @@
 <div class="admonition- admonition">
 <p class="first admonition-title">小练习</p>
 <p>下面的代码片段会将用户购买物品时候的多余以太币退回去，请填充一个函数名。</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">buy</span><span class="p">()</span> <span class="kr">external</span>  <span class="p">{</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">buy</span><span class="p">()</span> <span class="k">external</span>  <span class="p">{</span>
   <span class="kt">uint</span> <span class="n">itemFee</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="kc">ether</span><span class="p">;</span>
   <span class="nb">msg.sender</span><span class="p">.</span><span class="n">__________</span><span class="p">(</span><span class="nb">msg.value</span> <span class="o">-</span> <span class="n">itemFee</span><span class="p">);</span>
 <span class="p">}</span>
@@ -606,29 +614,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="summary.html" class="btn btn-neutral float-right" title="小结" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="levelup.html" class="btn btn-neutral float-left" title="语法进阶" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="summary.html" class="btn btn-neutral float-right" title="小结" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="levelup.html" class="btn btn-neutral float-left" title="语法进阶" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -636,7 +644,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -655,6 +662,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

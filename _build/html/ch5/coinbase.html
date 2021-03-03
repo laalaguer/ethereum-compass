@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>接收挖矿奖励 &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="转账与收款" href="transfer.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 5 章 构建一条以太坊私链</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch5/coinbase.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -346,16 +354,16 @@
 <p class="centered">
 <strong>0x7df9a875a174b3bc565e6424a0050ebc1b2d1d82</strong></p><p>这个地址我们没有它的私钥，也就是说这部分汇入的币就永远不可能为我们所用。我们下面来应用 <a class="reference internal" href="../ch2/account.html#reference-account"><span class="std std-ref">账户探秘</span></a> 所学的账户知识，生成两个以太坊账户并且将其中一个设置为挖矿的奖励地址替换上方的地址。</p>
 <p><strong>请确保你的Geth节点尚在运行</strong> ，我们新开命令行窗口执行 attach 命令依附上正在运行中的Geth节点：</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> ether-test
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> ether-test
 geth --datadir ./db attach ipc:./db/geth.ipc
 </pre></div>
 </td></tr></table></div>
 <p>在控制台上我们用personal功能模块新建两个账户，分别由123密码和 456来保护。</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; personal.newAccount<span class="o">(</span><span class="s1">&#39;123&#39;</span><span class="o">)</span>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; personal.newAccount<span class="o">(</span><span class="s1">&#39;123&#39;</span><span class="o">)</span>
 <span class="s2">&quot;0x53dc408a8fa060fd3b72b30ca312f4b3f3232f4f&quot;</span>
 &gt; personal.newAccount<span class="o">(</span><span class="s1">&#39;456&#39;</span><span class="o">)</span>
 <span class="s2">&quot;0x6c8f6c9d9f8d63503fc10977db48cd92a15d34ff&quot;</span>
@@ -367,13 +375,13 @@ geth --datadir ./db attach ipc:./db/geth.ipc
 <p class="last">生成的两个账户信息已经按照 <a class="reference internal" href="../ch2/keystore.html#reference-keystore"><span class="std std-ref">资料篇：Keystore 与私钥保存</span></a> 的 keystore 形式加密存储于本机硬盘，在发送交易前的签名环节，用户仅需通过提示输入对应的密码123或456就可以临时解锁账户信息载入内存，执行签名操作。</p>
 </div>
 <p>我们用eth功能模块来检查一下这两个账户的以太币余额。</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; eth.accounts
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; eth.accounts
 <span class="o">[</span><span class="s2">&quot;0x53dc408a8fa060fd3b72b30ca312f4b3f3232f4f&quot;</span>, <span class="s2">&quot;0x6c8f6c9d9f8d63503fc10977db48cd92a15d34ff&quot;</span><span class="o">]</span>
 
 &gt; web3.fromWei<span class="o">(</span>eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span>
@@ -386,14 +394,14 @@ geth --datadir ./db attach ipc:./db/geth.ipc
 <p class="centered">
 <strong><span class="math notranslate nohighlight">\(1 {Ether}=1 x 10^{18} {wei}\)</span></strong></p><p>我们用 <code class="docutils literal notranslate"><span class="pre">web3</span></code> 库的换算功能帮助我们换算了账户余额，如我们所预料的，账户余额为 <code class="docutils literal notranslate"><span class="pre">0</span></code> 。</p>
 <p>为了在私链上获取以太币供测试使用，我们设定其中一个账户的地址为挖矿奖励地址，这样我们就有源源不断的以太币可以做实验使用，我们来用miner功能模块设定一下挖矿地址。</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; miner.setEtherbase<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; miner.setEtherbase<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>
 <span class="nb">true</span>
 </pre></div>
 </td></tr></table></div>
 <p>我们再来用eth功能模块检查一下，是否挖矿收益地址coinbase已经是我们的地址：</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; eth.coinbase
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>&gt; eth.coinbase
 <span class="s2">&quot;0x53dc408a8fa060fd3b72b30ca312f4b3f3232f4f&quot;</span>
 </pre></div>
 </td></tr></table></div>
@@ -427,29 +435,29 @@ INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="transfer.html" class="btn btn-neutral float-right" title="转账与收款" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="build.html" class="btn btn-neutral float-left" title="启动一条以太坊私链" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="transfer.html" class="btn btn-neutral float-right" title="转账与收款" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="build.html" class="btn btn-neutral float-left" title="启动一条以太坊私链" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -457,7 +465,6 @@ INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -476,6 +483,7 @@ INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

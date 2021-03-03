@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>账户探秘 &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="扩展阅读" href="interval.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 2 章 账户是什么</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch2/account.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -457,13 +465,13 @@
 </table>
 <div class="literal-block-wrapper docutils container" id="id19">
 <div class="code-block-caption"><span class="caption-text">代码清单2-1</span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">randomBytes</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;randombytes&#39;</span><span class="p">)</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">randomBytes</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;randombytes&#39;</span><span class="p">)</span>
 <span class="cm">/**</span>
 <span class="cm">* Create a random private key buffer.</span>
 <span class="cm">* @returns {Buffer} private key: a 32 bytes buffer</span>
 <span class="cm">*/</span>
-<span class="kr">const</span> <span class="nx">createRandomPrivateKey</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
-  <span class="kr">const</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="nx">randomBytes</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">createRandomPrivateKey</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
+  <span class="kd">const</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="nx">randomBytes</span><span class="p">(</span><span class="mf">32</span><span class="p">)</span>
   <span class="k">return</span> <span class="nx">privateKey</span>
 <span class="p">}</span>
 </pre></div>
@@ -497,19 +505,19 @@
 <p>有了地址，你朋友就可以给你打以太币了！生成该地址的代码如代码清单2-2所示。</p>
 <div class="literal-block-wrapper docutils container" id="id20">
 <div class="code-block-caption"><span class="caption-text">代码清单2-2</span><a class="headerlink" href="#id20" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">secp256k1</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;secp256k1&#39;</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">keccak</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;keccak&#39;</span><span class="p">)</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">secp256k1</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;secp256k1&#39;</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">keccak</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;keccak&#39;</span><span class="p">)</span>
 <span class="cm">/**</span>
 <span class="cm"> * Turn private key into address</span>
 <span class="cm"> * @param privateKey {Buffer} 32 bytes of private key</span>
 <span class="cm"> * @returns {Buffer} 20 bytes of address</span>
 <span class="cm"> */</span>
-<span class="kr">const</span> <span class="nx">privateKeyToAddress</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">privateKey</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">const</span> <span class="nx">privateKeyToAddress</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">privateKey</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// 32 bytes of private key buffer to generate 65 bytes of public key.</span>
     <span class="c1">// Get rid of 0x04 at the begin of public key. (65-1=64 bytes remains)</span>
-    <span class="kr">const</span> <span class="nx">publicKey</span> <span class="o">=</span> <span class="nx">secp256k1</span><span class="p">.</span><span class="nx">publicKeyCreate</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="kc">false</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="kd">const</span> <span class="nx">publicKey</span> <span class="o">=</span> <span class="nx">secp256k1</span><span class="p">.</span><span class="nx">publicKeyCreate</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="kc">false</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
     <span class="c1">// Take right-most 20 bytes and turn to hex representation.</span>
-    <span class="k">return</span> <span class="nx">keccak</span><span class="p">(</span><span class="s1">&#39;keccak256&#39;</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">publicKey</span><span class="p">).</span><span class="nx">digest</span><span class="p">().</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">keccak</span><span class="p">(</span><span class="s1">&#39;keccak256&#39;</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">publicKey</span><span class="p">).</span><span class="nx">digest</span><span class="p">().</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mf">20</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -552,8 +560,8 @@
 <p>我们将在动手实践环节中，用 <code class="docutils literal notranslate"><span class="pre">web3</span></code> 向读者展示合约的部署生成过程，在这里仅演示当创建一个合约时，究竟发生了什么。代码如清单2-3所示。</p>
 <div class="literal-block-wrapper docutils container" id="id21">
 <div class="code-block-caption"><span class="caption-text">代码清单2-3</span><a class="headerlink" href="#id21" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">rlp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;rlp&#39;</span><span class="p">);</span>
-<span class="kr">const</span> <span class="nx">keccak</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;keccak&#39;</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">rlp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;rlp&#39;</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">keccak</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;keccak&#39;</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">nonce</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span> <span class="c1">// Nonce of sender.</span>
 <span class="kd">var</span> <span class="nx">sender</span> <span class="o">=</span> <span class="s1">&#39;0x6ac7ea33f8831ea9dcc53393aaa88b25a785dbf0&#39;</span><span class="p">;</span> <span class="c1">// Sender address.</span>
@@ -562,7 +570,7 @@
 <span class="kd">var</span> <span class="nx">rlp_encoded</span> <span class="o">=</span> <span class="nx">rlp</span><span class="p">.</span><span class="nx">encode</span><span class="p">(</span><span class="nx">input_arr</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">contract_address_long</span> <span class="o">=</span> <span class="nx">keccak</span><span class="p">(</span><span class="s1">&#39;keccak256&#39;</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">rlp_encoded</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">contract_address</span> <span class="o">=</span> <span class="nx">contract_address_long</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">24</span><span class="p">);</span> <span class="c1">//Trim.</span>
+<span class="kd">var</span> <span class="nx">contract_address</span> <span class="o">=</span> <span class="nx">contract_address_long</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">24</span><span class="p">);</span> <span class="c1">//Trim.</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;contract_address: &quot;</span> <span class="o">+</span> <span class="nx">contract_address</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -608,29 +616,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="interval.html" class="btn btn-neutral float-right" title="扩展阅读" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="basic.html" class="btn btn-neutral float-left" title="小白基础知识问答" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="interval.html" class="btn btn-neutral float-right" title="扩展阅读" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="basic.html" class="btn btn-neutral float-left" title="小白基础知识问答" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -638,7 +646,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -657,6 +664,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

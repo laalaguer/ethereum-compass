@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>基础概念 &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="语法进阶" href="levelup.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 8 章 Solidity语法练习</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch8/basic.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -417,13 +425,13 @@
 <p>pragma 指定了该使用哪个以太坊字节码编译器来编译这份源代码。
 以太坊的编译器迭代了多个版本，指定一个没有bug的编译器也是一种技巧保障安全。</p>
 <p>预编译指令非常简单，包含了想采用的编译器的版本，例如下方代码指定了 <code class="docutils literal notranslate"><span class="pre">0.4.24</span></code> 版本。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="k">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
 </pre></div>
 </div>
 <div class="admonition- admonition">
 <p class="first admonition-title">小练习</p>
 <p>请填充下方的空白处，创建一份智能合约，将其命名为汽车工厂CarFactory， 指定编译器版本为0.4.24：</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="n">_____</span><span class="p">;</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="k">pragma solidity</span> <span class="o">^</span><span class="n">_____</span><span class="p">;</span>
 
 <span class="kd">contract</span> <span class="n">______</span> <span class="p">{</span>
 
@@ -447,7 +455,7 @@
 <div class="admonition- admonition">
 <p class="first admonition-title">小练习</p>
 <p>请在下面的空白处填写，让colorDigits 等于16，我们日后用它记录汽车颜色:</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="k">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
 
 <span class="kd">contract</span> <span class="n">CarFactory</span> <span class="p">{</span>
     <span class="c1">//这里填写</span>
@@ -473,7 +481,7 @@
 <div class="admonition- admonition">
 <p class="first admonition-title">小练习</p>
 <p>请在下面空白处填写，让 colorModulus 等于10的 colorDigits次方，这样我们每次做除法的时候，可以保证余数的不超过colorDigits 位。</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="k">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
 
 <span class="kd">contract</span> <span class="n">CarFactory</span> <span class="p">{</span>
 
@@ -511,19 +519,19 @@
 <div class="section" id="array">
 <h2>数组array<a class="headerlink" href="#array" title="Permalink to this headline">¶</a></h2>
 <p>当我们想创建同类型数据的集合的时候就用上了 array 数组。一个数组里面可以加入同类型的数据，哪怕是 struct 类型的数据都可以是数组的基本类型。例如下面的数组。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kt">uint</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="kt">fixed</span><span class="p">;</span> <span class="c1">// 定长数组，只能包含3个元素，每个元素是 uint</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kt">uint</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="kr">fixed</span><span class="p">;</span> <span class="c1">// 定长数组，只能包含3个元素，每个元素是 uint</span>
 <span class="kt">string</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="n">stringArray</span><span class="p">;</span> <span class="c1">// 定长数组，只能包含10个元素， 每个元素是 string</span>
 <span class="n">Person</span><span class="p">[]</span> <span class="n">dynamic</span><span class="p">;</span> <span class="c1">// 可变长数组，可持续增长，每个元素是 Person 结构体</span>
 </pre></div>
 </div>
 <p>可变长数组给我们提供了一个机会，类似数据库，可以持续往这个“篮子”里面写入和读取数字，在写入读取的时候势必会有权限问题(可不可以被合约外访问到？)，我们采用 public关键字来修饰变量，让变量可以公开被合约外访问到，但该访问并不包含修改权限，仅仅包含了读取权限。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Bike</span><span class="p">[]</span> <span class="kr">public</span> <span class="n">bikes</span><span class="p">;</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Bike</span><span class="p">[]</span> <span class="k">public</span> <span class="n">bikes</span><span class="p">;</span>
 </pre></div>
 </div>
 <div class="admonition- admonition">
 <p class="first admonition-title">小练习</p>
 <p>请创建一个可容纳Car类型的动态长度数组cars：</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="k">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
 
 <span class="kd">contract</span> <span class="n">CarFactory</span> <span class="p">{</span>
 
@@ -536,7 +544,7 @@
     <span class="p">}</span>
 
 <span class="c1">// 这里填充</span>
-<span class="n">____</span><span class="p">[]</span> <span class="kr">public</span> <span class="n">____</span><span class="p">;</span>
+<span class="n">____</span><span class="p">[]</span> <span class="k">public</span> <span class="n">____</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -571,7 +579,7 @@
   <span class="kt">string</span> <span class="n">name</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">Person</span><span class="p">[]</span> <span class="kr">public</span> <span class="n">people</span><span class="p">;</span>
+<span class="n">Person</span><span class="p">[]</span> <span class="k">public</span> <span class="n">people</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>我们可以申明新的 Person 并且加入 people 里面，不断扩充这数组，例如我们创建Steve Jobs这人物并且填充入数组。</p>
@@ -583,7 +591,7 @@
 <div class="admonition- admonition">
 <p class="first admonition-title">小练习</p>
 <p>请填充我们的createCar函数，并且创建一个Car结构体加入已有的Car数组内。</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Car</span><span class="p">[]</span> <span class="kr">public</span> <span class="n">cars</span><span class="p">;</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Car</span><span class="p">[]</span> <span class="k">public</span> <span class="n">cars</span><span class="p">;</span>
 <span class="kd">function</span> <span class="n">createCar</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">_color</span><span class="p">)</span> <span class="p">{</span>
    <span class="n">cars</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">_____</span> <span class="p">(</span><span class="n">_____</span><span class="p">,</span> <span class="n">______</span><span class="p">));</span>
 <span class="p">}</span>
@@ -593,7 +601,7 @@
 <p>很好，函数的介绍部分基本完成了。目前为止我们尚未接触到函数权限问题。作为语言间的对比，在Java中公开/私有函数都有 public/private等权限修饰，在Python/JavaScript中则没有私有函数，全部是公开函数，全靠程序员自觉的编程习惯。Solidity中默认的函数权限是Public，也就是完全公开。有时候这是不可取的。我们可以用 private 来修饰这些函数，例如下方的代码所示。</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kt">uint</span><span class="p">[]</span> <span class="n">digits</span><span class="p">;</span>
 
-<span class="kd">function</span> <span class="n">_addToArray</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_number</span><span class="p">)</span> <span class="kr">private</span> <span class="p">{</span><span class="c1">//修饰符在最后</span>
+<span class="kd">function</span> <span class="n">_addToArray</span><span class="p">(</span><span class="kt">uint</span> <span class="n">_number</span><span class="p">)</span> <span class="k">private</span> <span class="p">{</span><span class="c1">//修饰符在最后</span>
   <span class="n">digits</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">_number</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
@@ -602,7 +610,7 @@
 <div class="admonition- admonition">
 <p class="first admonition-title">小练习</p>
 <p>请将我们的下属函数修改为private修饰的函数，注意createCar已经有下划线前缀：</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Car</span><span class="p">[]</span> <span class="kr">public</span> <span class="n">cars</span><span class="p">;</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Car</span><span class="p">[]</span> <span class="k">public</span> <span class="n">cars</span><span class="p">;</span>
 <span class="kd">function</span> <span class="n">_createCar</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">_color</span><span class="p">)</span> <span class="n">_______</span> <span class="p">{</span>
    <span class="n">cars</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">Car</span><span class="p">(</span><span class="n">_name</span><span class="p">,</span> <span class="n">_color</span><span class="p">));</span>
 <span class="p">}</span>
@@ -613,19 +621,19 @@
 <p>一个有用的函数，还应该将处理结果返回给调用者，例如下方的函数返回一个Person类型的返回值。</p>
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kt">string</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;John&quot;</span><span class="p">;</span>
 
-<span class="kd">function</span> <span class="n">makePerson</span> <span class="p">(</span><span class="kt">uint16</span> <span class="n">_age</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="p">{</span><span class="c1">//注意使用了小括号</span>
+<span class="kd">function</span> <span class="n">makePerson</span> <span class="p">(</span><span class="kt">uint16</span> <span class="n">_age</span><span class="p">)</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="p">{</span><span class="c1">//注意使用了小括号</span>
   <span class="k">return</span> <span class="n">Person</span><span class="p">(</span><span class="n">_age</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>这里Person 两边使用了小括号，这点尤其有意思。其实返回值也可以是两个或以上的值，这和Python的语法相似，灵活性较Java/JavaScript有所提升，我们后文会提及。
 Solidity的函数也有修饰符，称为modifiers，这标明了函数可能对区块链状态有无修改/读取的标记。一般都会标记该值让编译器帮我们执行代码的优化。例如下面两段代码。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Person</span><span class="p">[]</span> <span class="kr">public</span> <span class="n">people</span><span class="p">;</span>
-<span class="kd">function</span> <span class="n">viewMe</span><span class="p">()</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="n">Person</span><span class="p">[]</span> <span class="k">public</span> <span class="n">people</span><span class="p">;</span>
+<span class="kd">function</span> <span class="n">viewMe</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">people</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="c1">// 读取了区块链数据区的people</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="n">_multiply</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="kr">private</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="n">_multiply</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="k">private</span> <span class="k">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// 未读取任何区块链数据， 单纯的计算</span>
 <span class="p">}</span>
 </pre></div>
@@ -667,14 +675,14 @@ Solidity的函数也有修饰符，称为modifiers，这标明了函数可能对
 <div class="admonition- admonition">
 <p class="first admonition-title">小练习</p>
 <p>请将下列函数填充完整，输入_str 后该函数将会填充如 keccack 函数进行哈希，并生成一个256位的哈希值，请强制转换它为256位的 uint 并和 colorModulus 作取余操作。</p>
-<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">_generateRandomColor</span><span class="p">(</span><span class="kt">string</span> <span class="n">_str</span><span class="p">)</span> <span class="kr">private</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">_generateRandomColor</span><span class="p">(</span><span class="kt">string</span> <span class="n">_str</span><span class="p">)</span> <span class="k">private</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">uint</span> <span class="n">rand</span> <span class="o">=</span> <span class="n">____</span><span class="p">(</span><span class="nf">keccak256</span><span class="p">(</span><span class="n">_str</span><span class="p">));</span>
     <span class="k">return</span> <span class="n">rand</span> <span class="o">%</span> <span class="n">____</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>请再创建一个函数 createRandomCar 该函数将接受一个车名 _name 作为输入值。该函数没有任何返回值，并且调用_generateRandomColor 产生汽车的颜色。之后调用 _createCar 函数（前文已经提及）将新产生的车子推入区块链数据中永久存储。</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">__________</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">__________</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span>
     <span class="kt">uint</span> <span class="n">randColor</span> <span class="o">=</span> <span class="n">_________</span><span class="p">(</span><span class="n">_name</span><span class="p">);</span>
     <span class="n">_______</span><span class="p">(</span><span class="n">_name</span><span class="p">,</span> <span class="n">randColor</span><span class="p">);</span>
 <span class="p">}</span>
@@ -688,7 +696,7 @@ Solidity的函数也有修饰符，称为modifiers，这标明了函数可能对
 <div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">event</span> <span class="n">PersonCreated</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">uint16</span> <span class="n">age</span><span class="p">);</span>
 
 <span class="kd">function</span> <span class="n">create</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">,</span> <span class="kt">uint16</span> <span class="n">_age</span><span class="p">){</span>
-    <span class="kr">emit</span> <span class="n">PersonCreated</span><span class="p">(</span><span class="n">_name</span><span class="p">,</span> <span class="n">_age</span><span class="p">);</span><span class="c1">// 直接产生了日志</span>
+    <span class="k">emit</span> <span class="n">PersonCreated</span><span class="p">(</span><span class="n">_name</span><span class="p">,</span> <span class="n">_age</span><span class="p">);</span><span class="c1">// 直接产生了日志</span>
     <span class="k">return</span> <span class="n">Person</span><span class="p">(</span><span class="n">_name</span><span class="p">,</span> <span class="n">age</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
@@ -697,7 +705,7 @@ Solidity的函数也有修饰符，称为modifiers，这标明了函数可能对
 <div class="admonition- admonition">
 <p class="first admonition-title">小练习</p>
 <p>我们的CarFactory.sol合约接近完成了，请填充下面空白处，让合约能够产生NewCar事件，并且改造_createCar 函数让每辆车进入区块链数据区保存后能产生事件，通知外界区块链数据的变化。</p>
-<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+<div class="last highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="k">pragma solidity</span> <span class="o">^</span><span class="mf">0.4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
 
 <span class="kd">contract</span> <span class="n">CarFactory</span> <span class="p">{</span>
 
@@ -711,19 +719,19 @@ Solidity的函数也有修饰符，称为modifiers，这标明了函数可能对
         <span class="kt">uint</span> <span class="n">color</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="n">Color</span><span class="p">[]</span> <span class="kr">public</span> <span class="n">cars</span><span class="p">;</span>
+    <span class="n">Color</span><span class="p">[]</span> <span class="k">public</span> <span class="n">cars</span><span class="p">;</span>
 
-    <span class="kd">function</span> <span class="n">_createCar</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">_color</span><span class="p">)</span> <span class="kr">private</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="n">_createCar</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">_color</span><span class="p">)</span> <span class="k">private</span> <span class="p">{</span>
         <span class="kt">uint</span> <span class="n">id</span> <span class="o">=</span> <span class="n">cars</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">Car</span><span class="p">(</span><span class="n">_name</span><span class="p">,</span> <span class="n">_color</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="kr">emit</span> <span class="n">_______</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">_name</span><span class="p">,</span> <span class="n">_dna</span><span class="p">);</span> <span class="c1">// 填充此处</span>
+        <span class="k">emit</span> <span class="n">_______</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">_name</span><span class="p">,</span> <span class="n">_dna</span><span class="p">);</span> <span class="c1">// 填充此处</span>
     <span class="p">}</span>
 
-    <span class="kd">function</span> <span class="n">_generateRandomColor</span><span class="p">(</span><span class="kt">string</span> <span class="n">_str</span><span class="p">)</span> <span class="kr">private</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="n">_generateRandomColor</span><span class="p">(</span><span class="kt">string</span> <span class="n">_str</span><span class="p">)</span> <span class="k">private</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">uint</span> <span class="n">rand</span> <span class="o">=</span> <span class="kt">uint</span><span class="p">(</span><span class="nf">keccak256</span><span class="p">(</span><span class="n">_str</span><span class="p">));</span>
         <span class="k">return</span> <span class="n">rand</span> <span class="o">%</span> <span class="n">colorModulus</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kd">function</span> <span class="n">createRandomCar</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="n">createRandomCar</span><span class="p">(</span><span class="kt">string</span> <span class="n">_name</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span>
         <span class="kt">uint</span> <span class="n">randColor</span> <span class="o">=</span> <span class="n">_generateRandomColor</span><span class="p">(</span><span class="n">_name</span><span class="p">);</span>
         <span class="n">_createCar</span><span class="p">(</span><span class="n">_name</span><span class="p">,</span> <span class="n">randColor</span><span class="p">);</span>
     <span class="p">}</span>
@@ -739,29 +747,29 @@ Solidity的函数也有修饰符，称为modifiers，这标明了函数可能对
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="levelup.html" class="btn btn-neutral float-right" title="语法进阶" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="第 8 章 Solidity语法练习" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="levelup.html" class="btn btn-neutral float-right" title="语法进阶" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="第 8 章 Solidity语法练习" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -769,7 +777,6 @@ Solidity的函数也有修饰符，称为modifiers，这标明了函数可能对
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -788,6 +795,7 @@ Solidity的函数也有修饰符，称为modifiers，这标明了函数可能对
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

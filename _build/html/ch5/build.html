@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>启动一条以太坊私链 &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="接收挖矿奖励" href="coinbase.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 5 章 构建一条以太坊私链</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch5/build.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -355,13 +363,13 @@
 </div></blockquote>
 <p>我们将以构建私有网络，亲手创世一条以太坊私链的形式进行下面的教学。</p>
 <div class="topic">
-<p class="topic-title first">设立工作目录</p>
+<p class="topic-title">设立工作目录</p>
 <p>我们设立一个新的工作目录并新建一个创世启动配置文件。</p>
 </div>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span>mkdir ether-test
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>mkdir ether-test
 <span class="nb">cd</span> ether-test
 touch gensis.json
 mkdir db
@@ -376,17 +384,17 @@ mkdir db
 </pre></div>
 </div>
 <div class="topic">
-<p class="topic-title first">编辑创世配置</p>
+<p class="topic-title">编辑创世配置</p>
 <p>如果读者回忆起 <a class="reference internal" href="../ch1/highlight.html#reference-total-supply"><span class="std std-ref">以太坊的特色</span></a> 的讲解，与比特币不同，以太坊的创世就已经分配了约70%的以太币，随后才进入挖矿过程，大家竞争挖矿分配剩余的币。我们私链也同样可以通过创世方法分配好一些以太币供测试使用，或者从零开始一点一点通过挖矿的方式挖掘以太币。</p>
 <p>创世配置就是供以太坊私有链第一次启动时所使用，创世区块是最特殊的区块，它没有前一个区块，因为它自己是第一个块。我们下面来配置创世区块 <code class="docutils literal notranslate"><span class="pre">gensis.json</span></code> 文件。</p>
 </div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// gensis.json</span>
 <span class="p">{</span>
   <span class="s2">&quot;config&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;chainId&quot;</span><span class="o">:</span> <span class="mi">987</span><span class="p">,</span>
-      <span class="s2">&quot;homesteadBlock&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s2">&quot;eip155Block&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s2">&quot;eip158Block&quot;</span><span class="o">:</span> <span class="mi">0</span>
+      <span class="s2">&quot;chainId&quot;</span><span class="o">:</span> <span class="mf">987</span><span class="p">,</span>
+      <span class="s2">&quot;homesteadBlock&quot;</span><span class="o">:</span> <span class="mf">0</span><span class="p">,</span>
+      <span class="s2">&quot;eip155Block&quot;</span><span class="o">:</span> <span class="mf">0</span><span class="p">,</span>
+      <span class="s2">&quot;eip158Block&quot;</span><span class="o">:</span> <span class="mf">0</span>
   <span class="p">},</span>
   <span class="s2">&quot;difficulty&quot;</span><span class="o">:</span> <span class="s2">&quot;0x400&quot;</span><span class="p">,</span>
   <span class="s2">&quot;gasLimit&quot;</span><span class="o">:</span> <span class="s2">&quot;0x8000000&quot;</span><span class="p">,</span>
@@ -397,10 +405,10 @@ mkdir db
 <p>以上就是一份最小可行的创世区块配置，包含了区块链配置，挖矿难度设置，单一区块最大包含 Gas 的上限，以及一个空置的创世币分配区alloc(意味着没有预先分配以太币)。当然，也可以扩充一些启动的其他参数诸如时间戳以及前一区块哈希等，这些都是非必填的。完整版的 <code class="docutils literal notranslate"><span class="pre">gensis.json</span></code> 如下所示。</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;config&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;chainId&quot;</span><span class="o">:</span> <span class="mi">987</span><span class="p">,</span>
-      <span class="s2">&quot;homesteadBlock&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s2">&quot;eip155Block&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s2">&quot;eip158Block&quot;</span><span class="o">:</span> <span class="mi">0</span>
+      <span class="s2">&quot;chainId&quot;</span><span class="o">:</span> <span class="mf">987</span><span class="p">,</span>
+      <span class="s2">&quot;homesteadBlock&quot;</span><span class="o">:</span> <span class="mf">0</span><span class="p">,</span>
+      <span class="s2">&quot;eip155Block&quot;</span><span class="o">:</span> <span class="mf">0</span><span class="p">,</span>
+      <span class="s2">&quot;eip158Block&quot;</span><span class="o">:</span> <span class="mf">0</span>
   <span class="p">},</span>
   <span class="s2">&quot;difficulty&quot;</span><span class="o">:</span> <span class="s2">&quot;0x400&quot;</span><span class="p">,</span>
   <span class="s2">&quot;gasLimit&quot;</span><span class="o">:</span> <span class="s2">&quot;0xffffffff&quot;</span><span class="p">,</span>
@@ -473,22 +481,22 @@ mkdir db
 </table>
 <p>后文将以简化版本的 <code class="docutils literal notranslate"><span class="pre">gensis.json</span></code> 作为创世私有链的基础。</p>
 <div class="topic">
-<p class="topic-title first">初始化创世配置</p>
+<p class="topic-title">初始化创世配置</p>
 <p>我们已经准备好了创世的配置，接下来就是将该链条的配置初始化，形成区块链的起点，初始化之后我们就有了第一个区块，接下来就可以根据第一个区块来挖掘第二个区块了。</p>
 </div>
 <p>进入 <code class="docutils literal notranslate"><span class="pre">ether-test</span></code> 目录，执行初始化。</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> ether-test
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> ether-test
 geth --datadir <span class="s2">&quot;./db&quot;</span> init gensis.json
 &gt;
 INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span><span class="m">15</span>:04:53.320<span class="o">]</span> Maximum peer count
@@ -530,16 +538,16 @@ INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span
 db 目录下还有一个 keystore 目录。该目录下保存了各个账户的私钥的加密后的文件，
 与我们学习过的 <a class="reference internal" href="../ch2/keystore.html#reference-keystore"><span class="std std-ref">资料篇：Keystore 与私钥保存</span></a> 相对应。只有在签名的时候用户才会解锁 keystore 执行签名操作。</p>
 <div class="topic">
-<p class="topic-title first">启动Geth 节点</p>
+<p class="topic-title">启动Geth 节点</p>
 <p>一切准备就绪，弗兰肯斯坦的巨人马上就要苏醒，在我们现在的环境下，需要启动一个 Geth 节点来接入私链网络（实际上也是这个私链网络的唯一一个节点），负责在创世块后挖出第一个块。该节点也是我们与以太坊私链通信的节点服务器。下面我们来启动这样一个节点。</p>
 </div>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> ether-test
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">cd</span> ether-test
 geth --datadir ./db/ --rpc --rpcaddr<span class="o">=</span><span class="m">127</span>.0.0.1 --rpcport <span class="m">8545</span> --rpccorsdomain <span class="s2">&quot;*&quot;</span> <span class="se">\</span>
    --rpcapi <span class="s2">&quot;eth,net,web3,personal,admin,shh,txpool,debug,miner&quot;</span> <span class="se">\</span>
    --nodiscover --maxpeers <span class="m">30</span> --networkid <span class="m">198989</span> --port <span class="m">30303</span> <span class="se">\</span>
@@ -642,19 +650,19 @@ INFO <span class="o">[</span><span class="m">09</span>-16<span class="p">|</span
 <p>我们可以陆续看到诸如 <code class="docutils literal notranslate"><span class="pre">number=1，number=2</span></code> 的输出，这表明我们已经成功地挖掘出了第1，2，3…个区块，而区块的 <code class="docutils literal notranslate"><span class="pre">uncles=0</span></code> ，说明并没有 <strong>叔块</strong> 产生，复习我们之前所学的知识 <a class="reference internal" href="../ch3/dig.html#ref-dig"><span class="std std-ref">资料篇：矿工与挖矿奖励</span></a> ，在网络中有且仅有我们一个挖矿节点的时候，没有竞争对手产生同一个高度的块，所以显而易见的是不会产生孤立的块，也就不会产生叔块了。</p>
 <p>至此，控制台持续在输出挖矿相关信息。你的私链已经稳定运行。由于我们启动时 <code class="docutils literal notranslate"><span class="pre">etherbase</span></code> 参数随便设置了一个挖矿矿工奖励地址，所以挖出的区块奖励都发送到了那个地址，但我们并没有持有这个地址，这等于白白浪费了。现在，我们来与Geth通信并且让它暂停一下挖矿，等我们新建好了账户之后再继续挖。</p>
 <p>我们重新开一个控制台窗口，并连接上正在运行的 Geth，让其停下挖矿。</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="hll"><span class="nb">cd</span> ether-test
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="hll"><span class="nb">cd</span> ether-test
 </span><span class="hll">geth --datadir ./db attach ipc:./db/geth.ipc
 </span>&gt;
 Welcome to the Geth JavaScript console!
@@ -733,29 +741,29 @@ at block: <span class="m">90</span> <span class="o">(</span>Sun, <span class="m"
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="coinbase.html" class="btn btn-neutral float-right" title="接收挖矿奖励" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="geth.html" class="btn btn-neutral float-left" title="Geth客户端的结构" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="coinbase.html" class="btn btn-neutral float-right" title="接收挖矿奖励" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="geth.html" class="btn btn-neutral float-left" title="Geth客户端的结构" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -763,7 +771,6 @@ at block: <span class="m">90</span> <span class="o">(</span>Sun, <span class="m"
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -782,6 +789,7 @@ at block: <span class="m">90</span> <span class="o">(</span>Sun, <span class="m"
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

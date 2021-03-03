@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Merkle Patricia树 &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="RLP编码" href="rlp.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 4 章 数据结构</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch4/mpt.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -346,7 +354,7 @@
 <p>以太坊团队开创性地融合了Radix树和Merkle树的结构，并进一步优化该结构的存储性能，形成了实用的 <strong>Merkle Patricia树</strong> 。</p>
 <p>Merkle Patiricia树 (以下简称MPT树) 是一个可以存储键值对 (key-value pair) 的高效数据结构，键、值分别可以是任意的序列化过的字符串。它具有Merkle树的密码学安全校验功能，提供树中的数据完整性与存在性的 Merkle 证明。它具有强大的互动能力，在log(N)级别的时间内完成插入、删除、查询等操作。我们来循序渐进地查看如何构建一棵 MPT树。</p>
 <div class="topic">
-<p class="topic-title first">首先我们定义一个节点。</p>
+<p class="topic-title">首先我们定义一个节点。</p>
 <p>节点在逻辑上，由 <span class="guilabel">索引</span> 、<span class="guilabel">路径</span> 和 <span class="guilabel">数据</span> 这三部分组成。</p>
 <p>在实际中, <span class="guilabel">索引</span>对应了数据库软件中一条记录的 <cite>键</cite>；将 <span class="guilabel">路径</span> 和 <span class="guilabel">数据</span> 编码成一个单元，称为 <cite>存储</cite>，对应了数据库软件中一条记录的“值”。</p>
 <p>节点可以利用数据库软件例如MySQL、SQLite或轻量级数据库LevelDB来存储，它需要保证查询一个索引时候快速高效。</p>
@@ -364,7 +372,7 @@
 <p class="last">在以太坊中，数据库查找，我们简称为 <strong>dl操作(Database lookup)</strong> 。树路径查找，简称为 <strong>tl操作(Trie lookup)</strong> 。</p>
 </div>
 <div class="topic">
-<p class="topic-title first">初步构建一棵低效率的MPT树</p>
+<p class="topic-title">初步构建一棵低效率的MPT树</p>
 <p>假设我们拥有如下的键值对数据集。我们想办法用MPT树将其组织起来。</p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id11">
@@ -404,7 +412,7 @@
 路径查找是Radix树的特色。把节点进行哈希进行索引，就是Merkle树的特色。两者完美结合。</p>
 <p>但是这棵树还不够优化，存储空间有大量的空白值， <em>HashE、HashF、HashG</em> 的节点仅仅指向一个后继节点，在空间上效率不高，产生了 <strong>退化</strong> 。</p>
 <div class="topic">
-<p class="topic-title first">空间效率改进的MPT树</p>
+<p class="topic-title">空间效率改进的MPT树</p>
 <p>我们下面来改进一下这棵树，将部分节点改造合并、缩短路径，如图 <a class="reference internal" href="#id3">4-9</a> 所示。</p>
 </div>
 <div class="figure align-center" id="id13">
@@ -429,7 +437,7 @@
 <p class="caption"><span class="caption-text">MPT树：根节点、分支节点、叶子节点、扩展节点和最终数据存储</span></p>
 </div>
 <div class="topic">
-<p class="topic-title first">在MPT树中查找元素</p>
+<p class="topic-title">在MPT树中查找元素</p>
 <p>当我们在MPT树中查找路径 <code class="docutils literal notranslate"><span class="pre">56f0</span></code> 对应的 <code class="docutils literal notranslate"><span class="pre">&quot;horse&quot;</span></code> 值时，路径就大大缩短，按照如下步骤就可找到。</p>
 <blockquote>
 <div><ul class="simple">
@@ -472,29 +480,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="rlp.html" class="btn btn-neutral float-right" title="RLP编码" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="merkle.html" class="btn btn-neutral float-left" title="Merkle树和 Merkle证明" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="rlp.html" class="btn btn-neutral float-right" title="RLP编码" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="merkle.html" class="btn btn-neutral float-left" title="Merkle树和 Merkle证明" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -502,7 +510,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -521,6 +528,7 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 

@@ -1,23 +1,31 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>以太坊的特色 &mdash; 以太坊的指南针 1.0.0 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,10 +38,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="第 2 章 账户是什么" href="../ch2/index.html" />
@@ -74,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -274,6 +279,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -310,11 +316,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="index.html">第 1 章 以太坊：一台全球计算机</a> &raquo;</li>
         
@@ -323,7 +331,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             
               <!-- User defined GitHub URL -->
               <a href="https://github.com/laalaguer/ethereum-compass/blob/master/ch1/highlight.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -346,7 +354,7 @@
 不少公链都从它派生而来，进一步发扬光大。
 它的 <strong>经济模型</strong> 与 <strong>挖矿模型</strong> 与比特币相比有较大区别，下面分几方面逐一概括。</p>
 <div class="topic">
-<p class="topic-title first">以太币总量</p>
+<p class="topic-title">以太币总量</p>
 <p>比特币的币，全部由挖矿过程产生，以太坊则不然。
 它在创立之初即用众筹的方式筹集比特币作为启动资金。
 同时向募资人发放了 7200 万枚以太币代币。
@@ -370,7 +378,7 @@
 <p class="last">以太币约3/4在创世之初即已经存在，其总发行量会跟随项目进度而调整。</p>
 </div>
 <div class="topic">
-<p class="topic-title first">挖矿速度</p>
+<p class="topic-title">挖矿速度</p>
 <p>作为一台全球巨型计算机，以太坊的记账出块速度决定了这台计算机的运行速度。
 用户调用智能合约所引发的状态转移随着每次合法出块而发生。
 目前以太坊的出块速度维持在 <code class="docutils literal notranslate"><span class="pre">10－19</span></code> 秒/块之间，
@@ -383,7 +391,7 @@
 <p class="last">比特币的出块速度平均维持在 10 分钟/块左右。</p>
 </div>
 <div class="topic">
-<p class="topic-title first">存储空间</p>
+<p class="topic-title">存储空间</p>
 <p>以太坊目前全球区块链总存储容量已经达到单机 1TB 以上的规模，并且随着出块持续增加中。
 在未来十年间，运行以太坊完整节点的设备成本将会超出普通爱好者的承受范围，</p>
 </div>
@@ -392,14 +400,14 @@
 <p class="last">比特币的区块链单机总存储大小在 170GB 左右，不足以太坊的 1/5。</p>
 </div>
 <div class="topic">
-<p class="topic-title first">状态机</p>
+<p class="topic-title">状态机</p>
 <p>以太坊可被视为一个巨大的“状态机”，由交易驱动而不断进行状态转移。
 区块链记录了用户向该状态机发出请求的历史和请求的结果。</p>
 <p>该状态包罗了世界上所有使用该网络的用户的状态，也包罗了各个智能合约的状态。
 这台巨型计算机的任何时刻的状态，可以被任何人查询。</p>
 </div>
 <div class="topic">
-<p class="topic-title first">代币</p>
+<p class="topic-title">代币</p>
 <p>以太坊强大的合约功能提供了诸多在以太坊上进行交互的可能。
 而其中最有深远影响的是 ERC20 <a class="footnote-reference" href="#id7" id="id4">[1]</a> 的代币（俗称发币），
 在这之后又进一步衍生出了 ERC721 <a class="footnote-reference" href="#id8" id="id5">[2]</a> 标准的代币（如有名的 <strong>加密猫游戏</strong> 即为该合约格式）。
@@ -409,7 +417,7 @@ ERC20 仅需要开发者在智能合约中实施一些标准接口，该合约�
 ERC20 标准也成为学习以太坊智能合约的一个重要范例教材，将在本书的实践开发环节中向读者展示。</p>
 </div>
 <div class="topic">
-<p class="topic-title first">哲学</p>
+<p class="topic-title">哲学</p>
 <p>以太坊的社区哲学是 <strong>“Move fast and break things”</strong> ，
 用快速创新并不畏惧打破传统的方式进行发展。
 这有别于比特币保守谨慎的社区作风。
@@ -447,29 +455,29 @@ ERC20 标准也成为学习以太坊智能合约的一个重要范例教材，�
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../ch2/index.html" class="btn btn-neutral float-right" title="第 2 章 账户是什么" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="progress.html" class="btn btn-neutral float-left" title="发展阶段" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../ch2/index.html" class="btn btn-neutral float-right" title="第 2 章 账户是什么" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="progress.html" class="btn btn-neutral float-left" title="发展阶段" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, laalaguer
+        &#169; Copyright 2019, laalaguer.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -477,7 +485,6 @@ ERC20 标准也成为学习以太坊智能合约的一个重要范例教材，�
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
@@ -496,6 +503,7 @@ ERC20 标准也成为学习以太坊智能合约的一个重要范例教材，�
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-142187300-2', 'auto');
+    
     ga('send', 'pageview');
     </script>
 
