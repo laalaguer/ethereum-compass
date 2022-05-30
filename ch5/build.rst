@@ -54,6 +54,7 @@
      "config": {
          "chainId": 987,
          "homesteadBlock": 0,
+         "eip150Block": 0,
          "eip155Block": 0,
          "eip158Block": 0
      },
@@ -70,6 +71,7 @@
      "config": {
          "chainId": 987,
          "homesteadBlock": 0,
+         "eip150Block": 0,
          "eip155Block": 0,
          "eip158Block": 0
      },
@@ -95,6 +97,8 @@
 | chainId        | 自定义私链的网络ID，不同的网络ID无法互联通讯，以太坊公链ID 为1，我们设置为987以防止与网络中其他私链冲突。         |
 +----------------+-------------------------------------------------------------------------------------------------------------------+
 | homesteadBlock | 是否为HomeStead版本的区块，设置为0表明是。                                                                        |
++----------------+-------------------------------------------------------------------------------------------------------------------+
+| eip150Block    | EIP150 [#]_ 是一个以太坊分叉提议，通过增加 Gas Prices 来应对 DoS 攻击，是 EIP155 的前提，因此也要加入并设为0             |
 +----------------+-------------------------------------------------------------------------------------------------------------------+
 | eip155Block    | EIP155 [#]_ 是一个以太坊分叉提议，为了和以前的以太坊经典ETC 链条分叉而存在，我们私链不需要它，设为0。             |
 +----------------+-------------------------------------------------------------------------------------------------------------------+
@@ -317,6 +321,7 @@ geth启动时命令行参数解释如下表:
 | shh      | 提供了分布式网络 P2P Whisper通信协议的相关方法                   |
 +----------+------------------------------------------------------------------+
 
+.. [#] Vitalik Buterin (2016), ‘Gas cost changes for IO-heavy operations’, Available at: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-150.md
 .. [#] Vitalik Buterin (2016), ‘Simple replay attack protection’, Available at: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md
 .. [#] Vitalik Buterin (2016), ‘State clearing’, Available at: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-158.md
 .. [#] 笔者注：更多参考见 https://github.com/ethereum/go-ethereum/wiki/Management-APIs
