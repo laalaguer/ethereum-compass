@@ -1,0 +1,99 @@
+:github_url: https://github.com/laalaguer/ethereum-compass/blob/master/ch5/coinbase.rst
+
+接收挖矿奖励
+===============================
+
+恭喜你，至此我们已经成功完成了创世并且启动了我们私有的以太坊链，目前这个链上有且仅有我们一台计算机在做挖掘工作，虽然不停地挖掘出了很多区块，但这些区块都是空区块，同时挖矿奖励也汇入了一个我们随机指定的账户内：
+
+.. centered:: 0x7df9a875a174b3bc565e6424a0050ebc1b2d1d82
+
+这个地址我们没有它的私钥，也就是说这部分汇入的币就永远不可能为我们所用。我们下面来应用 :ref:`reference-account` 所学的账户知识，生成两个以太坊账户并且将其中一个设置为挖矿的奖励地址替换上方的地址。
+
+**请确保你的Geth节点尚在运行** ，我们新开命令行窗口执行 attach 命令依附上正在运行中的Geth节点：
+
+.. code-block:: bash
+   :linenos:
+
+   cd ether-test
+   geth --datadir ./db attach ipc:./db/geth.ipc
+
+在控制台上我们用personal功能模块新建两个账户，分别由123密码和 456来保护。
+
+.. code-block:: bash
+   :linenos:
+
+   > personal.newAccount('123')
+   "0x53dc408a8fa060fd3b72b30ca312f4b3f3232f4f"
+   > personal.newAccount('456')
+   "0x6c8f6c9d9f8d63503fc10977db48cd92a15d34ff"
+
+生成后我们已经看到控制台上分别输出了两个地址，它们就是生成好的两个账户的公开地址，现在这些地址已经准备好能够收受以太币。
+
+.. Note::
+
+   生成的两个账户信息已经按照 :ref:`reference-keystore` 的 keystore 形式加密存储于本机硬盘，在发送交易前的签名环节，用户仅需通过提示输入对应的密码123或456就可以临时解锁账户信息载入内存，执行签名操作。
+
+我们用eth功能模块来检查一下这两个账户的以太币余额。
+
+.. code-block:: bash
+   :linenos:
+
+   > eth.accounts
+   ["0x53dc408a8fa060fd3b72b30ca312f4b3f3232f4f", "0x6c8f6c9d9f8d63503fc10977db48cd92a15d34ff"]
+   
+   > web3.fromWei(eth.getBalance(eth.accounts[0]), "ether")
+   0
+   > web3.fromWei(eth.getBalance(eth.accounts[1]), "ether")
+   0
+
+我们用 ``web3`` 功能模块的 ``fromWei()`` 换算功能帮助我们换算了账户余额，如我们所预料的，账户余额为 ``0`` 。在以太坊的世界里没有浮点数小数点，只有整数。所以形如 ``3.1415`` 的小数在以太坊里是无法表示的，这里采用了 ``Wei`` 为单位表示以太坊不可分割的最小单位，将所有小数转化为大整数运算，
+
+.. centered:: :math:`1 {Ether}=1 x 10^{18} {wei}` 
+
+我们用 ``web3`` 库的换算功能帮助我们换算了账户余额，如我们所预料的，账户余额为 ``0`` 。
+
+为了在私链上获取以太币供测试使用，我们设定其中一个账户的地址为挖矿奖励地址，这样我们就有源源不断的以太币可以做实验使用，我们来用miner功能模块设定一下挖矿地址。
+
+.. code-block:: bash
+   :linenos:
+
+   > miner.setEtherbase(eth.accounts[0])
+   true
+
+我们再来用eth功能模块检查一下，是否挖矿收益地址coinbase已经是我们的地址：
+
+
+.. code-block:: bash
+   :linenos:
+
+   > eth.coinbase
+   "0x53dc408a8fa060fd3b72b30ca312f4b3f3232f4f"
+
+设置成功！接下来我们就可以重新通知Geth节点去启动挖矿，然后坐等我们的以太币流入第一个账户了。请重启挖矿。
+
+.. code-block:: bash
+
+   > miner.start(1)
+   INFO [09-16|16:50:01.593] Updated mining threads                   threads=1
+   INFO [09-16|16:50:01.593] Transaction pool price threshold updated price=18000000000
+   INFO [09-16|16:50:01.593] Commit new mining work                   number=151 uncles=0 txs=0 gas=0 fees=0 elapsed=128.418µs
+   INFO [09-16|16:50:04.716] Successfully sealed new block            number=151 hash=3dd6ec…4f2db0 elapsed=3.122s
+   INFO [09-16|16:50:04.717] 🔗 block reached canonical chain          number=146 hash=ae7080…7e0b58
+   INFO [09-16|16:50:04.717] 🔨 mined potential block                  number=151 hash=3dd6ec…4f2db0
+   INFO [09-16|16:50:04.717] Commit new mining work                   number=152 uncles=0 txs=0 gas=0 fees=0 elapsed=96.018µs
+   INFO [09-16|16:50:05.424] Successfully sealed new block            number=152 hash=e9220e…449524 elapsed=706.860ms
+
+这里 ``miner.start()`` 代入参数 ``1`` 代表了我们启动挖矿时候仅仅启动一个线程挖矿。现在每隔 5-10 秒就有一个新的块被挖出（不包含任何交易，是空块），稍等一会儿，我们再次来检查一下各个账户的余额情况。
+
+.. code-block:: bash
+
+   > eth.accounts
+   ["0x53dc408a8fa060fd3b72b30ca312f4b3f3232f4f", "0x6c8f6c9d9f8d63503fc10977db48cd92a15d34ff"]
+   
+   > web3.fromWei(eth.getBalance(eth.accounts[0]), "ether")
+   650
+   > web3.fromWei(eth.getBalance(eth.accounts[1]), "ether")
+   0
+
+可以看到已经有一个账户收到了挖矿奖励，持有650个币了。
+
